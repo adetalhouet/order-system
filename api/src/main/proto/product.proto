@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package io.adetalhouet.order.system.product;
+
+option java_multiple_files = true;
+option java_package = "io.adetalhouet.order.system.product";
+
+import "utils.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service ProductService {
+  rpc AddProduct (Product) returns (io.adetalhouet.order.system.utils.Status);
+  rpc GetProducts (google.protobuf.Empty) returns (Products);
+  rpc GetProductById (GetProductByIdRequest) returns (Product);
+  rpc DeleteProductById (DeleteProductByIdRequest) returns (io.adetalhouet.order.system.utils.Status);
+}
+
+message GetProductByIdRequest {
+  int64 id = 1;
+}
+
+message DeleteProductByIdRequest {
+  int64 id = 1;
+}
+
+message Products {
+  repeated Product products = 1;
+}
+
+message Product {
+  int64 id = 1;
+  string name = 2;
+  string price = 3;
+  int32 number_available = 4;
+  string weigh = 5;
+  string size = 6;
+  google.protobuf.Timestamp date_created = 7;
+  google.protobuf.Timestamp last_updated = 8;
+}

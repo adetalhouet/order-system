@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package io.adetalhouet.order.system.billing;
+
+option java_multiple_files = true;
+option java_package = "io.adetalhouet.order.system.billing";
+
+import "google/protobuf/timestamp.proto";
+
+import "utils.proto";
+import "client.proto";
+import "product.proto";
+
+service BillingService {
+  rpc AddBill (Bill) returns (io.adetalhouet.order.system.utils.Status);
+  rpc GetBillById (GetBillByIdRequest) returns (Bill);
+  rpc GetBillByClient (GetBillByClientRequest) returns (Bills);
+}
+
+message GetBillByIdRequest {
+  int64 id = 1;
+}
+
+message GetBillByClientRequest {
+  int64 client_id = 1;
+}
+
+message Bills {
+  repeated Bill bills = 1;
+}
+
+message Bill {
+  int64 id = 1;
+  google.protobuf.Timestamp date_created = 2;
+  io.adetalhouet.order.system.client.Client client = 3;
+  repeated io.adetalhouet.order.system.product.Product products = 4;
+  float price = 5;
+}

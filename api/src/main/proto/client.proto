@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package io.adetalhouet.order.system.client;
+
+option java_multiple_files = true;
+option java_package = "io.adetalhouet.order.system.client";
+
+import "utils.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service ClientService {
+  rpc AddClient (Client) returns (io.adetalhouet.order.system.utils.Status);
+  rpc GetClients (google.protobuf.Empty) returns (Clients);
+  rpc GetClientById (GetClientByIdRequest) returns (Client);
+  rpc DeleteClientById (DeleteClientByIdRequest) returns (io.adetalhouet.order.system.utils.Status);
+}
+
+message GetClientByIdRequest {
+  int64 id = 1;
+}
+
+message DeleteClientByIdRequest {
+  int64 id = 1;
+}
+
+message Clients {
+  repeated Client clients = 1;
+}
+
+message Client {
+  int64 id = 1;
+  string username = 2;
+  string firstname = 3;
+  string lastname = 4;
+  string email = 5;
+  google.protobuf.Timestamp date_created = 6;
+}

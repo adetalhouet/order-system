@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package io.adetalhouet.order.system.cart;
+
+option java_multiple_files = true;
+option java_package = "io.adetalhouet.order.system.cart";
+
+import "utils.proto";
+import "product.proto";
+import "google/protobuf/timestamp.proto";
+
+service CartService {
+  rpc AddToCart (CartItem) returns (io.adetalhouet.order.system.utils.Status);
+  rpc RemoteFromCart (CartItem) returns (io.adetalhouet.order.system.utils.Status);
+}
+
+message GetClientByIdRequest {
+  int64 id = 1;
+}
+
+message DeleteClientByIdRequest {
+  int64 id = 1;
+}
+
+message CartItem {
+  io.adetalhouet.order.system.product.Product product = 1;
+  int32 quantity = 2;
+  float total_price = 3;
+}
+
+message Cart {
+  int64 id = 1;
+  repeated CartItem items = 2;
+  google.protobuf.Timestamp date_created = 3;
+}
