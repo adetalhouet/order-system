@@ -10,13 +10,19 @@ buildscript {
     val mysqlVersion by rootProject.extra { "8.0.19" }
     val h2database by rootProject.extra { "1.4.200" }
     val exposedVersion by rootProject.extra { "0.21.1" }
+
+    val guiceVersion by rootProject.extra { "4.2.3" }
+
+    val graphqlRejoinerVersion by rootProject.extra { "0.0.4" }
+
 }
 
 extra["services"] = listOf(
     project(":billing-service"),
     project(":order-service"),
     project(":client-service"),
-    project(":cart-service")
+    project(":cart-service"),
+    project(":graphql-gw")
 )
 
 plugins {
@@ -25,6 +31,10 @@ plugins {
     id("com.google.protobuf") version "0.8.11" apply false
     id("org.flywaydb.flyway") version "6.3.3" apply false
     application
+}
+
+application {
+    mainClassName = "io.adetalhouet.order.system.order.OrderAppKt"
 }
 
 allprojects {
@@ -41,9 +51,15 @@ allprojects {
         implementation(platform(kotlin("bom")))
         implementation(kotlin("stdlib-jdk8"))
 
+        implementation("com.google.guava:guava:29.0-jre")
+
+        implementation("com.google.inject:guice:${rootProject.extra.get("guiceVersion")}")
+
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra.get("kotlinxVersion")}")
 
         implementation("com.google.protobuf:protobuf-java-util:${rootProject.extra.get("protobufVersion")}")
+        // for graphql
+        implementation("io.grpc:grpc-stub:${rootProject.extra.get("grpcVersion")}")
         implementation("io.grpc:grpc-kotlin-stub:${rootProject.extra.get("grpcKotlinVersion")}")
         implementation("io.grpc:grpc-netty-shaded:${rootProject.extra.get("grpcVersion")}")
 

@@ -1,9 +1,11 @@
 package io.adetalhouet.order.system.billing
 
+import com.google.inject.Singleton
 import io.grpc.Server
 import io.grpc.ServerBuilder
 import java.io.IOException
 
+@Singleton
 class BillingServer(private val port: Int) {
     private var server: Server? = null
 

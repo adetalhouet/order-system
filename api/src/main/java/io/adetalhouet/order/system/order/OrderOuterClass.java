@@ -30,6 +30,16 @@ public final class OrderOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_io_adetalhouet_order_system_order_TrackOrderByIdResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_io_adetalhouet_order_system_order_GetOrdersByClientRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_io_adetalhouet_order_system_order_GetOrdersByClientRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_io_adetalhouet_order_system_order_Orders_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_io_adetalhouet_order_system_order_Orders_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_io_adetalhouet_order_system_order_Order_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -50,22 +60,29 @@ public final class OrderOuterClass {
       "ckOrderByIdRequest\022\n\n\002id\030\001 \001(\003\"]\n\026TrackO" +
       "rderByIdResponse\022\n\n\002id\030\001 \001(\003\0227\n\005order\030\003 " +
       "\001(\0132(.io.adetalhouet.order.system.order." +
-      "Order\"\267\002\n\005Order\022\n\n\002id\030\001 \001(\003\022=\n\005state\030\002 \001" +
-      "(\0162..io.adetalhouet.order.system.order.O" +
-      "rder.State\022:\n\006client\030\003 \001(\0132*.io.adetalho" +
-      "uet.order.system.client.Client\0224\n\004cart\030\004" +
-      " \001(\0132&.io.adetalhouet.order.system.cart." +
-      "Cart\0220\n\014date_created\030\005 \001(\0132\032.google.prot" +
-      "obuf.Timestamp\"?\n\005State\022\013\n\007PENDING\020\000\022\n\n\006" +
-      "PLACED\020\001\022\016\n\nIN_TRANSIT\020\002\022\r\n\tDELIVERED\020\0032" +
-      "\205\002\n\014OrderService\022m\n\nPlaceOrder\0224.io.adet" +
-      "alhouet.order.system.order.PlaceOrderReq" +
-      "uest\032).io.adetalhouet.order.system.utils" +
-      ".Status\022\205\001\n\016TrackOrderById\0228.io.adetalho" +
-      "uet.order.system.order.TrackOrderByIdReq" +
-      "uest\0329.io.adetalhouet.order.system.order" +
-      ".TrackOrderByIdResponseB%\n!io.adetalhoue" +
-      "t.order.system.orderP\001b\006proto3"
+      "Order\"V\n\030GetOrdersByClientRequest\022:\n\006cli" +
+      "ent\030\001 \001(\0132*.io.adetalhouet.order.system." +
+      "client.Client\"B\n\006Orders\0228\n\006orders\030\001 \003(\0132" +
+      "(.io.adetalhouet.order.system.order.Orde" +
+      "r\"\267\002\n\005Order\022\n\n\002id\030\001 \001(\003\022=\n\005state\030\002 \001(\0162." +
+      ".io.adetalhouet.order.system.order.Order" +
+      ".State\022:\n\006client\030\003 \001(\0132*.io.adetalhouet." +
+      "order.system.client.Client\0224\n\004cart\030\004 \001(\013" +
+      "2&.io.adetalhouet.order.system.cart.Cart" +
+      "\0220\n\014date_created\030\005 \001(\0132\032.google.protobuf" +
+      ".Timestamp\"?\n\005State\022\013\n\007PENDING\020\000\022\n\n\006PLAC" +
+      "ED\020\001\022\016\n\nIN_TRANSIT\020\002\022\r\n\tDELIVERED\020\0032\202\003\n\014" +
+      "OrderService\022m\n\nPlaceOrder\0224.io.adetalho" +
+      "uet.order.system.order.PlaceOrderRequest" +
+      "\032).io.adetalhouet.order.system.utils.Sta" +
+      "tus\022\205\001\n\016TrackOrderById\0228.io.adetalhouet." +
+      "order.system.order.TrackOrderByIdRequest" +
+      "\0329.io.adetalhouet.order.system.order.Tra" +
+      "ckOrderByIdResponse\022{\n\021GetOrdersByClient" +
+      "\022;.io.adetalhouet.order.system.order.Get" +
+      "OrdersByClientRequest\032).io.adetalhouet.o" +
+      "rder.system.order.OrdersB%\n!io.adetalhou" +
+      "et.order.system.orderP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -93,8 +110,20 @@ public final class OrderOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_order_TrackOrderByIdResponse_descriptor,
         new java.lang.String[] { "Id", "Order", });
-    internal_static_io_adetalhouet_order_system_order_Order_descriptor =
+    internal_static_io_adetalhouet_order_system_order_GetOrdersByClientRequest_descriptor =
       getDescriptor().getMessageTypes().get(3);
+    internal_static_io_adetalhouet_order_system_order_GetOrdersByClientRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_io_adetalhouet_order_system_order_GetOrdersByClientRequest_descriptor,
+        new java.lang.String[] { "Client", });
+    internal_static_io_adetalhouet_order_system_order_Orders_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_io_adetalhouet_order_system_order_Orders_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_io_adetalhouet_order_system_order_Orders_descriptor,
+        new java.lang.String[] { "Orders", });
+    internal_static_io_adetalhouet_order_system_order_Order_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_io_adetalhouet_order_system_order_Order_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_order_Order_descriptor,

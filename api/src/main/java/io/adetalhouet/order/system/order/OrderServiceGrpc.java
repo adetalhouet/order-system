@@ -89,6 +89,37 @@ public final class OrderServiceGrpc {
     return getTrackOrderByIdMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.order.GetOrdersByClientRequest,
+      io.adetalhouet.order.system.order.Orders> getGetOrdersByClientMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetOrdersByClient",
+      requestType = io.adetalhouet.order.system.order.GetOrdersByClientRequest.class,
+      responseType = io.adetalhouet.order.system.order.Orders.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.order.GetOrdersByClientRequest,
+      io.adetalhouet.order.system.order.Orders> getGetOrdersByClientMethod() {
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.order.GetOrdersByClientRequest, io.adetalhouet.order.system.order.Orders> getGetOrdersByClientMethod;
+    if ((getGetOrdersByClientMethod = OrderServiceGrpc.getGetOrdersByClientMethod) == null) {
+      synchronized (OrderServiceGrpc.class) {
+        if ((getGetOrdersByClientMethod = OrderServiceGrpc.getGetOrdersByClientMethod) == null) {
+          OrderServiceGrpc.getGetOrdersByClientMethod = getGetOrdersByClientMethod =
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.order.GetOrdersByClientRequest, io.adetalhouet.order.system.order.Orders>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetOrdersByClient"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  io.adetalhouet.order.system.order.GetOrdersByClientRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  io.adetalhouet.order.system.order.Orders.getDefaultInstance()))
+              .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("GetOrdersByClient"))
+              .build();
+        }
+      }
+    }
+    return getGetOrdersByClientMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -151,6 +182,13 @@ public final class OrderServiceGrpc {
       asyncUnimplementedUnaryCall(getTrackOrderByIdMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void getOrdersByClient(io.adetalhouet.order.system.order.GetOrdersByClientRequest request,
+        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.order.Orders> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetOrdersByClientMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -167,6 +205,13 @@ public final class OrderServiceGrpc {
                 io.adetalhouet.order.system.order.TrackOrderByIdRequest,
                 io.adetalhouet.order.system.order.TrackOrderByIdResponse>(
                   this, METHODID_TRACK_ORDER_BY_ID)))
+          .addMethod(
+            getGetOrdersByClientMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                io.adetalhouet.order.system.order.GetOrdersByClientRequest,
+                io.adetalhouet.order.system.order.Orders>(
+                  this, METHODID_GET_ORDERS_BY_CLIENT)))
           .build();
     }
   }
@@ -200,6 +245,14 @@ public final class OrderServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getTrackOrderByIdMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getOrdersByClient(io.adetalhouet.order.system.order.GetOrdersByClientRequest request,
+        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.order.Orders> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetOrdersByClientMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -228,6 +281,13 @@ public final class OrderServiceGrpc {
     public io.adetalhouet.order.system.order.TrackOrderByIdResponse trackOrderById(io.adetalhouet.order.system.order.TrackOrderByIdRequest request) {
       return blockingUnaryCall(
           getChannel(), getTrackOrderByIdMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public io.adetalhouet.order.system.order.Orders getOrdersByClient(io.adetalhouet.order.system.order.GetOrdersByClientRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getGetOrdersByClientMethod(), getCallOptions(), request);
     }
   }
 
@@ -260,10 +320,19 @@ public final class OrderServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getTrackOrderByIdMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.order.Orders> getOrdersByClient(
+        io.adetalhouet.order.system.order.GetOrdersByClientRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetOrdersByClientMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_PLACE_ORDER = 0;
   private static final int METHODID_TRACK_ORDER_BY_ID = 1;
+  private static final int METHODID_GET_ORDERS_BY_CLIENT = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -289,6 +358,10 @@ public final class OrderServiceGrpc {
         case METHODID_TRACK_ORDER_BY_ID:
           serviceImpl.trackOrderById((io.adetalhouet.order.system.order.TrackOrderByIdRequest) request,
               (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.order.TrackOrderByIdResponse>) responseObserver);
+          break;
+        case METHODID_GET_ORDERS_BY_CLIENT:
+          serviceImpl.getOrdersByClient((io.adetalhouet.order.system.order.GetOrdersByClientRequest) request,
+              (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.order.Orders>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -353,6 +426,7 @@ public final class OrderServiceGrpc {
               .setSchemaDescriptor(new OrderServiceFileDescriptorSupplier())
               .addMethod(getPlaceOrderMethod())
               .addMethod(getTrackOrderByIdMethod())
+              .addMethod(getGetOrdersByClientMethod())
               .build();
         }
       }

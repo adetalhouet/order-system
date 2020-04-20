@@ -1,9 +1,11 @@
 package io.adetalhouet.order.system.client
 
+import com.google.inject.Singleton
 import io.grpc.Server
 import io.grpc.ServerBuilder
 import java.io.IOException
 
+@Singleton
 class CartServer(private val port: Int) {
     private var server: Server? = null
 

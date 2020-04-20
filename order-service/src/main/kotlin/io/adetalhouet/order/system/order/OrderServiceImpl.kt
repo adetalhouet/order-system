@@ -11,4 +11,8 @@ class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
     override suspend fun trackOrderById(request: TrackOrderByIdRequest): TrackOrderByIdResponse {
         return super.trackOrderById(request)
     }
+
+    override suspend fun getOrdersByClient(request: GetOrdersByClientRequest): Orders {
+        return super.getOrdersByClient(request)
+    }
 }

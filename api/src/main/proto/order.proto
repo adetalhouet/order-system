@@ -14,6 +14,7 @@ import "google/protobuf/timestamp.proto";
 service OrderService {
   rpc PlaceOrder (PlaceOrderRequest) returns (io.adetalhouet.order.system.utils.Status);
   rpc TrackOrderById (TrackOrderByIdRequest) returns (TrackOrderByIdResponse);
+  rpc GetOrdersByClient (GetOrdersByClientRequest) returns (Orders);
 }
 
 message PlaceOrderRequest {
@@ -27,6 +28,14 @@ message TrackOrderByIdRequest {
 message TrackOrderByIdResponse {
   int64 id = 1;
   Order order = 3;
+}
+
+message GetOrdersByClientRequest {
+  io.adetalhouet.order.system.client.Client client = 1;
+}
+
+message Orders {
+  repeated Order orders = 1;
 }
 
 message Order {
