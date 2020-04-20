@@ -1,3 +1,5 @@
+group = "${rootProject.group}.utils"
+
 buildscript {
     val hikariVersion by rootProject.extra { "3.4.2" }
     val mysqlVersion by rootProject.extra { "8.0.19" }
