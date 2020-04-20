@@ -1,3 +1,3 @@
 application {
-    mainClassName = "io.adetalhouet.order.system.order.AppKt"
+    mainClassName = "io.adetalhouet.order.system.order.OrderAppKt"
 }

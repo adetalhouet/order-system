@@ -1,3 +1,5 @@
+group = "${rootProject.group}.billing"
+
 application {
-    mainClassName = "io.adetalhouet.order.system.billing.AppKt"
+    mainClassName = "io.adetalhouet.order.system.billing.BillingAppKt"
 }

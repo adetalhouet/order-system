@@ -14,7 +14,7 @@ class CartServer(private val port: Int) {
             .addService(CartServiceImpl())
             .build()
             .start()
-
+        println("Cart server started, listening on $port")
         Runtime.getRuntime().addShutdownHook(object : Thread() {
             override fun run() {
                 println("*** shutting down gRPC server since JVM is shutting down")

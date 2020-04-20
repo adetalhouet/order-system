@@ -14,6 +14,7 @@ class CartServer(private val port: Int) {
             .addService(ClientServiceImpl())
             .build()
             .start()
+        println("Client server started, listening on $port")
 
         Runtime.getRuntime().addShutdownHook(object : Thread() {
             override fun run() {

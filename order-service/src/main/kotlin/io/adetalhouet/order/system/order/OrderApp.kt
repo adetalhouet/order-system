@@ -14,6 +14,7 @@ class OrderServer(private val port: Int) {
             .addService(OrderServiceImpl())
             .build()
             .start()
+        println("Order server started, listening on $port")
 
         Runtime.getRuntime().addShutdownHook(object : Thread() {
             override fun run() {
