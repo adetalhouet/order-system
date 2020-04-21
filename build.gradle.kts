@@ -11,6 +11,8 @@ buildscript {
     val h2database by rootProject.extra { "1.4.200" }
     val exposedVersion by rootProject.extra { "0.21.1" }
 
+    val logbackVersion by rootProject.extra { "1.2.1" }
+
     val guiceVersion by rootProject.extra { "4.2.3" }
 
     val graphqlRejoinerVersion by rootProject.extra { "0.0.4" }
@@ -50,6 +52,8 @@ allprojects {
     dependencies {
         implementation(platform(kotlin("bom")))
         implementation(kotlin("stdlib-jdk8"))
+
+        implementation("ch.qos.logback:logback-classic:${rootProject.extra.get("logbackVersion")}")
 
         implementation("com.google.guava:guava:29.0-jre")
 
