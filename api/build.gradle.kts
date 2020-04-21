@@ -3,6 +3,7 @@ import com.google.protobuf.gradle.id
 import com.google.protobuf.gradle.plugins
 import com.google.protobuf.gradle.protobuf
 import com.google.protobuf.gradle.protoc
+import com.google.protobuf.gradle.remove
 
 apply(plugin = "com.google.protobuf")
 

@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Bill() {
-    products_ = java.util.Collections.emptyList();
+    productIds_ = emptyLongList();
   }
 
   @java.lang.Override
@@ -68,26 +68,30 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
-          case 26: {
-            io.adetalhouet.order.system.client.Client.Builder subBuilder = null;
-            if (client_ != null) {
-              subBuilder = client_.toBuilder();
-            }
-            client_ = input.readMessage(io.adetalhouet.order.system.client.Client.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(client_);
-              client_ = subBuilder.buildPartial();
-            }
+          case 24: {
 
+            clientId_ = input.readInt64();
+            break;
+          }
+          case 32: {
+            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+              productIds_ = newLongList();
+              mutable_bitField0_ |= 0x00000001;
+            }
+            productIds_.addLong(input.readInt64());
             break;
           }
           case 34: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              products_ = new java.util.ArrayList<io.adetalhouet.order.system.product.Product>();
+            int length = input.readRawVarint32();
+            int limit = input.pushLimit(length);
+            if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+              productIds_ = newLongList();
               mutable_bitField0_ |= 0x00000001;
             }
-            products_.add(
-                input.readMessage(io.adetalhouet.order.system.product.Product.parser(), extensionRegistry));
+            while (input.getBytesUntilLimit() > 0) {
+              productIds_.addLong(input.readInt64());
+            }
+            input.popLimit(limit);
             break;
           }
           case 45: {
@@ -111,7 +115,7 @@ private static final long serialVersionUID = 0L;
           e).setUnfinishedMessage(this);
     } finally {
       if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        products_ = java.util.Collections.unmodifiableList(products_);
+        productIds_.makeImmutable(); // C
       }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
@@ -163,63 +167,42 @@ private static final long serialVersionUID = 0L;
     return getDateCreated();
   }
 
-  public static final int CLIENT_FIELD_NUMBER = 3;
-  private io.adetalhouet.order.system.client.Client client_;
+  public static final int CLIENT_ID_FIELD_NUMBER = 3;
+  private long clientId_;
   /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   * @return Whether the client field is set.
+   * <code>int64 client_id = 3;</code>
+   * @return The clientId.
    */
-  public boolean hasClient() {
-    return client_ != null;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   * @return The client.
-   */
-  public io.adetalhouet.order.system.client.Client getClient() {
-    return client_ == null ? io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   */
-  public io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder() {
-    return getClient();
+  public long getClientId() {
+    return clientId_;
   }
 
-  public static final int PRODUCTS_FIELD_NUMBER = 4;
-  private java.util.List<io.adetalhouet.order.system.product.Product> products_;
+  public static final int PRODUCT_IDS_FIELD_NUMBER = 4;
+  private com.google.protobuf.Internal.LongList productIds_;
   /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+   * <code>repeated int64 product_ids = 4;</code>
+   * @return A list containing the productIds.
    */
-  public java.util.List<io.adetalhouet.order.system.product.Product> getProductsList() {
-    return products_;
+  public java.util.List<java.lang.Long>
+      getProductIdsList() {
+    return productIds_;
   }
   /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+   * <code>repeated int64 product_ids = 4;</code>
+   * @return The count of productIds.
    */
-  public java.util.List<? extends io.adetalhouet.order.system.product.ProductOrBuilder> 
-      getProductsOrBuilderList() {
-    return products_;
+  public int getProductIdsCount() {
+    return productIds_.size();
   }
   /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+   * <code>repeated int64 product_ids = 4;</code>
+   * @param index The index of the element to return.
+   * @return The productIds at the given index.
    */
-  public int getProductsCount() {
-    return products_.size();
+  public long getProductIds(int index) {
+    return productIds_.getLong(index);
   }
-  /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-   */
-  public io.adetalhouet.order.system.product.Product getProducts(int index) {
-    return products_.get(index);
-  }
-  /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-   */
-  public io.adetalhouet.order.system.product.ProductOrBuilder getProductsOrBuilder(
-      int index) {
-    return products_.get(index);
-  }
+  private int productIdsMemoizedSerializedSize = -1;
 
   public static final int PRICE_FIELD_NUMBER = 5;
   private float price_;
@@ -245,17 +228,22 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
+    getSerializedSize();
     if (id_ != 0L) {
       output.writeInt64(1, id_);
     }
     if (dateCreated_ != null) {
       output.writeMessage(2, getDateCreated());
     }
-    if (client_ != null) {
-      output.writeMessage(3, getClient());
+    if (clientId_ != 0L) {
+      output.writeInt64(3, clientId_);
     }
-    for (int i = 0; i < products_.size(); i++) {
-      output.writeMessage(4, products_.get(i));
+    if (getProductIdsList().size() > 0) {
+      output.writeUInt32NoTag(34);
+      output.writeUInt32NoTag(productIdsMemoizedSerializedSize);
+    }
+    for (int i = 0; i < productIds_.size(); i++) {
+      output.writeInt64NoTag(productIds_.getLong(i));
     }
     if (price_ != 0F) {
       output.writeFloat(5, price_);
@@ -277,13 +265,23 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getDateCreated());
     }
-    if (client_ != null) {
+    if (clientId_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getClient());
+        .computeInt64Size(3, clientId_);
     }
-    for (int i = 0; i < products_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, products_.get(i));
+    {
+      int dataSize = 0;
+      for (int i = 0; i < productIds_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeInt64SizeNoTag(productIds_.getLong(i));
+      }
+      size += dataSize;
+      if (!getProductIdsList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      productIdsMemoizedSerializedSize = dataSize;
     }
     if (price_ != 0F) {
       size += com.google.protobuf.CodedOutputStream
@@ -311,13 +309,10 @@ private static final long serialVersionUID = 0L;
       if (!getDateCreated()
           .equals(other.getDateCreated())) return false;
     }
-    if (hasClient() != other.hasClient()) return false;
-    if (hasClient()) {
-      if (!getClient()
-          .equals(other.getClient())) return false;
-    }
-    if (!getProductsList()
-        .equals(other.getProductsList())) return false;
+    if (getClientId()
+        != other.getClientId()) return false;
+    if (!getProductIdsList()
+        .equals(other.getProductIdsList())) return false;
     if (java.lang.Float.floatToIntBits(getPrice())
         != java.lang.Float.floatToIntBits(
             other.getPrice())) return false;
@@ -339,13 +334,12 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + DATE_CREATED_FIELD_NUMBER;
       hash = (53 * hash) + getDateCreated().hashCode();
     }
-    if (hasClient()) {
-      hash = (37 * hash) + CLIENT_FIELD_NUMBER;
-      hash = (53 * hash) + getClient().hashCode();
-    }
-    if (getProductsCount() > 0) {
-      hash = (37 * hash) + PRODUCTS_FIELD_NUMBER;
-      hash = (53 * hash) + getProductsList().hashCode();
+    hash = (37 * hash) + CLIENT_ID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getClientId());
+    if (getProductIdsCount() > 0) {
+      hash = (37 * hash) + PRODUCT_IDS_FIELD_NUMBER;
+      hash = (53 * hash) + getProductIdsList().hashCode();
     }
     hash = (37 * hash) + PRICE_FIELD_NUMBER;
     hash = (53 * hash) + java.lang.Float.floatToIntBits(
@@ -478,7 +472,6 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getProductsFieldBuilder();
       }
     }
     @java.lang.Override
@@ -492,18 +485,10 @@ private static final long serialVersionUID = 0L;
         dateCreated_ = null;
         dateCreatedBuilder_ = null;
       }
-      if (clientBuilder_ == null) {
-        client_ = null;
-      } else {
-        client_ = null;
-        clientBuilder_ = null;
-      }
-      if (productsBuilder_ == null) {
-        products_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      } else {
-        productsBuilder_.clear();
-      }
+      clientId_ = 0L;
+
+      productIds_ = emptyLongList();
+      bitField0_ = (bitField0_ & ~0x00000001);
       price_ = 0F;
 
       return this;
@@ -539,20 +524,12 @@ private static final long serialVersionUID = 0L;
       } else {
         result.dateCreated_ = dateCreatedBuilder_.build();
       }
-      if (clientBuilder_ == null) {
-        result.client_ = client_;
-      } else {
-        result.client_ = clientBuilder_.build();
+      result.clientId_ = clientId_;
+      if (((bitField0_ & 0x00000001) != 0)) {
+        productIds_.makeImmutable();
+        bitField0_ = (bitField0_ & ~0x00000001);
       }
-      if (productsBuilder_ == null) {
-        if (((bitField0_ & 0x00000001) != 0)) {
-          products_ = java.util.Collections.unmodifiableList(products_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.products_ = products_;
-      } else {
-        result.products_ = productsBuilder_.build();
-      }
+      result.productIds_ = productIds_;
       result.price_ = price_;
       onBuilt();
       return result;
@@ -608,34 +585,18 @@ private static final long serialVersionUID = 0L;
       if (other.hasDateCreated()) {
         mergeDateCreated(other.getDateCreated());
       }
-      if (other.hasClient()) {
-        mergeClient(other.getClient());
+      if (other.getClientId() != 0L) {
+        setClientId(other.getClientId());
       }
-      if (productsBuilder_ == null) {
-        if (!other.products_.isEmpty()) {
-          if (products_.isEmpty()) {
-            products_ = other.products_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureProductsIsMutable();
-            products_.addAll(other.products_);
-          }
-          onChanged();
+      if (!other.productIds_.isEmpty()) {
+        if (productIds_.isEmpty()) {
+          productIds_ = other.productIds_;
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          ensureProductIdsIsMutable();
+          productIds_.addAll(other.productIds_);
         }
-      } else {
-        if (!other.products_.isEmpty()) {
-          if (productsBuilder_.isEmpty()) {
-            productsBuilder_.dispose();
-            productsBuilder_ = null;
-            products_ = other.products_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-            productsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getProductsFieldBuilder() : null;
-          } else {
-            productsBuilder_.addAllMessages(other.products_);
-          }
-        }
+        onChanged();
       }
       if (other.getPrice() != 0F) {
         setPrice(other.getPrice());
@@ -819,363 +780,113 @@ private static final long serialVersionUID = 0L;
       return dateCreatedBuilder_;
     }
 
-    private io.adetalhouet.order.system.client.Client client_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder> clientBuilder_;
+    private long clientId_ ;
     /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     * @return Whether the client field is set.
+     * <code>int64 client_id = 3;</code>
+     * @return The clientId.
      */
-    public boolean hasClient() {
-      return clientBuilder_ != null || client_ != null;
+    public long getClientId() {
+      return clientId_;
     }
     /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     * @return The client.
+     * <code>int64 client_id = 3;</code>
+     * @param value The clientId to set.
+     * @return This builder for chaining.
      */
-    public io.adetalhouet.order.system.client.Client getClient() {
-      if (clientBuilder_ == null) {
-        return client_ == null ? io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-      } else {
-        return clientBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public Builder setClient(io.adetalhouet.order.system.client.Client value) {
-      if (clientBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        client_ = value;
-        onChanged();
-      } else {
-        clientBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public Builder setClient(
-        io.adetalhouet.order.system.client.Client.Builder builderForValue) {
-      if (clientBuilder_ == null) {
-        client_ = builderForValue.build();
-        onChanged();
-      } else {
-        clientBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public Builder mergeClient(io.adetalhouet.order.system.client.Client value) {
-      if (clientBuilder_ == null) {
-        if (client_ != null) {
-          client_ =
-            io.adetalhouet.order.system.client.Client.newBuilder(client_).mergeFrom(value).buildPartial();
-        } else {
-          client_ = value;
-        }
-        onChanged();
-      } else {
-        clientBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public Builder clearClient() {
-      if (clientBuilder_ == null) {
-        client_ = null;
-        onChanged();
-      } else {
-        client_ = null;
-        clientBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public io.adetalhouet.order.system.client.Client.Builder getClientBuilder() {
+    public Builder setClientId(long value) {
       
+      clientId_ = value;
       onChanged();
-      return getClientFieldBuilder().getBuilder();
+      return this;
     }
     /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
+     * <code>int64 client_id = 3;</code>
+     * @return This builder for chaining.
      */
-    public io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder() {
-      if (clientBuilder_ != null) {
-        return clientBuilder_.getMessageOrBuilder();
-      } else {
-        return client_ == null ?
-            io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder> 
-        getClientFieldBuilder() {
-      if (clientBuilder_ == null) {
-        clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder>(
-                getClient(),
-                getParentForChildren(),
-                isClean());
-        client_ = null;
-      }
-      return clientBuilder_;
+    public Builder clearClientId() {
+      
+      clientId_ = 0L;
+      onChanged();
+      return this;
     }
 
-    private java.util.List<io.adetalhouet.order.system.product.Product> products_ =
-      java.util.Collections.emptyList();
-    private void ensureProductsIsMutable() {
+    private com.google.protobuf.Internal.LongList productIds_ = emptyLongList();
+    private void ensureProductIdsIsMutable() {
       if (!((bitField0_ & 0x00000001) != 0)) {
-        products_ = new java.util.ArrayList<io.adetalhouet.order.system.product.Product>(products_);
+        productIds_ = mutableCopy(productIds_);
         bitField0_ |= 0x00000001;
        }
     }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.adetalhouet.order.system.product.Product, io.adetalhouet.order.system.product.Product.Builder, io.adetalhouet.order.system.product.ProductOrBuilder> productsBuilder_;
-
     /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+     * <code>repeated int64 product_ids = 4;</code>
+     * @return A list containing the productIds.
      */
-    public java.util.List<io.adetalhouet.order.system.product.Product> getProductsList() {
-      if (productsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(products_);
-      } else {
-        return productsBuilder_.getMessageList();
-      }
+    public java.util.List<java.lang.Long>
+        getProductIdsList() {
+      return ((bitField0_ & 0x00000001) != 0) ?
+               java.util.Collections.unmodifiableList(productIds_) : productIds_;
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+     * <code>repeated int64 product_ids = 4;</code>
+     * @return The count of productIds.
      */
-    public int getProductsCount() {
-      if (productsBuilder_ == null) {
-        return products_.size();
-      } else {
-        return productsBuilder_.getCount();
-      }
+    public int getProductIdsCount() {
+      return productIds_.size();
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+     * <code>repeated int64 product_ids = 4;</code>
+     * @param index The index of the element to return.
+     * @return The productIds at the given index.
      */
-    public io.adetalhouet.order.system.product.Product getProducts(int index) {
-      if (productsBuilder_ == null) {
-        return products_.get(index);
-      } else {
-        return productsBuilder_.getMessage(index);
-      }
+    public long getProductIds(int index) {
+      return productIds_.getLong(index);
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+     * <code>repeated int64 product_ids = 4;</code>
+     * @param index The index to set the value at.
+     * @param value The productIds to set.
+     * @return This builder for chaining.
      */
-    public Builder setProducts(
-        int index, io.adetalhouet.order.system.product.Product value) {
-      if (productsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureProductsIsMutable();
-        products_.set(index, value);
-        onChanged();
-      } else {
-        productsBuilder_.setMessage(index, value);
-      }
+    public Builder setProductIds(
+        int index, long value) {
+      ensureProductIdsIsMutable();
+      productIds_.setLong(index, value);
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+     * <code>repeated int64 product_ids = 4;</code>
+     * @param value The productIds to add.
+     * @return This builder for chaining.
      */
-    public Builder setProducts(
-        int index, io.adetalhouet.order.system.product.Product.Builder builderForValue) {
-      if (productsBuilder_ == null) {
-        ensureProductsIsMutable();
-        products_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        productsBuilder_.setMessage(index, builderForValue.build());
-      }
+    public Builder addProductIds(long value) {
+      ensureProductIdsIsMutable();
+      productIds_.addLong(value);
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+     * <code>repeated int64 product_ids = 4;</code>
+     * @param values The productIds to add.
+     * @return This builder for chaining.
      */
-    public Builder addProducts(io.adetalhouet.order.system.product.Product value) {
-      if (productsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureProductsIsMutable();
-        products_.add(value);
-        onChanged();
-      } else {
-        productsBuilder_.addMessage(value);
-      }
+    public Builder addAllProductIds(
+        java.lang.Iterable<? extends java.lang.Long> values) {
+      ensureProductIdsIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, productIds_);
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+     * <code>repeated int64 product_ids = 4;</code>
+     * @return This builder for chaining.
      */
-    public Builder addProducts(
-        int index, io.adetalhouet.order.system.product.Product value) {
-      if (productsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureProductsIsMutable();
-        products_.add(index, value);
-        onChanged();
-      } else {
-        productsBuilder_.addMessage(index, value);
-      }
+    public Builder clearProductIds() {
+      productIds_ = emptyLongList();
+      bitField0_ = (bitField0_ & ~0x00000001);
+      onChanged();
       return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public Builder addProducts(
-        io.adetalhouet.order.system.product.Product.Builder builderForValue) {
-      if (productsBuilder_ == null) {
-        ensureProductsIsMutable();
-        products_.add(builderForValue.build());
-        onChanged();
-      } else {
-        productsBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public Builder addProducts(
-        int index, io.adetalhouet.order.system.product.Product.Builder builderForValue) {
-      if (productsBuilder_ == null) {
-        ensureProductsIsMutable();
-        products_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        productsBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public Builder addAllProducts(
-        java.lang.Iterable<? extends io.adetalhouet.order.system.product.Product> values) {
-      if (productsBuilder_ == null) {
-        ensureProductsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, products_);
-        onChanged();
-      } else {
-        productsBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public Builder clearProducts() {
-      if (productsBuilder_ == null) {
-        products_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-      } else {
-        productsBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public Builder removeProducts(int index) {
-      if (productsBuilder_ == null) {
-        ensureProductsIsMutable();
-        products_.remove(index);
-        onChanged();
-      } else {
-        productsBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public io.adetalhouet.order.system.product.Product.Builder getProductsBuilder(
-        int index) {
-      return getProductsFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public io.adetalhouet.order.system.product.ProductOrBuilder getProductsOrBuilder(
-        int index) {
-      if (productsBuilder_ == null) {
-        return products_.get(index);  } else {
-        return productsBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public java.util.List<? extends io.adetalhouet.order.system.product.ProductOrBuilder> 
-         getProductsOrBuilderList() {
-      if (productsBuilder_ != null) {
-        return productsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(products_);
-      }
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public io.adetalhouet.order.system.product.Product.Builder addProductsBuilder() {
-      return getProductsFieldBuilder().addBuilder(
-          io.adetalhouet.order.system.product.Product.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public io.adetalhouet.order.system.product.Product.Builder addProductsBuilder(
-        int index) {
-      return getProductsFieldBuilder().addBuilder(
-          index, io.adetalhouet.order.system.product.Product.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-     */
-    public java.util.List<io.adetalhouet.order.system.product.Product.Builder> 
-         getProductsBuilderList() {
-      return getProductsFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.adetalhouet.order.system.product.Product, io.adetalhouet.order.system.product.Product.Builder, io.adetalhouet.order.system.product.ProductOrBuilder> 
-        getProductsFieldBuilder() {
-      if (productsBuilder_ == null) {
-        productsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.adetalhouet.order.system.product.Product, io.adetalhouet.order.system.product.Product.Builder, io.adetalhouet.order.system.product.ProductOrBuilder>(
-                products_,
-                ((bitField0_ & 0x00000001) != 0),
-                getParentForChildren(),
-                isClean());
-        products_ = null;
-      }
-      return productsBuilder_;
     }
 
     private float price_ ;

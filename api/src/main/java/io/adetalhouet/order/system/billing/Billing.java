@@ -45,35 +45,30 @@ public final class Billing {
     java.lang.String[] descriptorData = {
       "\n\rbilling.proto\022#io.adetalhouet.order.sy" +
       "stem.billing\032\037google/protobuf/timestamp." +
-      "proto\032\013utils.proto\032\014client.proto\032\rproduc" +
-      "t.proto\" \n\022GetBillByIdRequest\022\n\n\002id\030\001 \001(" +
-      "\003\"+\n\026GetBillByClientRequest\022\021\n\tclient_id" +
-      "\030\001 \001(\003\"A\n\005Bills\0228\n\005bills\030\001 \003(\0132).io.adet" +
-      "alhouet.order.system.billing.Bill\"\317\001\n\004Bi" +
-      "ll\022\n\n\002id\030\001 \001(\003\0220\n\014date_created\030\002 \001(\0132\032.g" +
-      "oogle.protobuf.Timestamp\022:\n\006client\030\003 \001(\013" +
-      "2*.io.adetalhouet.order.system.client.Cl" +
-      "ient\022>\n\010products\030\004 \003(\0132,.io.adetalhouet." +
-      "order.system.product.Product\022\r\n\005price\030\005 " +
-      "\001(\0022\340\002\n\016BillingService\022_\n\007AddBill\022).io.a" +
-      "detalhouet.order.system.billing.Bill\032).i" +
-      "o.adetalhouet.order.system.utils.Status\022" +
-      "q\n\013GetBillById\0227.io.adetalhouet.order.sy" +
-      "stem.billing.GetBillByIdRequest\032).io.ade" +
-      "talhouet.order.system.billing.Bill\022z\n\017Ge" +
-      "tBillByClient\022;.io.adetalhouet.order.sys" +
-      "tem.billing.GetBillByClientRequest\032*.io." +
-      "adetalhouet.order.system.billing.BillsB\'" +
-      "\n#io.adetalhouet.order.system.billingP\001b" +
-      "\006proto3"
+      "proto\032\013utils.proto\" \n\022GetBillByIdRequest" +
+      "\022\n\n\002id\030\001 \001(\003\"+\n\026GetBillByClientRequest\022\021" +
+      "\n\tclient_id\030\001 \001(\003\"A\n\005Bills\0228\n\005bills\030\001 \003(" +
+      "\0132).io.adetalhouet.order.system.billing." +
+      "Bill\"{\n\004Bill\022\n\n\002id\030\001 \001(\003\0220\n\014date_created" +
+      "\030\002 \001(\0132\032.google.protobuf.Timestamp\022\021\n\tcl" +
+      "ient_id\030\003 \001(\003\022\023\n\013product_ids\030\004 \003(\003\022\r\n\005pr" +
+      "ice\030\005 \001(\0022\340\002\n\016BillingService\022_\n\007AddBill\022" +
+      ").io.adetalhouet.order.system.billing.Bi" +
+      "ll\032).io.adetalhouet.order.system.utils.S" +
+      "tatus\022q\n\013GetBillById\0227.io.adetalhouet.or" +
+      "der.system.billing.GetBillByIdRequest\032)." +
+      "io.adetalhouet.order.system.billing.Bill" +
+      "\022z\n\017GetBillByClient\022;.io.adetalhouet.ord" +
+      "er.system.billing.GetBillByClientRequest" +
+      "\032*.io.adetalhouet.order.system.billing.B" +
+      "illsB\'\n#io.adetalhouet.order.system.bill" +
+      "ingP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.google.protobuf.TimestampProto.getDescriptor(),
           io.adetalhouet.order.system.utils.Utils.getDescriptor(),
-          io.adetalhouet.order.system.client.ClientOuterClass.getDescriptor(),
-          io.adetalhouet.order.system.product.ProductOuterClass.getDescriptor(),
         });
     internal_static_io_adetalhouet_order_system_billing_GetBillByIdRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -98,11 +93,9 @@ public final class Billing {
     internal_static_io_adetalhouet_order_system_billing_Bill_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_billing_Bill_descriptor,
-        new java.lang.String[] { "Id", "DateCreated", "Client", "Products", "Price", });
+        new java.lang.String[] { "Id", "DateCreated", "ClientId", "ProductIds", "Price", });
     com.google.protobuf.TimestampProto.getDescriptor();
     io.adetalhouet.order.system.utils.Utils.getDescriptor();
-    io.adetalhouet.order.system.client.ClientOuterClass.getDescriptor();
-    io.adetalhouet.order.system.product.ProductOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

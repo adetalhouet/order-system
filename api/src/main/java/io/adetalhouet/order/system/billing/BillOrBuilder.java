@@ -29,43 +29,27 @@ public interface BillOrBuilder extends
   com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder();
 
   /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   * @return Whether the client field is set.
+   * <code>int64 client_id = 3;</code>
+   * @return The clientId.
    */
-  boolean hasClient();
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   * @return The client.
-   */
-  io.adetalhouet.order.system.client.Client getClient();
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   */
-  io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder();
+  long getClientId();
 
   /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+   * <code>repeated int64 product_ids = 4;</code>
+   * @return A list containing the productIds.
    */
-  java.util.List<io.adetalhouet.order.system.product.Product> 
-      getProductsList();
+  java.util.List<java.lang.Long> getProductIdsList();
   /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+   * <code>repeated int64 product_ids = 4;</code>
+   * @return The count of productIds.
    */
-  io.adetalhouet.order.system.product.Product getProducts(int index);
+  int getProductIdsCount();
   /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
+   * <code>repeated int64 product_ids = 4;</code>
+   * @param index The index of the element to return.
+   * @return The productIds at the given index.
    */
-  int getProductsCount();
-  /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-   */
-  java.util.List<? extends io.adetalhouet.order.system.product.ProductOrBuilder> 
-      getProductsOrBuilderList();
-  /**
-   * <code>repeated .io.adetalhouet.order.system.product.Product products = 4;</code>
-   */
-  io.adetalhouet.order.system.product.ProductOrBuilder getProductsOrBuilder(
-      int index);
+  long getProductIds(int index);
 
   /**
    * <code>float price = 5;</code>
