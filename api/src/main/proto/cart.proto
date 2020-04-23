@@ -10,16 +10,13 @@ import "product.proto";
 import "google/protobuf/timestamp.proto";
 
 service CartService {
-  rpc AddToCart (CartItem) returns (io.adetalhouet.order.system.utils.Status);
-  rpc RemoteFromCart (CartItem) returns (io.adetalhouet.order.system.utils.Status);
+  rpc AddToCart (UpdateCartRequest) returns (io.adetalhouet.order.system.utils.Status);
+  rpc RemoteFromCart (UpdateCartRequest) returns (io.adetalhouet.order.system.utils.Status);
 }
 
-message GetClientByIdRequest {
-  int64 id = 1;
-}
-
-message DeleteClientByIdRequest {
-  int64 id = 1;
+message UpdateCartRequest {
+  int64 cart_id = 1;
+  CartItem item = 2;
 }
 
 message CartItem {
@@ -31,5 +28,5 @@ message CartItem {
 message Cart {
   int64 id = 1;
   repeated CartItem items = 2;
-  google.protobuf.Timestamp date_created = 3;
+  double total_price = 3;
 }

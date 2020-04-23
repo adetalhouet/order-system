@@ -48,7 +48,7 @@ message Order {
 
   int64 id = 1;
   State state = 2;
-  io.adetalhouet.order.system.client.Client client = 3;
-  io.adetalhouet.order.system.cart.Cart cart = 4;
+  int64 client_id = 3;
+  int64 cart_id = 4;
   google.protobuf.Timestamp date_created = 5;
 }

@@ -38,62 +38,23 @@ public interface ProductOrBuilder extends
       getPriceBytes();
 
   /**
-   * <code>int32 number_available = 4;</code>
-   * @return The numberAvailable.
+   * <code>int32 quantity = 4;</code>
+   * @return The quantity.
    */
-  int getNumberAvailable();
+  int getQuantity();
 
   /**
-   * <code>string weigh = 5;</code>
-   * @return The weigh.
-   */
-  java.lang.String getWeigh();
-  /**
-   * <code>string weigh = 5;</code>
-   * @return The bytes for weigh.
-   */
-  com.google.protobuf.ByteString
-      getWeighBytes();
-
-  /**
-   * <code>string size = 6;</code>
-   * @return The size.
-   */
-  java.lang.String getSize();
-  /**
-   * <code>string size = 6;</code>
-   * @return The bytes for size.
-   */
-  com.google.protobuf.ByteString
-      getSizeBytes();
-
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 7;</code>
-   * @return Whether the dateCreated field is set.
-   */
-  boolean hasDateCreated();
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 7;</code>
-   * @return The dateCreated.
-   */
-  com.google.protobuf.Timestamp getDateCreated();
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 7;</code>
-   */
-  com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder();
-
-  /**
-   * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
    * @return Whether the lastUpdated field is set.
    */
   boolean hasLastUpdated();
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
    * @return The lastUpdated.
    */
   com.google.protobuf.Timestamp getLastUpdated();
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
    */
   com.google.protobuf.TimestampOrBuilder getLastUpdatedOrBuilder();
 }

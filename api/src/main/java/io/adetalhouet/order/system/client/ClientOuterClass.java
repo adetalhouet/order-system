@@ -49,23 +49,22 @@ public final class ClientOuterClass {
       "proto\"\"\n\024GetClientByIdRequest\022\n\n\002id\030\001 \001(" +
       "\003\"%\n\027DeleteClientByIdRequest\022\n\n\002id\030\001 \001(\003" +
       "\"F\n\007Clients\022;\n\007clients\030\001 \003(\0132*.io.adetal" +
-      "houet.order.system.client.Client\"\214\001\n\006Cli" +
-      "ent\022\n\n\002id\030\001 \001(\003\022\020\n\010username\030\002 \001(\t\022\021\n\tfir" +
-      "stname\030\003 \001(\t\022\020\n\010lastname\030\004 \001(\t\022\r\n\005email\030" +
-      "\005 \001(\t\0220\n\014date_created\030\006 \001(\0132\032.google.pro" +
-      "tobuf.Timestamp2\271\003\n\rClientService\022b\n\tAdd" +
-      "Client\022*.io.adetalhouet.order.system.cli" +
-      "ent.Client\032).io.adetalhouet.order.system" +
-      ".utils.Status\022Q\n\nGetClients\022\026.google.pro" +
-      "tobuf.Empty\032+.io.adetalhouet.order.syste" +
-      "m.client.Clients\022u\n\rGetClientById\0228.io.a" +
-      "detalhouet.order.system.client.GetClient" +
-      "ByIdRequest\032*.io.adetalhouet.order.syste" +
-      "m.client.Client\022z\n\020DeleteClientById\022;.io" +
-      ".adetalhouet.order.system.client.DeleteC" +
-      "lientByIdRequest\032).io.adetalhouet.order." +
-      "system.utils.StatusB&\n\"io.adetalhouet.or" +
-      "der.system.clientP\001b\006proto3"
+      "houet.order.system.client.Client\"g\n\006Clie" +
+      "nt\022\n\n\002id\030\001 \001(\003\022\r\n\005email\030\002 \001(\t\022\020\n\010passwor" +
+      "d\030\003 \001(\t\0220\n\014date_created\030\004 \001(\0132\032.google.p" +
+      "rotobuf.Timestamp2\271\003\n\rClientService\022b\n\tA" +
+      "ddClient\022*.io.adetalhouet.order.system.c" +
+      "lient.Client\032).io.adetalhouet.order.syst" +
+      "em.utils.Status\022Q\n\nGetClients\022\026.google.p" +
+      "rotobuf.Empty\032+.io.adetalhouet.order.sys" +
+      "tem.client.Clients\022u\n\rGetClientById\0228.io" +
+      ".adetalhouet.order.system.client.GetClie" +
+      "ntByIdRequest\032*.io.adetalhouet.order.sys" +
+      "tem.client.Client\022z\n\020DeleteClientById\022;." +
+      "io.adetalhouet.order.system.client.Delet" +
+      "eClientByIdRequest\032).io.adetalhouet.orde" +
+      "r.system.utils.StatusB&\n\"io.adetalhouet." +
+      "order.system.clientP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -97,7 +96,7 @@ public final class ClientOuterClass {
     internal_static_io_adetalhouet_order_system_client_Client_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_client_Client_descriptor,
-        new java.lang.String[] { "Id", "Username", "Firstname", "Lastname", "Email", "DateCreated", });
+        new java.lang.String[] { "Id", "Email", "Password", "DateCreated", });
     io.adetalhouet.order.system.utils.Utils.getDescriptor();
     com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();

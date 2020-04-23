@@ -60,30 +60,14 @@ private static final long serialVersionUID = 0L;
             state_ = rawValue;
             break;
           }
-          case 26: {
-            io.adetalhouet.order.system.client.Client.Builder subBuilder = null;
-            if (client_ != null) {
-              subBuilder = client_.toBuilder();
-            }
-            client_ = input.readMessage(io.adetalhouet.order.system.client.Client.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(client_);
-              client_ = subBuilder.buildPartial();
-            }
+          case 24: {
 
+            clientId_ = input.readInt64();
             break;
           }
-          case 34: {
-            io.adetalhouet.order.system.cart.Cart.Builder subBuilder = null;
-            if (cart_ != null) {
-              subBuilder = cart_.toBuilder();
-            }
-            cart_ = input.readMessage(io.adetalhouet.order.system.cart.Cart.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(cart_);
-              cart_ = subBuilder.buildPartial();
-            }
+          case 32: {
 
+            cartId_ = input.readInt64();
             break;
           }
           case 42: {
@@ -282,50 +266,24 @@ private static final long serialVersionUID = 0L;
     return result == null ? io.adetalhouet.order.system.order.Order.State.UNRECOGNIZED : result;
   }
 
-  public static final int CLIENT_FIELD_NUMBER = 3;
-  private io.adetalhouet.order.system.client.Client client_;
+  public static final int CLIENT_ID_FIELD_NUMBER = 3;
+  private long clientId_;
   /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   * @return Whether the client field is set.
+   * <code>int64 client_id = 3;</code>
+   * @return The clientId.
    */
-  public boolean hasClient() {
-    return client_ != null;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   * @return The client.
-   */
-  public io.adetalhouet.order.system.client.Client getClient() {
-    return client_ == null ? io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   */
-  public io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder() {
-    return getClient();
+  public long getClientId() {
+    return clientId_;
   }
 
-  public static final int CART_FIELD_NUMBER = 4;
-  private io.adetalhouet.order.system.cart.Cart cart_;
+  public static final int CART_ID_FIELD_NUMBER = 4;
+  private long cartId_;
   /**
-   * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-   * @return Whether the cart field is set.
+   * <code>int64 cart_id = 4;</code>
+   * @return The cartId.
    */
-  public boolean hasCart() {
-    return cart_ != null;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-   * @return The cart.
-   */
-  public io.adetalhouet.order.system.cart.Cart getCart() {
-    return cart_ == null ? io.adetalhouet.order.system.cart.Cart.getDefaultInstance() : cart_;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-   */
-  public io.adetalhouet.order.system.cart.CartOrBuilder getCartOrBuilder() {
-    return getCart();
+  public long getCartId() {
+    return cartId_;
   }
 
   public static final int DATE_CREATED_FIELD_NUMBER = 5;
@@ -371,11 +329,11 @@ private static final long serialVersionUID = 0L;
     if (state_ != io.adetalhouet.order.system.order.Order.State.PENDING.getNumber()) {
       output.writeEnum(2, state_);
     }
-    if (client_ != null) {
-      output.writeMessage(3, getClient());
+    if (clientId_ != 0L) {
+      output.writeInt64(3, clientId_);
     }
-    if (cart_ != null) {
-      output.writeMessage(4, getCart());
+    if (cartId_ != 0L) {
+      output.writeInt64(4, cartId_);
     }
     if (dateCreated_ != null) {
       output.writeMessage(5, getDateCreated());
@@ -397,13 +355,13 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeEnumSize(2, state_);
     }
-    if (client_ != null) {
+    if (clientId_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getClient());
+        .computeInt64Size(3, clientId_);
     }
-    if (cart_ != null) {
+    if (cartId_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getCart());
+        .computeInt64Size(4, cartId_);
     }
     if (dateCreated_ != null) {
       size += com.google.protobuf.CodedOutputStream
@@ -427,16 +385,10 @@ private static final long serialVersionUID = 0L;
     if (getId()
         != other.getId()) return false;
     if (state_ != other.state_) return false;
-    if (hasClient() != other.hasClient()) return false;
-    if (hasClient()) {
-      if (!getClient()
-          .equals(other.getClient())) return false;
-    }
-    if (hasCart() != other.hasCart()) return false;
-    if (hasCart()) {
-      if (!getCart()
-          .equals(other.getCart())) return false;
-    }
+    if (getClientId()
+        != other.getClientId()) return false;
+    if (getCartId()
+        != other.getCartId()) return false;
     if (hasDateCreated() != other.hasDateCreated()) return false;
     if (hasDateCreated()) {
       if (!getDateCreated()
@@ -458,14 +410,12 @@ private static final long serialVersionUID = 0L;
         getId());
     hash = (37 * hash) + STATE_FIELD_NUMBER;
     hash = (53 * hash) + state_;
-    if (hasClient()) {
-      hash = (37 * hash) + CLIENT_FIELD_NUMBER;
-      hash = (53 * hash) + getClient().hashCode();
-    }
-    if (hasCart()) {
-      hash = (37 * hash) + CART_FIELD_NUMBER;
-      hash = (53 * hash) + getCart().hashCode();
-    }
+    hash = (37 * hash) + CLIENT_ID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getClientId());
+    hash = (37 * hash) + CART_ID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getCartId());
     if (hasDateCreated()) {
       hash = (37 * hash) + DATE_CREATED_FIELD_NUMBER;
       hash = (53 * hash) + getDateCreated().hashCode();
@@ -607,18 +557,10 @@ private static final long serialVersionUID = 0L;
 
       state_ = 0;
 
-      if (clientBuilder_ == null) {
-        client_ = null;
-      } else {
-        client_ = null;
-        clientBuilder_ = null;
-      }
-      if (cartBuilder_ == null) {
-        cart_ = null;
-      } else {
-        cart_ = null;
-        cartBuilder_ = null;
-      }
+      clientId_ = 0L;
+
+      cartId_ = 0L;
+
       if (dateCreatedBuilder_ == null) {
         dateCreated_ = null;
       } else {
@@ -653,16 +595,8 @@ private static final long serialVersionUID = 0L;
       io.adetalhouet.order.system.order.Order result = new io.adetalhouet.order.system.order.Order(this);
       result.id_ = id_;
       result.state_ = state_;
-      if (clientBuilder_ == null) {
-        result.client_ = client_;
-      } else {
-        result.client_ = clientBuilder_.build();
-      }
-      if (cartBuilder_ == null) {
-        result.cart_ = cart_;
-      } else {
-        result.cart_ = cartBuilder_.build();
-      }
+      result.clientId_ = clientId_;
+      result.cartId_ = cartId_;
       if (dateCreatedBuilder_ == null) {
         result.dateCreated_ = dateCreated_;
       } else {
@@ -722,11 +656,11 @@ private static final long serialVersionUID = 0L;
       if (other.state_ != 0) {
         setStateValue(other.getStateValue());
       }
-      if (other.hasClient()) {
-        mergeClient(other.getClient());
+      if (other.getClientId() != 0L) {
+        setClientId(other.getClientId());
       }
-      if (other.hasCart()) {
-        mergeCart(other.getCart());
+      if (other.getCartId() != 0L) {
+        setCartId(other.getCartId());
       }
       if (other.hasDateCreated()) {
         mergeDateCreated(other.getDateCreated());
@@ -842,242 +776,64 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.adetalhouet.order.system.client.Client client_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder> clientBuilder_;
+    private long clientId_ ;
     /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     * @return Whether the client field is set.
+     * <code>int64 client_id = 3;</code>
+     * @return The clientId.
      */
-    public boolean hasClient() {
-      return clientBuilder_ != null || client_ != null;
+    public long getClientId() {
+      return clientId_;
     }
     /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     * @return The client.
+     * <code>int64 client_id = 3;</code>
+     * @param value The clientId to set.
+     * @return This builder for chaining.
      */
-    public io.adetalhouet.order.system.client.Client getClient() {
-      if (clientBuilder_ == null) {
-        return client_ == null ? io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-      } else {
-        return clientBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public Builder setClient(io.adetalhouet.order.system.client.Client value) {
-      if (clientBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        client_ = value;
-        onChanged();
-      } else {
-        clientBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public Builder setClient(
-        io.adetalhouet.order.system.client.Client.Builder builderForValue) {
-      if (clientBuilder_ == null) {
-        client_ = builderForValue.build();
-        onChanged();
-      } else {
-        clientBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public Builder mergeClient(io.adetalhouet.order.system.client.Client value) {
-      if (clientBuilder_ == null) {
-        if (client_ != null) {
-          client_ =
-            io.adetalhouet.order.system.client.Client.newBuilder(client_).mergeFrom(value).buildPartial();
-        } else {
-          client_ = value;
-        }
-        onChanged();
-      } else {
-        clientBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public Builder clearClient() {
-      if (clientBuilder_ == null) {
-        client_ = null;
-        onChanged();
-      } else {
-        client_ = null;
-        clientBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public io.adetalhouet.order.system.client.Client.Builder getClientBuilder() {
+    public Builder setClientId(long value) {
       
+      clientId_ = value;
       onChanged();
-      return getClientFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    public io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder() {
-      if (clientBuilder_ != null) {
-        return clientBuilder_.getMessageOrBuilder();
-      } else {
-        return client_ == null ?
-            io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder> 
-        getClientFieldBuilder() {
-      if (clientBuilder_ == null) {
-        clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder>(
-                getClient(),
-                getParentForChildren(),
-                isClean());
-        client_ = null;
-      }
-      return clientBuilder_;
-    }
-
-    private io.adetalhouet.order.system.cart.Cart cart_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.cart.Cart, io.adetalhouet.order.system.cart.Cart.Builder, io.adetalhouet.order.system.cart.CartOrBuilder> cartBuilder_;
-    /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-     * @return Whether the cart field is set.
-     */
-    public boolean hasCart() {
-      return cartBuilder_ != null || cart_ != null;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-     * @return The cart.
-     */
-    public io.adetalhouet.order.system.cart.Cart getCart() {
-      if (cartBuilder_ == null) {
-        return cart_ == null ? io.adetalhouet.order.system.cart.Cart.getDefaultInstance() : cart_;
-      } else {
-        return cartBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-     */
-    public Builder setCart(io.adetalhouet.order.system.cart.Cart value) {
-      if (cartBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        cart_ = value;
-        onChanged();
-      } else {
-        cartBuilder_.setMessage(value);
-      }
-
       return this;
     }
     /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
+     * <code>int64 client_id = 3;</code>
+     * @return This builder for chaining.
      */
-    public Builder setCart(
-        io.adetalhouet.order.system.cart.Cart.Builder builderForValue) {
-      if (cartBuilder_ == null) {
-        cart_ = builderForValue.build();
-        onChanged();
-      } else {
-        cartBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-     */
-    public Builder mergeCart(io.adetalhouet.order.system.cart.Cart value) {
-      if (cartBuilder_ == null) {
-        if (cart_ != null) {
-          cart_ =
-            io.adetalhouet.order.system.cart.Cart.newBuilder(cart_).mergeFrom(value).buildPartial();
-        } else {
-          cart_ = value;
-        }
-        onChanged();
-      } else {
-        cartBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-     */
-    public Builder clearCart() {
-      if (cartBuilder_ == null) {
-        cart_ = null;
-        onChanged();
-      } else {
-        cart_ = null;
-        cartBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-     */
-    public io.adetalhouet.order.system.cart.Cart.Builder getCartBuilder() {
+    public Builder clearClientId() {
       
+      clientId_ = 0L;
       onChanged();
-      return getCartFieldBuilder().getBuilder();
+      return this;
+    }
+
+    private long cartId_ ;
+    /**
+     * <code>int64 cart_id = 4;</code>
+     * @return The cartId.
+     */
+    public long getCartId() {
+      return cartId_;
     }
     /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
+     * <code>int64 cart_id = 4;</code>
+     * @param value The cartId to set.
+     * @return This builder for chaining.
      */
-    public io.adetalhouet.order.system.cart.CartOrBuilder getCartOrBuilder() {
-      if (cartBuilder_ != null) {
-        return cartBuilder_.getMessageOrBuilder();
-      } else {
-        return cart_ == null ?
-            io.adetalhouet.order.system.cart.Cart.getDefaultInstance() : cart_;
-      }
+    public Builder setCartId(long value) {
+      
+      cartId_ = value;
+      onChanged();
+      return this;
     }
     /**
-     * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
+     * <code>int64 cart_id = 4;</code>
+     * @return This builder for chaining.
      */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.cart.Cart, io.adetalhouet.order.system.cart.Cart.Builder, io.adetalhouet.order.system.cart.CartOrBuilder> 
-        getCartFieldBuilder() {
-      if (cartBuilder_ == null) {
-        cartBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.adetalhouet.order.system.cart.Cart, io.adetalhouet.order.system.cart.Cart.Builder, io.adetalhouet.order.system.cart.CartOrBuilder>(
-                getCart(),
-                getParentForChildren(),
-                isClean());
-        cart_ = null;
-      }
-      return cartBuilder_;
+    public Builder clearCartId() {
+      
+      cartId_ = 0L;
+      onChanged();
+      return this;
     }
 
     private com.google.protobuf.Timestamp dateCreated_;

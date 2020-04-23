@@ -50,24 +50,22 @@ public final class ProductOuterClass {
       " \001(\003\"&\n\030DeleteProductByIdRequest\022\n\n\002id\030\001" +
       " \001(\003\"J\n\010Products\022>\n\010products\030\001 \003(\0132,.io." +
       "adetalhouet.order.system.product.Product" +
-      "\"\315\001\n\007Product\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r" +
-      "\n\005price\030\003 \001(\t\022\030\n\020number_available\030\004 \001(\005\022" +
-      "\r\n\005weigh\030\005 \001(\t\022\014\n\004size\030\006 \001(\t\0220\n\014date_cre" +
-      "ated\030\007 \001(\0132\032.google.protobuf.Timestamp\0220" +
-      "\n\014last_updated\030\010 \001(\0132\032.google.protobuf.T" +
-      "imestamp2\310\003\n\016ProductService\022e\n\nAddProduc" +
-      "t\022,.io.adetalhouet.order.system.product." +
-      "Product\032).io.adetalhouet.order.system.ut" +
-      "ils.Status\022T\n\013GetProducts\022\026.google.proto" +
-      "buf.Empty\032-.io.adetalhouet.order.system." +
-      "product.Products\022z\n\016GetProductById\022:.io." +
-      "adetalhouet.order.system.product.GetProd" +
-      "uctByIdRequest\032,.io.adetalhouet.order.sy" +
-      "stem.product.Product\022}\n\021DeleteProductByI" +
-      "d\022=.io.adetalhouet.order.system.product." +
-      "DeleteProductByIdRequest\032).io.adetalhoue" +
-      "t.order.system.utils.StatusB\'\n#io.adetal" +
-      "houet.order.system.productP\001b\006proto3"
+      "\"v\n\007Product\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n" +
+      "\005price\030\003 \001(\t\022\020\n\010quantity\030\004 \001(\005\0220\n\014last_u" +
+      "pdated\030\005 \001(\0132\032.google.protobuf.Timestamp" +
+      "2\310\003\n\016ProductService\022e\n\nAddProduct\022,.io.a" +
+      "detalhouet.order.system.product.Product\032" +
+      ").io.adetalhouet.order.system.utils.Stat" +
+      "us\022T\n\013GetProducts\022\026.google.protobuf.Empt" +
+      "y\032-.io.adetalhouet.order.system.product." +
+      "Products\022z\n\016GetProductById\022:.io.adetalho" +
+      "uet.order.system.product.GetProductByIdR" +
+      "equest\032,.io.adetalhouet.order.system.pro" +
+      "duct.Product\022}\n\021DeleteProductById\022=.io.a" +
+      "detalhouet.order.system.product.DeletePr" +
+      "oductByIdRequest\032).io.adetalhouet.order." +
+      "system.utils.StatusB\'\n#io.adetalhouet.or" +
+      "der.system.productP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -99,7 +97,7 @@ public final class ProductOuterClass {
     internal_static_io_adetalhouet_order_system_product_Product_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_product_Product_descriptor,
-        new java.lang.String[] { "Id", "Name", "Price", "NumberAvailable", "Weigh", "Size", "DateCreated", "LastUpdated", });
+        new java.lang.String[] { "Id", "Name", "Price", "Quantity", "LastUpdated", });
     io.adetalhouet.order.system.utils.Utils.getDescriptor();
     com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();

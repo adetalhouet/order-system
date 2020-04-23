@@ -49,7 +49,7 @@ object CartServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun addToCart(request: CartItem): Status = unaryRpc(
+    suspend fun addToCart(request: UpdateCartRequest): Status = unaryRpc(
       channel,
       CartServiceGrpc.getAddToCartMethod(),
       request,
@@ -67,7 +67,7 @@ object CartServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun remoteFromCart(request: CartItem): Status = unaryRpc(
+    suspend fun remoteFromCart(request: UpdateCartRequest): Status = unaryRpc(
       channel,
       CartServiceGrpc.getRemoteFromCartMethod(),
       request,
@@ -93,7 +93,7 @@ object CartServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun addToCart(request: CartItem): Status = throw
+    open suspend fun addToCart(request: UpdateCartRequest): Status = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.cart.CartService.AddToCart is unimplemented"))
 
     /**
@@ -108,7 +108,7 @@ object CartServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun remoteFromCart(request: CartItem): Status = throw
+    open suspend fun remoteFromCart(request: UpdateCartRequest): Status = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.cart.CartService.RemoteFromCart is unimplemented"))
 
     final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())

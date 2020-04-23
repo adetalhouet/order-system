@@ -1,4 +1,4 @@
-package io.adetalhouet.order.system.utils
+package io.adetalhouet.order.system.utils.db
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource

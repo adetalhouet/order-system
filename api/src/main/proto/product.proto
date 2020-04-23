@@ -32,9 +32,6 @@ message Product {
   int64 id = 1;
   string name = 2;
   string price = 3;
-  int32 number_available = 4;
-  string weigh = 5;
-  string size = 6;
-  google.protobuf.Timestamp date_created = 7;
-  google.protobuf.Timestamp last_updated = 8;
+  int32 quantity = 4;
+  google.protobuf.Timestamp last_updated = 5;
 }

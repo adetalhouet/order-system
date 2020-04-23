@@ -64,17 +64,9 @@ private static final long serialVersionUID = 0L;
                 input.readMessage(io.adetalhouet.order.system.cart.CartItem.parser(), extensionRegistry));
             break;
           }
-          case 26: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (dateCreated_ != null) {
-              subBuilder = dateCreated_.toBuilder();
-            }
-            dateCreated_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(dateCreated_);
-              dateCreated_ = subBuilder.buildPartial();
-            }
+          case 25: {
 
+            totalPrice_ = input.readDouble();
             break;
           }
           default: {
@@ -157,27 +149,14 @@ private static final long serialVersionUID = 0L;
     return items_.get(index);
   }
 
-  public static final int DATE_CREATED_FIELD_NUMBER = 3;
-  private com.google.protobuf.Timestamp dateCreated_;
+  public static final int TOTAL_PRICE_FIELD_NUMBER = 3;
+  private double totalPrice_;
   /**
-   * <code>.google.protobuf.Timestamp date_created = 3;</code>
-   * @return Whether the dateCreated field is set.
+   * <code>double total_price = 3;</code>
+   * @return The totalPrice.
    */
-  public boolean hasDateCreated() {
-    return dateCreated_ != null;
-  }
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 3;</code>
-   * @return The dateCreated.
-   */
-  public com.google.protobuf.Timestamp getDateCreated() {
-    return dateCreated_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : dateCreated_;
-  }
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 3;</code>
-   */
-  public com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder() {
-    return getDateCreated();
+  public double getTotalPrice() {
+    return totalPrice_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -200,8 +179,8 @@ private static final long serialVersionUID = 0L;
     for (int i = 0; i < items_.size(); i++) {
       output.writeMessage(2, items_.get(i));
     }
-    if (dateCreated_ != null) {
-      output.writeMessage(3, getDateCreated());
+    if (totalPrice_ != 0D) {
+      output.writeDouble(3, totalPrice_);
     }
     unknownFields.writeTo(output);
   }
@@ -220,9 +199,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, items_.get(i));
     }
-    if (dateCreated_ != null) {
+    if (totalPrice_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(3, getDateCreated());
+        .computeDoubleSize(3, totalPrice_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -243,11 +222,9 @@ private static final long serialVersionUID = 0L;
         != other.getId()) return false;
     if (!getItemsList()
         .equals(other.getItemsList())) return false;
-    if (hasDateCreated() != other.hasDateCreated()) return false;
-    if (hasDateCreated()) {
-      if (!getDateCreated()
-          .equals(other.getDateCreated())) return false;
-    }
+    if (java.lang.Double.doubleToLongBits(getTotalPrice())
+        != java.lang.Double.doubleToLongBits(
+            other.getTotalPrice())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -266,10 +243,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ITEMS_FIELD_NUMBER;
       hash = (53 * hash) + getItemsList().hashCode();
     }
-    if (hasDateCreated()) {
-      hash = (37 * hash) + DATE_CREATED_FIELD_NUMBER;
-      hash = (53 * hash) + getDateCreated().hashCode();
-    }
+    hash = (37 * hash) + TOTAL_PRICE_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getTotalPrice()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -412,12 +388,8 @@ private static final long serialVersionUID = 0L;
       } else {
         itemsBuilder_.clear();
       }
-      if (dateCreatedBuilder_ == null) {
-        dateCreated_ = null;
-      } else {
-        dateCreated_ = null;
-        dateCreatedBuilder_ = null;
-      }
+      totalPrice_ = 0D;
+
       return this;
     }
 
@@ -455,11 +427,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.items_ = itemsBuilder_.build();
       }
-      if (dateCreatedBuilder_ == null) {
-        result.dateCreated_ = dateCreated_;
-      } else {
-        result.dateCreated_ = dateCreatedBuilder_.build();
-      }
+      result.totalPrice_ = totalPrice_;
       onBuilt();
       return result;
     }
@@ -537,8 +505,8 @@ private static final long serialVersionUID = 0L;
           }
         }
       }
-      if (other.hasDateCreated()) {
-        mergeDateCreated(other.getDateCreated());
+      if (other.getTotalPrice() != 0D) {
+        setTotalPrice(other.getTotalPrice());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -840,123 +808,34 @@ private static final long serialVersionUID = 0L;
       return itemsBuilder_;
     }
 
-    private com.google.protobuf.Timestamp dateCreated_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> dateCreatedBuilder_;
+    private double totalPrice_ ;
     /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
-     * @return Whether the dateCreated field is set.
+     * <code>double total_price = 3;</code>
+     * @return The totalPrice.
      */
-    public boolean hasDateCreated() {
-      return dateCreatedBuilder_ != null || dateCreated_ != null;
+    public double getTotalPrice() {
+      return totalPrice_;
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
-     * @return The dateCreated.
+     * <code>double total_price = 3;</code>
+     * @param value The totalPrice to set.
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.Timestamp getDateCreated() {
-      if (dateCreatedBuilder_ == null) {
-        return dateCreated_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : dateCreated_;
-      } else {
-        return dateCreatedBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
-     */
-    public Builder setDateCreated(com.google.protobuf.Timestamp value) {
-      if (dateCreatedBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        dateCreated_ = value;
-        onChanged();
-      } else {
-        dateCreatedBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
-     */
-    public Builder setDateCreated(
-        com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (dateCreatedBuilder_ == null) {
-        dateCreated_ = builderForValue.build();
-        onChanged();
-      } else {
-        dateCreatedBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
-     */
-    public Builder mergeDateCreated(com.google.protobuf.Timestamp value) {
-      if (dateCreatedBuilder_ == null) {
-        if (dateCreated_ != null) {
-          dateCreated_ =
-            com.google.protobuf.Timestamp.newBuilder(dateCreated_).mergeFrom(value).buildPartial();
-        } else {
-          dateCreated_ = value;
-        }
-        onChanged();
-      } else {
-        dateCreatedBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
-     */
-    public Builder clearDateCreated() {
-      if (dateCreatedBuilder_ == null) {
-        dateCreated_ = null;
-        onChanged();
-      } else {
-        dateCreated_ = null;
-        dateCreatedBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
-     */
-    public com.google.protobuf.Timestamp.Builder getDateCreatedBuilder() {
+    public Builder setTotalPrice(double value) {
       
+      totalPrice_ = value;
       onChanged();
-      return getDateCreatedFieldBuilder().getBuilder();
+      return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
+     * <code>double total_price = 3;</code>
+     * @return This builder for chaining.
      */
-    public com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder() {
-      if (dateCreatedBuilder_ != null) {
-        return dateCreatedBuilder_.getMessageOrBuilder();
-      } else {
-        return dateCreated_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : dateCreated_;
-      }
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 3;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-        getDateCreatedFieldBuilder() {
-      if (dateCreatedBuilder_ == null) {
-        dateCreatedBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                getDateCreated(),
-                getParentForChildren(),
-                isClean());
-        dateCreated_ = null;
-      }
-      return dateCreatedBuilder_;
+    public Builder clearTotalPrice() {
+      
+      totalPrice_ = 0D;
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

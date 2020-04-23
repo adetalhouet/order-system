@@ -20,7 +20,6 @@ buildscript {
 }
 
 extra["services"] = listOf(
-    project(":billing-service"),
     project(":order-service"),
     project(":client-service"),
     project(":cart-service"),
@@ -67,6 +66,14 @@ allprojects {
         implementation("io.grpc:grpc-kotlin-stub:${rootProject.extra.get("grpcKotlinVersion")}")
         implementation("io.grpc:grpc-netty-shaded:${rootProject.extra.get("grpcVersion")}")
 
+        implementation("org.jetbrains.exposed:exposed-core:${rootProject.extra.get("exposedVersion")}")
+        implementation("org.jetbrains.exposed:exposed-jdbc:${rootProject.extra.get("exposedVersion")}")
+        implementation("org.jetbrains.exposed:exposed-dao:${rootProject.extra.get("exposedVersion")}")
+
+        implementation("com.h2database", "h2", "1.4.200")
+        implementation("com.zaxxer:HikariCP:${rootProject.extra.get("hikariVersion")}")
+        implementation("mysql:mysql-connector-java:${rootProject.extra.get("mysqlVersion")}")
+
         testImplementation(kotlin("test"))
         testImplementation(kotlin("test-junit"))
     }
@@ -77,6 +84,7 @@ configure(extra.get("services") as List<Project>) {
 
     dependencies {
         implementation(project(":api"))
+        implementation(project(":utils"))
     }
 }
 

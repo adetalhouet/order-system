@@ -14,65 +14,41 @@ public interface ClientOrBuilder extends
   long getId();
 
   /**
-   * <code>string username = 2;</code>
-   * @return The username.
-   */
-  java.lang.String getUsername();
-  /**
-   * <code>string username = 2;</code>
-   * @return The bytes for username.
-   */
-  com.google.protobuf.ByteString
-      getUsernameBytes();
-
-  /**
-   * <code>string firstname = 3;</code>
-   * @return The firstname.
-   */
-  java.lang.String getFirstname();
-  /**
-   * <code>string firstname = 3;</code>
-   * @return The bytes for firstname.
-   */
-  com.google.protobuf.ByteString
-      getFirstnameBytes();
-
-  /**
-   * <code>string lastname = 4;</code>
-   * @return The lastname.
-   */
-  java.lang.String getLastname();
-  /**
-   * <code>string lastname = 4;</code>
-   * @return The bytes for lastname.
-   */
-  com.google.protobuf.ByteString
-      getLastnameBytes();
-
-  /**
-   * <code>string email = 5;</code>
+   * <code>string email = 2;</code>
    * @return The email.
    */
   java.lang.String getEmail();
   /**
-   * <code>string email = 5;</code>
+   * <code>string email = 2;</code>
    * @return The bytes for email.
    */
   com.google.protobuf.ByteString
       getEmailBytes();
 
   /**
-   * <code>.google.protobuf.Timestamp date_created = 6;</code>
+   * <code>string password = 3;</code>
+   * @return The password.
+   */
+  java.lang.String getPassword();
+  /**
+   * <code>string password = 3;</code>
+   * @return The bytes for password.
+   */
+  com.google.protobuf.ByteString
+      getPasswordBytes();
+
+  /**
+   * <code>.google.protobuf.Timestamp date_created = 4;</code>
    * @return Whether the dateCreated field is set.
    */
   boolean hasDateCreated();
   /**
-   * <code>.google.protobuf.Timestamp date_created = 6;</code>
+   * <code>.google.protobuf.Timestamp date_created = 4;</code>
    * @return The dateCreated.
    */
   com.google.protobuf.Timestamp getDateCreated();
   /**
-   * <code>.google.protobuf.Timestamp date_created = 6;</code>
+   * <code>.google.protobuf.Timestamp date_created = 4;</code>
    */
   com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder();
 }

@@ -25,34 +25,16 @@ public interface OrderOrBuilder extends
   io.adetalhouet.order.system.order.Order.State getState();
 
   /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   * @return Whether the client field is set.
+   * <code>int64 client_id = 3;</code>
+   * @return The clientId.
    */
-  boolean hasClient();
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   * @return The client.
-   */
-  io.adetalhouet.order.system.client.Client getClient();
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 3;</code>
-   */
-  io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder();
+  long getClientId();
 
   /**
-   * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-   * @return Whether the cart field is set.
+   * <code>int64 cart_id = 4;</code>
+   * @return The cartId.
    */
-  boolean hasCart();
-  /**
-   * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-   * @return The cart.
-   */
-  io.adetalhouet.order.system.cart.Cart getCart();
-  /**
-   * <code>.io.adetalhouet.order.system.cart.Cart cart = 4;</code>
-   */
-  io.adetalhouet.order.system.cart.CartOrBuilder getCartOrBuilder();
+  long getCartId();
 
   /**
    * <code>.google.protobuf.Timestamp date_created = 5;</code>

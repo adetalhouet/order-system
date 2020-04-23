@@ -38,17 +38,8 @@ public interface CartOrBuilder extends
       int index);
 
   /**
-   * <code>.google.protobuf.Timestamp date_created = 3;</code>
-   * @return Whether the dateCreated field is set.
+   * <code>double total_price = 3;</code>
+   * @return The totalPrice.
    */
-  boolean hasDateCreated();
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 3;</code>
-   * @return The dateCreated.
-   */
-  com.google.protobuf.Timestamp getDateCreated();
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 3;</code>
-   */
-  com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder();
+  double getTotalPrice();
 }

@@ -27,27 +27,27 @@ public final class CartServiceGrpc {
   public static final String SERVICE_NAME = "io.adetalhouet.order.system.cart.CartService";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.CartItem,
+  private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.UpdateCartRequest,
       io.adetalhouet.order.system.utils.Status> getAddToCartMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AddToCart",
-      requestType = io.adetalhouet.order.system.cart.CartItem.class,
+      requestType = io.adetalhouet.order.system.cart.UpdateCartRequest.class,
       responseType = io.adetalhouet.order.system.utils.Status.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.CartItem,
+  public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.UpdateCartRequest,
       io.adetalhouet.order.system.utils.Status> getAddToCartMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.CartItem, io.adetalhouet.order.system.utils.Status> getAddToCartMethod;
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.UpdateCartRequest, io.adetalhouet.order.system.utils.Status> getAddToCartMethod;
     if ((getAddToCartMethod = CartServiceGrpc.getAddToCartMethod) == null) {
       synchronized (CartServiceGrpc.class) {
         if ((getAddToCartMethod = CartServiceGrpc.getAddToCartMethod) == null) {
           CartServiceGrpc.getAddToCartMethod = getAddToCartMethod =
-              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.cart.CartItem, io.adetalhouet.order.system.utils.Status>newBuilder()
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.cart.UpdateCartRequest, io.adetalhouet.order.system.utils.Status>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AddToCart"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.adetalhouet.order.system.cart.CartItem.getDefaultInstance()))
+                  io.adetalhouet.order.system.cart.UpdateCartRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.adetalhouet.order.system.utils.Status.getDefaultInstance()))
               .setSchemaDescriptor(new CartServiceMethodDescriptorSupplier("AddToCart"))
@@ -58,27 +58,27 @@ public final class CartServiceGrpc {
     return getAddToCartMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.CartItem,
+  private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.UpdateCartRequest,
       io.adetalhouet.order.system.utils.Status> getRemoteFromCartMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "RemoteFromCart",
-      requestType = io.adetalhouet.order.system.cart.CartItem.class,
+      requestType = io.adetalhouet.order.system.cart.UpdateCartRequest.class,
       responseType = io.adetalhouet.order.system.utils.Status.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.CartItem,
+  public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.UpdateCartRequest,
       io.adetalhouet.order.system.utils.Status> getRemoteFromCartMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.CartItem, io.adetalhouet.order.system.utils.Status> getRemoteFromCartMethod;
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.UpdateCartRequest, io.adetalhouet.order.system.utils.Status> getRemoteFromCartMethod;
     if ((getRemoteFromCartMethod = CartServiceGrpc.getRemoteFromCartMethod) == null) {
       synchronized (CartServiceGrpc.class) {
         if ((getRemoteFromCartMethod = CartServiceGrpc.getRemoteFromCartMethod) == null) {
           CartServiceGrpc.getRemoteFromCartMethod = getRemoteFromCartMethod =
-              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.cart.CartItem, io.adetalhouet.order.system.utils.Status>newBuilder()
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.cart.UpdateCartRequest, io.adetalhouet.order.system.utils.Status>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoteFromCart"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.adetalhouet.order.system.cart.CartItem.getDefaultInstance()))
+                  io.adetalhouet.order.system.cart.UpdateCartRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.adetalhouet.order.system.utils.Status.getDefaultInstance()))
               .setSchemaDescriptor(new CartServiceMethodDescriptorSupplier("RemoteFromCart"))
@@ -139,14 +139,14 @@ public final class CartServiceGrpc {
 
     /**
      */
-    public void addToCart(io.adetalhouet.order.system.cart.CartItem request,
+    public void addToCart(io.adetalhouet.order.system.cart.UpdateCartRequest request,
         io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
       asyncUnimplementedUnaryCall(getAddToCartMethod(), responseObserver);
     }
 
     /**
      */
-    public void remoteFromCart(io.adetalhouet.order.system.cart.CartItem request,
+    public void remoteFromCart(io.adetalhouet.order.system.cart.UpdateCartRequest request,
         io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
       asyncUnimplementedUnaryCall(getRemoteFromCartMethod(), responseObserver);
     }
@@ -157,14 +157,14 @@ public final class CartServiceGrpc {
             getAddToCartMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.adetalhouet.order.system.cart.CartItem,
+                io.adetalhouet.order.system.cart.UpdateCartRequest,
                 io.adetalhouet.order.system.utils.Status>(
                   this, METHODID_ADD_TO_CART)))
           .addMethod(
             getRemoteFromCartMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                io.adetalhouet.order.system.cart.CartItem,
+                io.adetalhouet.order.system.cart.UpdateCartRequest,
                 io.adetalhouet.order.system.utils.Status>(
                   this, METHODID_REMOTE_FROM_CART)))
           .build();
@@ -187,7 +187,7 @@ public final class CartServiceGrpc {
 
     /**
      */
-    public void addToCart(io.adetalhouet.order.system.cart.CartItem request,
+    public void addToCart(io.adetalhouet.order.system.cart.UpdateCartRequest request,
         io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getAddToCartMethod(), getCallOptions()), request, responseObserver);
@@ -195,7 +195,7 @@ public final class CartServiceGrpc {
 
     /**
      */
-    public void remoteFromCart(io.adetalhouet.order.system.cart.CartItem request,
+    public void remoteFromCart(io.adetalhouet.order.system.cart.UpdateCartRequest request,
         io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getRemoteFromCartMethod(), getCallOptions()), request, responseObserver);
@@ -218,14 +218,14 @@ public final class CartServiceGrpc {
 
     /**
      */
-    public io.adetalhouet.order.system.utils.Status addToCart(io.adetalhouet.order.system.cart.CartItem request) {
+    public io.adetalhouet.order.system.utils.Status addToCart(io.adetalhouet.order.system.cart.UpdateCartRequest request) {
       return blockingUnaryCall(
           getChannel(), getAddToCartMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public io.adetalhouet.order.system.utils.Status remoteFromCart(io.adetalhouet.order.system.cart.CartItem request) {
+    public io.adetalhouet.order.system.utils.Status remoteFromCart(io.adetalhouet.order.system.cart.UpdateCartRequest request) {
       return blockingUnaryCall(
           getChannel(), getRemoteFromCartMethod(), getCallOptions(), request);
     }
@@ -248,7 +248,7 @@ public final class CartServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.utils.Status> addToCart(
-        io.adetalhouet.order.system.cart.CartItem request) {
+        io.adetalhouet.order.system.cart.UpdateCartRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getAddToCartMethod(), getCallOptions()), request);
     }
@@ -256,7 +256,7 @@ public final class CartServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.utils.Status> remoteFromCart(
-        io.adetalhouet.order.system.cart.CartItem request) {
+        io.adetalhouet.order.system.cart.UpdateCartRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getRemoteFromCartMethod(), getCallOptions()), request);
     }
@@ -283,11 +283,11 @@ public final class CartServiceGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_ADD_TO_CART:
-          serviceImpl.addToCart((io.adetalhouet.order.system.cart.CartItem) request,
+          serviceImpl.addToCart((io.adetalhouet.order.system.cart.UpdateCartRequest) request,
               (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status>) responseObserver);
           break;
         case METHODID_REMOTE_FROM_CART:
-          serviceImpl.remoteFromCart((io.adetalhouet.order.system.cart.CartItem) request,
+          serviceImpl.remoteFromCart((io.adetalhouet.order.system.cart.UpdateCartRequest) request,
               (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status>) responseObserver);
           break;
         default:

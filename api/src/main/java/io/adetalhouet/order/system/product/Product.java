@@ -18,8 +18,6 @@ private static final long serialVersionUID = 0L;
   private Product() {
     name_ = "";
     price_ = "";
-    weigh_ = "";
-    size_ = "";
   }
 
   @java.lang.Override
@@ -71,35 +69,10 @@ private static final long serialVersionUID = 0L;
           }
           case 32: {
 
-            numberAvailable_ = input.readInt32();
+            quantity_ = input.readInt32();
             break;
           }
           case 42: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            weigh_ = s;
-            break;
-          }
-          case 50: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            size_ = s;
-            break;
-          }
-          case 58: {
-            com.google.protobuf.Timestamp.Builder subBuilder = null;
-            if (dateCreated_ != null) {
-              subBuilder = dateCreated_.toBuilder();
-            }
-            dateCreated_ = input.readMessage(com.google.protobuf.Timestamp.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(dateCreated_);
-              dateCreated_ = subBuilder.buildPartial();
-            }
-
-            break;
-          }
-          case 66: {
             com.google.protobuf.Timestamp.Builder subBuilder = null;
             if (lastUpdated_ != null) {
               subBuilder = lastUpdated_.toBuilder();
@@ -226,129 +199,34 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int NUMBER_AVAILABLE_FIELD_NUMBER = 4;
-  private int numberAvailable_;
+  public static final int QUANTITY_FIELD_NUMBER = 4;
+  private int quantity_;
   /**
-   * <code>int32 number_available = 4;</code>
-   * @return The numberAvailable.
+   * <code>int32 quantity = 4;</code>
+   * @return The quantity.
    */
-  public int getNumberAvailable() {
-    return numberAvailable_;
+  public int getQuantity() {
+    return quantity_;
   }
 
-  public static final int WEIGH_FIELD_NUMBER = 5;
-  private volatile java.lang.Object weigh_;
-  /**
-   * <code>string weigh = 5;</code>
-   * @return The weigh.
-   */
-  public java.lang.String getWeigh() {
-    java.lang.Object ref = weigh_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      weigh_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string weigh = 5;</code>
-   * @return The bytes for weigh.
-   */
-  public com.google.protobuf.ByteString
-      getWeighBytes() {
-    java.lang.Object ref = weigh_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      weigh_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int SIZE_FIELD_NUMBER = 6;
-  private volatile java.lang.Object size_;
-  /**
-   * <code>string size = 6;</code>
-   * @return The size.
-   */
-  public java.lang.String getSize() {
-    java.lang.Object ref = size_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      size_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string size = 6;</code>
-   * @return The bytes for size.
-   */
-  public com.google.protobuf.ByteString
-      getSizeBytes() {
-    java.lang.Object ref = size_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      size_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int DATE_CREATED_FIELD_NUMBER = 7;
-  private com.google.protobuf.Timestamp dateCreated_;
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 7;</code>
-   * @return Whether the dateCreated field is set.
-   */
-  public boolean hasDateCreated() {
-    return dateCreated_ != null;
-  }
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 7;</code>
-   * @return The dateCreated.
-   */
-  public com.google.protobuf.Timestamp getDateCreated() {
-    return dateCreated_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : dateCreated_;
-  }
-  /**
-   * <code>.google.protobuf.Timestamp date_created = 7;</code>
-   */
-  public com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder() {
-    return getDateCreated();
-  }
-
-  public static final int LAST_UPDATED_FIELD_NUMBER = 8;
+  public static final int LAST_UPDATED_FIELD_NUMBER = 5;
   private com.google.protobuf.Timestamp lastUpdated_;
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
    * @return Whether the lastUpdated field is set.
    */
   public boolean hasLastUpdated() {
     return lastUpdated_ != null;
   }
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
    * @return The lastUpdated.
    */
   public com.google.protobuf.Timestamp getLastUpdated() {
     return lastUpdated_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lastUpdated_;
   }
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getLastUpdatedOrBuilder() {
     return getLastUpdated();
@@ -377,20 +255,11 @@ private static final long serialVersionUID = 0L;
     if (!getPriceBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, price_);
     }
-    if (numberAvailable_ != 0) {
-      output.writeInt32(4, numberAvailable_);
-    }
-    if (!getWeighBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, weigh_);
-    }
-    if (!getSizeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, size_);
-    }
-    if (dateCreated_ != null) {
-      output.writeMessage(7, getDateCreated());
+    if (quantity_ != 0) {
+      output.writeInt32(4, quantity_);
     }
     if (lastUpdated_ != null) {
-      output.writeMessage(8, getLastUpdated());
+      output.writeMessage(5, getLastUpdated());
     }
     unknownFields.writeTo(output);
   }
@@ -411,23 +280,13 @@ private static final long serialVersionUID = 0L;
     if (!getPriceBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, price_);
     }
-    if (numberAvailable_ != 0) {
+    if (quantity_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(4, numberAvailable_);
-    }
-    if (!getWeighBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, weigh_);
-    }
-    if (!getSizeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, size_);
-    }
-    if (dateCreated_ != null) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(7, getDateCreated());
+        .computeInt32Size(4, quantity_);
     }
     if (lastUpdated_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(8, getLastUpdated());
+        .computeMessageSize(5, getLastUpdated());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -450,17 +309,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getName())) return false;
     if (!getPrice()
         .equals(other.getPrice())) return false;
-    if (getNumberAvailable()
-        != other.getNumberAvailable()) return false;
-    if (!getWeigh()
-        .equals(other.getWeigh())) return false;
-    if (!getSize()
-        .equals(other.getSize())) return false;
-    if (hasDateCreated() != other.hasDateCreated()) return false;
-    if (hasDateCreated()) {
-      if (!getDateCreated()
-          .equals(other.getDateCreated())) return false;
-    }
+    if (getQuantity()
+        != other.getQuantity()) return false;
     if (hasLastUpdated() != other.hasLastUpdated()) return false;
     if (hasLastUpdated()) {
       if (!getLastUpdated()
@@ -484,16 +334,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + PRICE_FIELD_NUMBER;
     hash = (53 * hash) + getPrice().hashCode();
-    hash = (37 * hash) + NUMBER_AVAILABLE_FIELD_NUMBER;
-    hash = (53 * hash) + getNumberAvailable();
-    hash = (37 * hash) + WEIGH_FIELD_NUMBER;
-    hash = (53 * hash) + getWeigh().hashCode();
-    hash = (37 * hash) + SIZE_FIELD_NUMBER;
-    hash = (53 * hash) + getSize().hashCode();
-    if (hasDateCreated()) {
-      hash = (37 * hash) + DATE_CREATED_FIELD_NUMBER;
-      hash = (53 * hash) + getDateCreated().hashCode();
-    }
+    hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
+    hash = (53 * hash) + getQuantity();
     if (hasLastUpdated()) {
       hash = (37 * hash) + LAST_UPDATED_FIELD_NUMBER;
       hash = (53 * hash) + getLastUpdated().hashCode();
@@ -637,18 +479,8 @@ private static final long serialVersionUID = 0L;
 
       price_ = "";
 
-      numberAvailable_ = 0;
+      quantity_ = 0;
 
-      weigh_ = "";
-
-      size_ = "";
-
-      if (dateCreatedBuilder_ == null) {
-        dateCreated_ = null;
-      } else {
-        dateCreated_ = null;
-        dateCreatedBuilder_ = null;
-      }
       if (lastUpdatedBuilder_ == null) {
         lastUpdated_ = null;
       } else {
@@ -684,14 +516,7 @@ private static final long serialVersionUID = 0L;
       result.id_ = id_;
       result.name_ = name_;
       result.price_ = price_;
-      result.numberAvailable_ = numberAvailable_;
-      result.weigh_ = weigh_;
-      result.size_ = size_;
-      if (dateCreatedBuilder_ == null) {
-        result.dateCreated_ = dateCreated_;
-      } else {
-        result.dateCreated_ = dateCreatedBuilder_.build();
-      }
+      result.quantity_ = quantity_;
       if (lastUpdatedBuilder_ == null) {
         result.lastUpdated_ = lastUpdated_;
       } else {
@@ -756,19 +581,8 @@ private static final long serialVersionUID = 0L;
         price_ = other.price_;
         onChanged();
       }
-      if (other.getNumberAvailable() != 0) {
-        setNumberAvailable(other.getNumberAvailable());
-      }
-      if (!other.getWeigh().isEmpty()) {
-        weigh_ = other.weigh_;
-        onChanged();
-      }
-      if (!other.getSize().isEmpty()) {
-        size_ = other.size_;
-        onChanged();
-      }
-      if (other.hasDateCreated()) {
-        mergeDateCreated(other.getDateCreated());
+      if (other.getQuantity() != 0) {
+        setQuantity(other.getQuantity());
       }
       if (other.hasLastUpdated()) {
         mergeLastUpdated(other.getLastUpdated());
@@ -984,319 +798,48 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int numberAvailable_ ;
+    private int quantity_ ;
     /**
-     * <code>int32 number_available = 4;</code>
-     * @return The numberAvailable.
+     * <code>int32 quantity = 4;</code>
+     * @return The quantity.
      */
-    public int getNumberAvailable() {
-      return numberAvailable_;
+    public int getQuantity() {
+      return quantity_;
     }
     /**
-     * <code>int32 number_available = 4;</code>
-     * @param value The numberAvailable to set.
+     * <code>int32 quantity = 4;</code>
+     * @param value The quantity to set.
      * @return This builder for chaining.
      */
-    public Builder setNumberAvailable(int value) {
+    public Builder setQuantity(int value) {
       
-      numberAvailable_ = value;
+      quantity_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 number_available = 4;</code>
+     * <code>int32 quantity = 4;</code>
      * @return This builder for chaining.
      */
-    public Builder clearNumberAvailable() {
+    public Builder clearQuantity() {
       
-      numberAvailable_ = 0;
+      quantity_ = 0;
       onChanged();
       return this;
-    }
-
-    private java.lang.Object weigh_ = "";
-    /**
-     * <code>string weigh = 5;</code>
-     * @return The weigh.
-     */
-    public java.lang.String getWeigh() {
-      java.lang.Object ref = weigh_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        weigh_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string weigh = 5;</code>
-     * @return The bytes for weigh.
-     */
-    public com.google.protobuf.ByteString
-        getWeighBytes() {
-      java.lang.Object ref = weigh_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        weigh_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string weigh = 5;</code>
-     * @param value The weigh to set.
-     * @return This builder for chaining.
-     */
-    public Builder setWeigh(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      weigh_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string weigh = 5;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearWeigh() {
-      
-      weigh_ = getDefaultInstance().getWeigh();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string weigh = 5;</code>
-     * @param value The bytes for weigh to set.
-     * @return This builder for chaining.
-     */
-    public Builder setWeighBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      weigh_ = value;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object size_ = "";
-    /**
-     * <code>string size = 6;</code>
-     * @return The size.
-     */
-    public java.lang.String getSize() {
-      java.lang.Object ref = size_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        size_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string size = 6;</code>
-     * @return The bytes for size.
-     */
-    public com.google.protobuf.ByteString
-        getSizeBytes() {
-      java.lang.Object ref = size_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        size_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string size = 6;</code>
-     * @param value The size to set.
-     * @return This builder for chaining.
-     */
-    public Builder setSize(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      size_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string size = 6;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearSize() {
-      
-      size_ = getDefaultInstance().getSize();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string size = 6;</code>
-     * @param value The bytes for size to set.
-     * @return This builder for chaining.
-     */
-    public Builder setSizeBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      size_ = value;
-      onChanged();
-      return this;
-    }
-
-    private com.google.protobuf.Timestamp dateCreated_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> dateCreatedBuilder_;
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     * @return Whether the dateCreated field is set.
-     */
-    public boolean hasDateCreated() {
-      return dateCreatedBuilder_ != null || dateCreated_ != null;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     * @return The dateCreated.
-     */
-    public com.google.protobuf.Timestamp getDateCreated() {
-      if (dateCreatedBuilder_ == null) {
-        return dateCreated_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : dateCreated_;
-      } else {
-        return dateCreatedBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     */
-    public Builder setDateCreated(com.google.protobuf.Timestamp value) {
-      if (dateCreatedBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        dateCreated_ = value;
-        onChanged();
-      } else {
-        dateCreatedBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     */
-    public Builder setDateCreated(
-        com.google.protobuf.Timestamp.Builder builderForValue) {
-      if (dateCreatedBuilder_ == null) {
-        dateCreated_ = builderForValue.build();
-        onChanged();
-      } else {
-        dateCreatedBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     */
-    public Builder mergeDateCreated(com.google.protobuf.Timestamp value) {
-      if (dateCreatedBuilder_ == null) {
-        if (dateCreated_ != null) {
-          dateCreated_ =
-            com.google.protobuf.Timestamp.newBuilder(dateCreated_).mergeFrom(value).buildPartial();
-        } else {
-          dateCreated_ = value;
-        }
-        onChanged();
-      } else {
-        dateCreatedBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     */
-    public Builder clearDateCreated() {
-      if (dateCreatedBuilder_ == null) {
-        dateCreated_ = null;
-        onChanged();
-      } else {
-        dateCreated_ = null;
-        dateCreatedBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     */
-    public com.google.protobuf.Timestamp.Builder getDateCreatedBuilder() {
-      
-      onChanged();
-      return getDateCreatedFieldBuilder().getBuilder();
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     */
-    public com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder() {
-      if (dateCreatedBuilder_ != null) {
-        return dateCreatedBuilder_.getMessageOrBuilder();
-      } else {
-        return dateCreated_ == null ?
-            com.google.protobuf.Timestamp.getDefaultInstance() : dateCreated_;
-      }
-    }
-    /**
-     * <code>.google.protobuf.Timestamp date_created = 7;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-        getDateCreatedFieldBuilder() {
-      if (dateCreatedBuilder_ == null) {
-        dateCreatedBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
-                getDateCreated(),
-                getParentForChildren(),
-                isClean());
-        dateCreated_ = null;
-      }
-      return dateCreatedBuilder_;
     }
 
     private com.google.protobuf.Timestamp lastUpdated_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> lastUpdatedBuilder_;
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      * @return Whether the lastUpdated field is set.
      */
     public boolean hasLastUpdated() {
       return lastUpdatedBuilder_ != null || lastUpdated_ != null;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      * @return The lastUpdated.
      */
     public com.google.protobuf.Timestamp getLastUpdated() {
@@ -1307,7 +850,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      */
     public Builder setLastUpdated(com.google.protobuf.Timestamp value) {
       if (lastUpdatedBuilder_ == null) {
@@ -1323,7 +866,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      */
     public Builder setLastUpdated(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -1337,7 +880,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      */
     public Builder mergeLastUpdated(com.google.protobuf.Timestamp value) {
       if (lastUpdatedBuilder_ == null) {
@@ -1355,7 +898,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      */
     public Builder clearLastUpdated() {
       if (lastUpdatedBuilder_ == null) {
@@ -1369,7 +912,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      */
     public com.google.protobuf.Timestamp.Builder getLastUpdatedBuilder() {
       
@@ -1377,7 +920,7 @@ private static final long serialVersionUID = 0L;
       return getLastUpdatedFieldBuilder().getBuilder();
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getLastUpdatedOrBuilder() {
       if (lastUpdatedBuilder_ != null) {
@@ -1388,7 +931,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 8;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

@@ -5,7 +5,7 @@ import com.google.api.graphql.rejoiner.SchemaProviderModule
 import com.google.inject.Guice
 import com.google.inject.Key
 import graphql.schema.GraphQLSchema
-import io.adetalhouet.order.system.graphql.di.BillingClientModule
+import io.adetalhouet.order.system.graphql.di.CartClientModule
 
 
 object OrderSystemSchema {
@@ -13,9 +13,7 @@ object OrderSystemSchema {
     val schema: GraphQLSchema = Guice
         .createInjector(
             SchemaProviderModule(),
-            BillingClientModule(),
-            BillingSchemaModule()
-//            CartClientModule(),
+            CartClientModule()
 //            CartSchemaModule(),
 //            ClientSchemaModule(),
 //            ClientClientModule(),
