@@ -1,7 +1,6 @@
-package io.adetalhouet.order.system.order
+package io.adetalhouet.order.system.product
 
 import com.google.inject.Singleton
-import io.adetalhouet.order.system.product.ProductServiceImpl
 import io.grpc.Server
 import io.grpc.ServerBuilder
 import java.io.IOException
@@ -12,7 +11,6 @@ class ProductServer(private val port: Int) {
 
     @Throws(IOException::class)
     fun start() {
-
         server = ServerBuilder.forPort(port)
             .addService(ProductServiceImpl())
             .build()

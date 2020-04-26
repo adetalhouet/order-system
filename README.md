@@ -31,6 +31,21 @@ Combine Kotlin, gRPC, and graphql.
 
 https://github.com/prisma-labs/graphql-playground
 
+##### Get Products
+```
+query {
+  getProducts {
+    products {
+      name
+      price
+      quantity
+      id
+    }
+  }
+}
+```
+
+##### Add bill
 ```
 query {
   addBill(
