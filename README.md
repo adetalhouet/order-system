@@ -4,11 +4,22 @@ Order System
 Combine Kotlin, gRPC, and graphql.
 
 ### High level architecture
-![architecture](https://github.com/adetalhouet/order-system/raw/master/docs/src/docs/resources/k.png)
+![architecture](https://github.com/adetalhouet/order-system/raw/master/docs/src/docs/resources/high-level-arch.png)
+
+### Model
+![architecture](https://github.com/adetalhouet/order-system/raw/master/docs/src/docs/resources/model.png)
+
+### Services port
+
+| Service | Port |
+|---------|:----:|
+| cart    | 9090 |
+| client  | 9091 |
+| order   | 9092 |
+| product | 9093 |
 
 
-
-TODO
+### TODO
 - fix graphql server
 - implement gRPC server
 - add DB
