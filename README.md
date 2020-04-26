@@ -31,7 +31,7 @@ Combine Kotlin, gRPC, and graphql.
 
 https://github.com/prisma-labs/graphql-playground
 
-##### Get Products
+##### Product Query
 ```
 query {
   getProducts {
@@ -41,6 +41,16 @@ query {
       quantity
       id
     }
+  }
+}
+```
+
+```
+query {
+  getProductById(input: { id: 2 }) {
+    name
+    quantity
+    price
   }
 }
 ```
