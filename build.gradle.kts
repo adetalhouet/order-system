@@ -23,6 +23,7 @@ extra["services"] = listOf(
     project(":order-service"),
     project(":client-service"),
     project(":cart-service"),
+    project(":product-service"),
     project(":graphql-gw")
 )
 
