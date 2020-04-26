@@ -2,7 +2,9 @@ package io.adetalhouet.order.system.graphql.schema
 
 import com.google.api.graphql.rejoiner.Query
 import com.google.api.graphql.rejoiner.SchemaModule
+import com.google.common.util.concurrent.ListenableFuture
 import io.adetalhouet.order.system.client.Client
+import io.adetalhouet.order.system.client.ClientServiceGrpc
 import io.adetalhouet.order.system.client.ClientServiceGrpcKt
 import io.adetalhouet.order.system.client.Clients
 import io.adetalhouet.order.system.client.DeleteClientByIdRequest
@@ -11,25 +13,26 @@ import io.adetalhouet.order.system.utils.Status
 
 class ClientSchemaModule : SchemaModule() {
     @Query("addClient")
-    suspend fun addClient(client: ClientServiceGrpcKt.ClientServiceCoroutineStub, request: Client): Status {
+    fun addClient(client: ClientServiceGrpc.ClientServiceFutureStub,
+                  request: Client): ListenableFuture<Status>? {
         return client.addClient(request)
     }
 
     @Query("deleteClientById")
-    suspend fun deleteClientById(client: ClientServiceGrpcKt.ClientServiceCoroutineStub,
-                                 request: DeleteClientByIdRequest): Status {
+    fun deleteClientById(client: ClientServiceGrpc.ClientServiceFutureStub,
+                         request: DeleteClientByIdRequest): ListenableFuture<Status>? {
         return client.deleteClientById(request)
     }
 
     @Query("getClientById")
-    suspend fun getClientById(client: ClientServiceGrpcKt.ClientServiceCoroutineStub,
-                              request: GetClientByIdRequest): Client {
+    fun getClientById(client: ClientServiceGrpc.ClientServiceFutureStub,
+                      request: GetClientByIdRequest): ListenableFuture<Client>? {
         return client.getClientById(request)
     }
 
     @Query("clients")
-    suspend fun getClients(client: ClientServiceGrpcKt.ClientServiceCoroutineStub,
-                           request: com.google.protobuf.Empty): Clients {
+    fun getClients(client: ClientServiceGrpc.ClientServiceFutureStub,
+                   request: com.google.protobuf.Empty): ListenableFuture<Clients>? {
         return client.getClients(request)
     }
 }

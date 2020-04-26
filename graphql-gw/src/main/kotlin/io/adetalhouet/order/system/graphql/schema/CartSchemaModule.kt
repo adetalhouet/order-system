@@ -2,20 +2,22 @@ package io.adetalhouet.order.system.graphql.schema
 
 import com.google.api.graphql.rejoiner.Query
 import com.google.api.graphql.rejoiner.SchemaModule
-import io.adetalhouet.order.system.cart.CartItem
-import io.adetalhouet.order.system.cart.CartServiceGrpcKt
+import com.google.common.util.concurrent.ListenableFuture
+import io.adetalhouet.order.system.cart.CartServiceGrpc
 import io.adetalhouet.order.system.cart.UpdateCartRequest
 import io.adetalhouet.order.system.utils.Status
 
 class CartSchemaModule : SchemaModule() {
 
     @Query("addToCart")
-    suspend fun addToCart(client: CartServiceGrpcKt.CartServiceCoroutineStub, request: UpdateCartRequest): Status {
+    fun addToCart(client: CartServiceGrpc.CartServiceFutureStub,
+                  request: UpdateCartRequest): ListenableFuture<Status>? {
         return client.addToCart(request)
     }
 
     @Query("remoteFromCart")
-    suspend fun remoteFromCart(client: CartServiceGrpcKt.CartServiceCoroutineStub, request: UpdateCartRequest): Status {
+    fun remoteFromCart(client: CartServiceGrpc.CartServiceFutureStub,
+                       request: UpdateCartRequest): ListenableFuture<Status>? {
         return client.remoteFromCart(request)
     }
 }
