@@ -48,17 +48,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            io.adetalhouet.order.system.product.Product.Builder subBuilder = null;
-            if (product_ != null) {
-              subBuilder = product_.toBuilder();
-            }
-            product_ = input.readMessage(io.adetalhouet.order.system.product.Product.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(product_);
-              product_ = subBuilder.buildPartial();
-            }
+          case 8: {
 
+            productId_ = input.readInt64();
             break;
           }
           case 16: {
@@ -103,27 +95,14 @@ private static final long serialVersionUID = 0L;
             io.adetalhouet.order.system.cart.CartItem.class, io.adetalhouet.order.system.cart.CartItem.Builder.class);
   }
 
-  public static final int PRODUCT_FIELD_NUMBER = 1;
-  private io.adetalhouet.order.system.product.Product product_;
+  public static final int PRODUCT_ID_FIELD_NUMBER = 1;
+  private long productId_;
   /**
-   * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-   * @return Whether the product field is set.
+   * <code>int64 product_id = 1;</code>
+   * @return The productId.
    */
-  public boolean hasProduct() {
-    return product_ != null;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-   * @return The product.
-   */
-  public io.adetalhouet.order.system.product.Product getProduct() {
-    return product_ == null ? io.adetalhouet.order.system.product.Product.getDefaultInstance() : product_;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-   */
-  public io.adetalhouet.order.system.product.ProductOrBuilder getProductOrBuilder() {
-    return getProduct();
+  public long getProductId() {
+    return productId_;
   }
 
   public static final int QUANTITY_FIELD_NUMBER = 2;
@@ -160,8 +139,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (product_ != null) {
-      output.writeMessage(1, getProduct());
+    if (productId_ != 0L) {
+      output.writeInt64(1, productId_);
     }
     if (quantity_ != 0) {
       output.writeInt32(2, quantity_);
@@ -178,9 +157,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (product_ != null) {
+    if (productId_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getProduct());
+        .computeInt64Size(1, productId_);
     }
     if (quantity_ != 0) {
       size += com.google.protobuf.CodedOutputStream
@@ -205,11 +184,8 @@ private static final long serialVersionUID = 0L;
     }
     io.adetalhouet.order.system.cart.CartItem other = (io.adetalhouet.order.system.cart.CartItem) obj;
 
-    if (hasProduct() != other.hasProduct()) return false;
-    if (hasProduct()) {
-      if (!getProduct()
-          .equals(other.getProduct())) return false;
-    }
+    if (getProductId()
+        != other.getProductId()) return false;
     if (getQuantity()
         != other.getQuantity()) return false;
     if (java.lang.Float.floatToIntBits(getTotalPrice())
@@ -226,10 +202,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasProduct()) {
-      hash = (37 * hash) + PRODUCT_FIELD_NUMBER;
-      hash = (53 * hash) + getProduct().hashCode();
-    }
+    hash = (37 * hash) + PRODUCT_ID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getProductId());
     hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
     hash = (53 * hash) + getQuantity();
     hash = (37 * hash) + TOTAL_PRICE_FIELD_NUMBER;
@@ -368,12 +343,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (productBuilder_ == null) {
-        product_ = null;
-      } else {
-        product_ = null;
-        productBuilder_ = null;
-      }
+      productId_ = 0L;
+
       quantity_ = 0;
 
       totalPrice_ = 0F;
@@ -404,11 +375,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.adetalhouet.order.system.cart.CartItem buildPartial() {
       io.adetalhouet.order.system.cart.CartItem result = new io.adetalhouet.order.system.cart.CartItem(this);
-      if (productBuilder_ == null) {
-        result.product_ = product_;
-      } else {
-        result.product_ = productBuilder_.build();
-      }
+      result.productId_ = productId_;
       result.quantity_ = quantity_;
       result.totalPrice_ = totalPrice_;
       onBuilt();
@@ -459,8 +426,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.adetalhouet.order.system.cart.CartItem other) {
       if (other == io.adetalhouet.order.system.cart.CartItem.getDefaultInstance()) return this;
-      if (other.hasProduct()) {
-        mergeProduct(other.getProduct());
+      if (other.getProductId() != 0L) {
+        setProductId(other.getProductId());
       }
       if (other.getQuantity() != 0) {
         setQuantity(other.getQuantity());
@@ -497,123 +464,34 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.adetalhouet.order.system.product.Product product_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.product.Product, io.adetalhouet.order.system.product.Product.Builder, io.adetalhouet.order.system.product.ProductOrBuilder> productBuilder_;
+    private long productId_ ;
     /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-     * @return Whether the product field is set.
+     * <code>int64 product_id = 1;</code>
+     * @return The productId.
      */
-    public boolean hasProduct() {
-      return productBuilder_ != null || product_ != null;
+    public long getProductId() {
+      return productId_;
     }
     /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-     * @return The product.
+     * <code>int64 product_id = 1;</code>
+     * @param value The productId to set.
+     * @return This builder for chaining.
      */
-    public io.adetalhouet.order.system.product.Product getProduct() {
-      if (productBuilder_ == null) {
-        return product_ == null ? io.adetalhouet.order.system.product.Product.getDefaultInstance() : product_;
-      } else {
-        return productBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-     */
-    public Builder setProduct(io.adetalhouet.order.system.product.Product value) {
-      if (productBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        product_ = value;
-        onChanged();
-      } else {
-        productBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-     */
-    public Builder setProduct(
-        io.adetalhouet.order.system.product.Product.Builder builderForValue) {
-      if (productBuilder_ == null) {
-        product_ = builderForValue.build();
-        onChanged();
-      } else {
-        productBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-     */
-    public Builder mergeProduct(io.adetalhouet.order.system.product.Product value) {
-      if (productBuilder_ == null) {
-        if (product_ != null) {
-          product_ =
-            io.adetalhouet.order.system.product.Product.newBuilder(product_).mergeFrom(value).buildPartial();
-        } else {
-          product_ = value;
-        }
-        onChanged();
-      } else {
-        productBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-     */
-    public Builder clearProduct() {
-      if (productBuilder_ == null) {
-        product_ = null;
-        onChanged();
-      } else {
-        product_ = null;
-        productBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-     */
-    public io.adetalhouet.order.system.product.Product.Builder getProductBuilder() {
+    public Builder setProductId(long value) {
       
+      productId_ = value;
       onChanged();
-      return getProductFieldBuilder().getBuilder();
+      return this;
     }
     /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
+     * <code>int64 product_id = 1;</code>
+     * @return This builder for chaining.
      */
-    public io.adetalhouet.order.system.product.ProductOrBuilder getProductOrBuilder() {
-      if (productBuilder_ != null) {
-        return productBuilder_.getMessageOrBuilder();
-      } else {
-        return product_ == null ?
-            io.adetalhouet.order.system.product.Product.getDefaultInstance() : product_;
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.product.Product, io.adetalhouet.order.system.product.Product.Builder, io.adetalhouet.order.system.product.ProductOrBuilder> 
-        getProductFieldBuilder() {
-      if (productBuilder_ == null) {
-        productBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.adetalhouet.order.system.product.Product, io.adetalhouet.order.system.product.Product.Builder, io.adetalhouet.order.system.product.ProductOrBuilder>(
-                getProduct(),
-                getParentForChildren(),
-                isClean());
-        product_ = null;
-      }
-      return productBuilder_;
+    public Builder clearProductId() {
+      
+      productId_ = 0L;
+      onChanged();
+      return this;
     }
 
     private int quantity_ ;

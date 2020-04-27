@@ -9,9 +9,9 @@ import io.adetalhouet.order.system.order.Orders
 
 class OrderSystemSchemaModule : SchemaModule() {
 
-    @SchemaModification(addField = "orders", onType = Client::class)
-    suspend fun getOrdersPerClient(customer: Client,
-                                   client: OrderServiceGrpcKt.OrderServiceCoroutineStub): Orders {
-        return client.getOrdersByClient(GetOrdersByClientRequest.newBuilder().setClient(customer).build())
-    }
+//    @SchemaModification(addField = "orders", onType = Client::class)
+//    suspend fun getOrdersPerClient(customer: Client,
+//                                   client: OrderServiceGrpcKt.OrderServiceCoroutineStub): Orders {
+//        return client.getOrdersByClient(GetOrdersByClientRequest.newBuilder().setClient(customer).build())
+//    }
 }

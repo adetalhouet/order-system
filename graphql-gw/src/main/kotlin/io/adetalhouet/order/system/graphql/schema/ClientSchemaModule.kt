@@ -3,24 +3,31 @@ package io.adetalhouet.order.system.graphql.schema
 import com.google.api.graphql.rejoiner.Query
 import com.google.api.graphql.rejoiner.SchemaModule
 import com.google.common.util.concurrent.ListenableFuture
+import com.google.protobuf.Empty
+import graphql.GraphQLError
+import graphql.language.SourceLocation
 import io.adetalhouet.order.system.client.Client
 import io.adetalhouet.order.system.client.ClientServiceGrpc
-import io.adetalhouet.order.system.client.ClientServiceGrpcKt
 import io.adetalhouet.order.system.client.Clients
 import io.adetalhouet.order.system.client.DeleteClientByIdRequest
 import io.adetalhouet.order.system.client.GetClientByIdRequest
-import io.adetalhouet.order.system.utils.Status
+import io.adetalhouet.order.system.graphql.GraphQLException
+
 
 class ClientSchemaModule : SchemaModule() {
+
     @Query("addClient")
-    fun addClient(client: ClientServiceGrpc.ClientServiceFutureStub,
-                  request: Client): ListenableFuture<Status>? {
-        return client.addClient(request)
+    fun addClient(client: ClientServiceGrpc.ClientServiceFutureStub, request: Client): ListenableFuture<Empty> {
+        try {
+            return client.addClient(request)
+        } catch (e: Exception) {
+            throw GraphQLException(e.message)
+        }
     }
 
     @Query("deleteClientById")
     fun deleteClientById(client: ClientServiceGrpc.ClientServiceFutureStub,
-                         request: DeleteClientByIdRequest): ListenableFuture<Status>? {
+                         request: DeleteClientByIdRequest): ListenableFuture<Empty> {
         return client.deleteClientById(request)
     }
 

@@ -8,21 +8,18 @@ import io.adetalhouet.order.system.product.DeleteProductByIdRequest
 import io.adetalhouet.order.system.product.GetProductByIdRequest
 import io.adetalhouet.order.system.product.Product
 import io.adetalhouet.order.system.product.ProductServiceGrpc
-import io.adetalhouet.order.system.product.ProductServiceGrpcKt
 import io.adetalhouet.order.system.product.Products
-import io.adetalhouet.order.system.utils.Status
 
 class ProductSchemaModule : SchemaModule() {
 
     @Query("addProduct")
-    fun addProduct(client: ProductServiceGrpc.ProductServiceFutureStub,
-                   request: Product): ListenableFuture<Status>? {
+    fun addProduct(client: ProductServiceGrpc.ProductServiceFutureStub, request: Product): ListenableFuture<Empty> {
         return client.addProduct(request)
     }
 
     @Query("deleteProductById")
     fun deleteProductById(client: ProductServiceGrpc.ProductServiceFutureStub,
-                          request: DeleteProductByIdRequest): ListenableFuture<Status>? {
+                          request: DeleteProductByIdRequest): ListenableFuture<Empty> {
         return client.deleteProductById(request)
     }
 

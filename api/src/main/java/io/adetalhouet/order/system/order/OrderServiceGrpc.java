@@ -28,28 +28,28 @@ public final class OrderServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.order.PlaceOrderRequest,
-      io.adetalhouet.order.system.utils.Status> getPlaceOrderMethod;
+      com.google.protobuf.Empty> getPlaceOrderMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "PlaceOrder",
       requestType = io.adetalhouet.order.system.order.PlaceOrderRequest.class,
-      responseType = io.adetalhouet.order.system.utils.Status.class,
+      responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.order.PlaceOrderRequest,
-      io.adetalhouet.order.system.utils.Status> getPlaceOrderMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.order.PlaceOrderRequest, io.adetalhouet.order.system.utils.Status> getPlaceOrderMethod;
+      com.google.protobuf.Empty> getPlaceOrderMethod() {
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.order.PlaceOrderRequest, com.google.protobuf.Empty> getPlaceOrderMethod;
     if ((getPlaceOrderMethod = OrderServiceGrpc.getPlaceOrderMethod) == null) {
       synchronized (OrderServiceGrpc.class) {
         if ((getPlaceOrderMethod = OrderServiceGrpc.getPlaceOrderMethod) == null) {
           OrderServiceGrpc.getPlaceOrderMethod = getPlaceOrderMethod =
-              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.order.PlaceOrderRequest, io.adetalhouet.order.system.utils.Status>newBuilder()
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.order.PlaceOrderRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "PlaceOrder"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.adetalhouet.order.system.order.PlaceOrderRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.adetalhouet.order.system.utils.Status.getDefaultInstance()))
+                  com.google.protobuf.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new OrderServiceMethodDescriptorSupplier("PlaceOrder"))
               .build();
         }
@@ -171,7 +171,7 @@ public final class OrderServiceGrpc {
     /**
      */
     public void placeOrder(io.adetalhouet.order.system.order.PlaceOrderRequest request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getPlaceOrderMethod(), responseObserver);
     }
 
@@ -196,7 +196,7 @@ public final class OrderServiceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 io.adetalhouet.order.system.order.PlaceOrderRequest,
-                io.adetalhouet.order.system.utils.Status>(
+                com.google.protobuf.Empty>(
                   this, METHODID_PLACE_ORDER)))
           .addMethod(
             getTrackOrderByIdMethod(),
@@ -233,7 +233,7 @@ public final class OrderServiceGrpc {
     /**
      */
     public void placeOrder(io.adetalhouet.order.system.order.PlaceOrderRequest request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPlaceOrderMethod(), getCallOptions()), request, responseObserver);
     }
@@ -271,7 +271,7 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public io.adetalhouet.order.system.utils.Status placeOrder(io.adetalhouet.order.system.order.PlaceOrderRequest request) {
+    public com.google.protobuf.Empty placeOrder(io.adetalhouet.order.system.order.PlaceOrderRequest request) {
       return blockingUnaryCall(
           getChannel(), getPlaceOrderMethod(), getCallOptions(), request);
     }
@@ -307,7 +307,7 @@ public final class OrderServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.utils.Status> placeOrder(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> placeOrder(
         io.adetalhouet.order.system.order.PlaceOrderRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getPlaceOrderMethod(), getCallOptions()), request);
@@ -353,7 +353,7 @@ public final class OrderServiceGrpc {
       switch (methodId) {
         case METHODID_PLACE_ORDER:
           serviceImpl.placeOrder((io.adetalhouet.order.system.order.PlaceOrderRequest) request,
-              (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_TRACK_ORDER_BY_ID:
           serviceImpl.trackOrderById((io.adetalhouet.order.system.order.TrackOrderByIdRequest) request,

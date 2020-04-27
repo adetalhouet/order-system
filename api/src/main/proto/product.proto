@@ -5,15 +5,14 @@ package io.adetalhouet.order.system.product;
 option java_multiple_files = true;
 option java_package = "io.adetalhouet.order.system.product";
 
-import "utils.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service ProductService {
-  rpc AddProduct (Product) returns (io.adetalhouet.order.system.utils.Status);
+  rpc AddProduct (Product) returns (google.protobuf.Empty);
   rpc GetProducts (google.protobuf.Empty) returns (Products);
   rpc GetProductById (GetProductByIdRequest) returns (Product);
-  rpc DeleteProductById (DeleteProductByIdRequest) returns (io.adetalhouet.order.system.utils.Status);
+  rpc DeleteProductById (DeleteProductByIdRequest) returns (google.protobuf.Empty);
 }
 
 message GetProductByIdRequest {

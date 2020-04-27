@@ -28,28 +28,28 @@ public final class ProductServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.product.Product,
-      io.adetalhouet.order.system.utils.Status> getAddProductMethod;
+      com.google.protobuf.Empty> getAddProductMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AddProduct",
       requestType = io.adetalhouet.order.system.product.Product.class,
-      responseType = io.adetalhouet.order.system.utils.Status.class,
+      responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.product.Product,
-      io.adetalhouet.order.system.utils.Status> getAddProductMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.product.Product, io.adetalhouet.order.system.utils.Status> getAddProductMethod;
+      com.google.protobuf.Empty> getAddProductMethod() {
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.product.Product, com.google.protobuf.Empty> getAddProductMethod;
     if ((getAddProductMethod = ProductServiceGrpc.getAddProductMethod) == null) {
       synchronized (ProductServiceGrpc.class) {
         if ((getAddProductMethod = ProductServiceGrpc.getAddProductMethod) == null) {
           ProductServiceGrpc.getAddProductMethod = getAddProductMethod =
-              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.product.Product, io.adetalhouet.order.system.utils.Status>newBuilder()
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.product.Product, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AddProduct"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.adetalhouet.order.system.product.Product.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.adetalhouet.order.system.utils.Status.getDefaultInstance()))
+                  com.google.protobuf.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new ProductServiceMethodDescriptorSupplier("AddProduct"))
               .build();
         }
@@ -121,28 +121,28 @@ public final class ProductServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.product.DeleteProductByIdRequest,
-      io.adetalhouet.order.system.utils.Status> getDeleteProductByIdMethod;
+      com.google.protobuf.Empty> getDeleteProductByIdMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "DeleteProductById",
       requestType = io.adetalhouet.order.system.product.DeleteProductByIdRequest.class,
-      responseType = io.adetalhouet.order.system.utils.Status.class,
+      responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.product.DeleteProductByIdRequest,
-      io.adetalhouet.order.system.utils.Status> getDeleteProductByIdMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.product.DeleteProductByIdRequest, io.adetalhouet.order.system.utils.Status> getDeleteProductByIdMethod;
+      com.google.protobuf.Empty> getDeleteProductByIdMethod() {
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.product.DeleteProductByIdRequest, com.google.protobuf.Empty> getDeleteProductByIdMethod;
     if ((getDeleteProductByIdMethod = ProductServiceGrpc.getDeleteProductByIdMethod) == null) {
       synchronized (ProductServiceGrpc.class) {
         if ((getDeleteProductByIdMethod = ProductServiceGrpc.getDeleteProductByIdMethod) == null) {
           ProductServiceGrpc.getDeleteProductByIdMethod = getDeleteProductByIdMethod =
-              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.product.DeleteProductByIdRequest, io.adetalhouet.order.system.utils.Status>newBuilder()
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.product.DeleteProductByIdRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeleteProductById"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.adetalhouet.order.system.product.DeleteProductByIdRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.adetalhouet.order.system.utils.Status.getDefaultInstance()))
+                  com.google.protobuf.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new ProductServiceMethodDescriptorSupplier("DeleteProductById"))
               .build();
         }
@@ -202,7 +202,7 @@ public final class ProductServiceGrpc {
     /**
      */
     public void addProduct(io.adetalhouet.order.system.product.Product request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getAddProductMethod(), responseObserver);
     }
 
@@ -223,7 +223,7 @@ public final class ProductServiceGrpc {
     /**
      */
     public void deleteProductById(io.adetalhouet.order.system.product.DeleteProductByIdRequest request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getDeleteProductByIdMethod(), responseObserver);
     }
 
@@ -234,7 +234,7 @@ public final class ProductServiceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 io.adetalhouet.order.system.product.Product,
-                io.adetalhouet.order.system.utils.Status>(
+                com.google.protobuf.Empty>(
                   this, METHODID_ADD_PRODUCT)))
           .addMethod(
             getGetProductsMethod(),
@@ -255,7 +255,7 @@ public final class ProductServiceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 io.adetalhouet.order.system.product.DeleteProductByIdRequest,
-                io.adetalhouet.order.system.utils.Status>(
+                com.google.protobuf.Empty>(
                   this, METHODID_DELETE_PRODUCT_BY_ID)))
           .build();
     }
@@ -278,7 +278,7 @@ public final class ProductServiceGrpc {
     /**
      */
     public void addProduct(io.adetalhouet.order.system.product.Product request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getAddProductMethod(), getCallOptions()), request, responseObserver);
     }
@@ -302,7 +302,7 @@ public final class ProductServiceGrpc {
     /**
      */
     public void deleteProductById(io.adetalhouet.order.system.product.DeleteProductByIdRequest request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getDeleteProductByIdMethod(), getCallOptions()), request, responseObserver);
     }
@@ -324,7 +324,7 @@ public final class ProductServiceGrpc {
 
     /**
      */
-    public io.adetalhouet.order.system.utils.Status addProduct(io.adetalhouet.order.system.product.Product request) {
+    public com.google.protobuf.Empty addProduct(io.adetalhouet.order.system.product.Product request) {
       return blockingUnaryCall(
           getChannel(), getAddProductMethod(), getCallOptions(), request);
     }
@@ -345,7 +345,7 @@ public final class ProductServiceGrpc {
 
     /**
      */
-    public io.adetalhouet.order.system.utils.Status deleteProductById(io.adetalhouet.order.system.product.DeleteProductByIdRequest request) {
+    public com.google.protobuf.Empty deleteProductById(io.adetalhouet.order.system.product.DeleteProductByIdRequest request) {
       return blockingUnaryCall(
           getChannel(), getDeleteProductByIdMethod(), getCallOptions(), request);
     }
@@ -367,7 +367,7 @@ public final class ProductServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.utils.Status> addProduct(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> addProduct(
         io.adetalhouet.order.system.product.Product request) {
       return futureUnaryCall(
           getChannel().newCall(getAddProductMethod(), getCallOptions()), request);
@@ -391,7 +391,7 @@ public final class ProductServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.utils.Status> deleteProductById(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteProductById(
         io.adetalhouet.order.system.product.DeleteProductByIdRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getDeleteProductByIdMethod(), getCallOptions()), request);
@@ -422,7 +422,7 @@ public final class ProductServiceGrpc {
       switch (methodId) {
         case METHODID_ADD_PRODUCT:
           serviceImpl.addProduct((io.adetalhouet.order.system.product.Product) request,
-              (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_GET_PRODUCTS:
           serviceImpl.getProducts((com.google.protobuf.Empty) request,
@@ -434,7 +434,7 @@ public final class ProductServiceGrpc {
           break;
         case METHODID_DELETE_PRODUCT_BY_ID:
           serviceImpl.deleteProductById((io.adetalhouet.order.system.product.DeleteProductByIdRequest) request,
-              (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();

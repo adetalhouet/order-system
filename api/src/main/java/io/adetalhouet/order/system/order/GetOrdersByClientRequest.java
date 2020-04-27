@@ -48,17 +48,9 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
-            io.adetalhouet.order.system.client.Client.Builder subBuilder = null;
-            if (client_ != null) {
-              subBuilder = client_.toBuilder();
-            }
-            client_ = input.readMessage(io.adetalhouet.order.system.client.Client.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(client_);
-              client_ = subBuilder.buildPartial();
-            }
+          case 8: {
 
+            clientId_ = input.readInt64();
             break;
           }
           default: {
@@ -93,27 +85,14 @@ private static final long serialVersionUID = 0L;
             io.adetalhouet.order.system.order.GetOrdersByClientRequest.class, io.adetalhouet.order.system.order.GetOrdersByClientRequest.Builder.class);
   }
 
-  public static final int CLIENT_FIELD_NUMBER = 1;
-  private io.adetalhouet.order.system.client.Client client_;
+  public static final int CLIENT_ID_FIELD_NUMBER = 1;
+  private long clientId_;
   /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-   * @return Whether the client field is set.
+   * <code>int64 client_id = 1;</code>
+   * @return The clientId.
    */
-  public boolean hasClient() {
-    return client_ != null;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-   * @return The client.
-   */
-  public io.adetalhouet.order.system.client.Client getClient() {
-    return client_ == null ? io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-  }
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-   */
-  public io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder() {
-    return getClient();
+  public long getClientId() {
+    return clientId_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -130,8 +109,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (client_ != null) {
-      output.writeMessage(1, getClient());
+    if (clientId_ != 0L) {
+      output.writeInt64(1, clientId_);
     }
     unknownFields.writeTo(output);
   }
@@ -142,9 +121,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (client_ != null) {
+    if (clientId_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getClient());
+        .computeInt64Size(1, clientId_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -161,11 +140,8 @@ private static final long serialVersionUID = 0L;
     }
     io.adetalhouet.order.system.order.GetOrdersByClientRequest other = (io.adetalhouet.order.system.order.GetOrdersByClientRequest) obj;
 
-    if (hasClient() != other.hasClient()) return false;
-    if (hasClient()) {
-      if (!getClient()
-          .equals(other.getClient())) return false;
-    }
+    if (getClientId()
+        != other.getClientId()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -177,10 +153,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasClient()) {
-      hash = (37 * hash) + CLIENT_FIELD_NUMBER;
-      hash = (53 * hash) + getClient().hashCode();
-    }
+    hash = (37 * hash) + CLIENT_ID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getClientId());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -314,12 +289,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      if (clientBuilder_ == null) {
-        client_ = null;
-      } else {
-        client_ = null;
-        clientBuilder_ = null;
-      }
+      clientId_ = 0L;
+
       return this;
     }
 
@@ -346,11 +317,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.adetalhouet.order.system.order.GetOrdersByClientRequest buildPartial() {
       io.adetalhouet.order.system.order.GetOrdersByClientRequest result = new io.adetalhouet.order.system.order.GetOrdersByClientRequest(this);
-      if (clientBuilder_ == null) {
-        result.client_ = client_;
-      } else {
-        result.client_ = clientBuilder_.build();
-      }
+      result.clientId_ = clientId_;
       onBuilt();
       return result;
     }
@@ -399,8 +366,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(io.adetalhouet.order.system.order.GetOrdersByClientRequest other) {
       if (other == io.adetalhouet.order.system.order.GetOrdersByClientRequest.getDefaultInstance()) return this;
-      if (other.hasClient()) {
-        mergeClient(other.getClient());
+      if (other.getClientId() != 0L) {
+        setClientId(other.getClientId());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -431,123 +398,34 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private io.adetalhouet.order.system.client.Client client_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder> clientBuilder_;
+    private long clientId_ ;
     /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-     * @return Whether the client field is set.
+     * <code>int64 client_id = 1;</code>
+     * @return The clientId.
      */
-    public boolean hasClient() {
-      return clientBuilder_ != null || client_ != null;
+    public long getClientId() {
+      return clientId_;
     }
     /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-     * @return The client.
+     * <code>int64 client_id = 1;</code>
+     * @param value The clientId to set.
+     * @return This builder for chaining.
      */
-    public io.adetalhouet.order.system.client.Client getClient() {
-      if (clientBuilder_ == null) {
-        return client_ == null ? io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-      } else {
-        return clientBuilder_.getMessage();
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-     */
-    public Builder setClient(io.adetalhouet.order.system.client.Client value) {
-      if (clientBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        client_ = value;
-        onChanged();
-      } else {
-        clientBuilder_.setMessage(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-     */
-    public Builder setClient(
-        io.adetalhouet.order.system.client.Client.Builder builderForValue) {
-      if (clientBuilder_ == null) {
-        client_ = builderForValue.build();
-        onChanged();
-      } else {
-        clientBuilder_.setMessage(builderForValue.build());
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-     */
-    public Builder mergeClient(io.adetalhouet.order.system.client.Client value) {
-      if (clientBuilder_ == null) {
-        if (client_ != null) {
-          client_ =
-            io.adetalhouet.order.system.client.Client.newBuilder(client_).mergeFrom(value).buildPartial();
-        } else {
-          client_ = value;
-        }
-        onChanged();
-      } else {
-        clientBuilder_.mergeFrom(value);
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-     */
-    public Builder clearClient() {
-      if (clientBuilder_ == null) {
-        client_ = null;
-        onChanged();
-      } else {
-        client_ = null;
-        clientBuilder_ = null;
-      }
-
-      return this;
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-     */
-    public io.adetalhouet.order.system.client.Client.Builder getClientBuilder() {
+    public Builder setClientId(long value) {
       
+      clientId_ = value;
       onChanged();
-      return getClientFieldBuilder().getBuilder();
+      return this;
     }
     /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
+     * <code>int64 client_id = 1;</code>
+     * @return This builder for chaining.
      */
-    public io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder() {
-      if (clientBuilder_ != null) {
-        return clientBuilder_.getMessageOrBuilder();
-      } else {
-        return client_ == null ?
-            io.adetalhouet.order.system.client.Client.getDefaultInstance() : client_;
-      }
-    }
-    /**
-     * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-        io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder> 
-        getClientFieldBuilder() {
-      if (clientBuilder_ == null) {
-        clientBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.client.Client.Builder, io.adetalhouet.order.system.client.ClientOrBuilder>(
-                getClient(),
-                getParentForChildren(),
-                isClean());
-        client_ = null;
-      }
-      return clientBuilder_;
+    public Builder clearClientId() {
+      
+      clientId_ = 0L;
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

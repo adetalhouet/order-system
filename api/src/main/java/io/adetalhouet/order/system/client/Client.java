@@ -18,6 +18,7 @@ private static final long serialVersionUID = 0L;
   private Client() {
     email_ = "";
     password_ = "";
+    address_ = "";
   }
 
   @java.lang.Override
@@ -68,6 +69,12 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 34: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            address_ = s;
+            break;
+          }
+          case 42: {
             com.google.protobuf.Timestamp.Builder subBuilder = null;
             if (dateCreated_ != null) {
               subBuilder = dateCreated_.toBuilder();
@@ -194,24 +201,60 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DATE_CREATED_FIELD_NUMBER = 4;
+  public static final int ADDRESS_FIELD_NUMBER = 4;
+  private volatile java.lang.Object address_;
+  /**
+   * <code>string address = 4;</code>
+   * @return The address.
+   */
+  public java.lang.String getAddress() {
+    java.lang.Object ref = address_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      address_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string address = 4;</code>
+   * @return The bytes for address.
+   */
+  public com.google.protobuf.ByteString
+      getAddressBytes() {
+    java.lang.Object ref = address_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      address_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int DATE_CREATED_FIELD_NUMBER = 5;
   private com.google.protobuf.Timestamp dateCreated_;
   /**
-   * <code>.google.protobuf.Timestamp date_created = 4;</code>
+   * <code>.google.protobuf.Timestamp date_created = 5;</code>
    * @return Whether the dateCreated field is set.
    */
   public boolean hasDateCreated() {
     return dateCreated_ != null;
   }
   /**
-   * <code>.google.protobuf.Timestamp date_created = 4;</code>
+   * <code>.google.protobuf.Timestamp date_created = 5;</code>
    * @return The dateCreated.
    */
   public com.google.protobuf.Timestamp getDateCreated() {
     return dateCreated_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : dateCreated_;
   }
   /**
-   * <code>.google.protobuf.Timestamp date_created = 4;</code>
+   * <code>.google.protobuf.Timestamp date_created = 5;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder() {
     return getDateCreated();
@@ -240,8 +283,11 @@ private static final long serialVersionUID = 0L;
     if (!getPasswordBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, password_);
     }
+    if (!getAddressBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, address_);
+    }
     if (dateCreated_ != null) {
-      output.writeMessage(4, getDateCreated());
+      output.writeMessage(5, getDateCreated());
     }
     unknownFields.writeTo(output);
   }
@@ -262,9 +308,12 @@ private static final long serialVersionUID = 0L;
     if (!getPasswordBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, password_);
     }
+    if (!getAddressBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, address_);
+    }
     if (dateCreated_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(4, getDateCreated());
+        .computeMessageSize(5, getDateCreated());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -287,6 +336,8 @@ private static final long serialVersionUID = 0L;
         .equals(other.getEmail())) return false;
     if (!getPassword()
         .equals(other.getPassword())) return false;
+    if (!getAddress()
+        .equals(other.getAddress())) return false;
     if (hasDateCreated() != other.hasDateCreated()) return false;
     if (hasDateCreated()) {
       if (!getDateCreated()
@@ -310,6 +361,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getEmail().hashCode();
     hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
     hash = (53 * hash) + getPassword().hashCode();
+    hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+    hash = (53 * hash) + getAddress().hashCode();
     if (hasDateCreated()) {
       hash = (37 * hash) + DATE_CREATED_FIELD_NUMBER;
       hash = (53 * hash) + getDateCreated().hashCode();
@@ -453,6 +506,8 @@ private static final long serialVersionUID = 0L;
 
       password_ = "";
 
+      address_ = "";
+
       if (dateCreatedBuilder_ == null) {
         dateCreated_ = null;
       } else {
@@ -488,6 +543,7 @@ private static final long serialVersionUID = 0L;
       result.id_ = id_;
       result.email_ = email_;
       result.password_ = password_;
+      result.address_ = address_;
       if (dateCreatedBuilder_ == null) {
         result.dateCreated_ = dateCreated_;
       } else {
@@ -550,6 +606,10 @@ private static final long serialVersionUID = 0L;
       }
       if (!other.getPassword().isEmpty()) {
         password_ = other.password_;
+        onChanged();
+      }
+      if (!other.getAddress().isEmpty()) {
+        address_ = other.address_;
         onChanged();
       }
       if (other.hasDateCreated()) {
@@ -766,18 +826,94 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private java.lang.Object address_ = "";
+    /**
+     * <code>string address = 4;</code>
+     * @return The address.
+     */
+    public java.lang.String getAddress() {
+      java.lang.Object ref = address_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string address = 4;</code>
+     * @return The bytes for address.
+     */
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      java.lang.Object ref = address_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        address_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string address = 4;</code>
+     * @param value The address to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAddress(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      address_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string address = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearAddress() {
+      
+      address_ = getDefaultInstance().getAddress();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string address = 4;</code>
+     * @param value The bytes for address to set.
+     * @return This builder for chaining.
+     */
+    public Builder setAddressBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      address_ = value;
+      onChanged();
+      return this;
+    }
+
     private com.google.protobuf.Timestamp dateCreated_;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> dateCreatedBuilder_;
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      * @return Whether the dateCreated field is set.
      */
     public boolean hasDateCreated() {
       return dateCreatedBuilder_ != null || dateCreated_ != null;
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      * @return The dateCreated.
      */
     public com.google.protobuf.Timestamp getDateCreated() {
@@ -788,7 +924,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      */
     public Builder setDateCreated(com.google.protobuf.Timestamp value) {
       if (dateCreatedBuilder_ == null) {
@@ -804,7 +940,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      */
     public Builder setDateCreated(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -818,7 +954,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      */
     public Builder mergeDateCreated(com.google.protobuf.Timestamp value) {
       if (dateCreatedBuilder_ == null) {
@@ -836,7 +972,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      */
     public Builder clearDateCreated() {
       if (dateCreatedBuilder_ == null) {
@@ -850,7 +986,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      */
     public com.google.protobuf.Timestamp.Builder getDateCreatedBuilder() {
       
@@ -858,7 +994,7 @@ private static final long serialVersionUID = 0L;
       return getDateCreatedFieldBuilder().getBuilder();
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder() {
       if (dateCreatedBuilder_ != null) {
@@ -869,7 +1005,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp date_created = 4;</code>
+     * <code>.google.protobuf.Timestamp date_created = 5;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

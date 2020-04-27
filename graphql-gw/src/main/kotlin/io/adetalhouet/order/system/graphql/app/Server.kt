@@ -1,14 +1,16 @@
 package io.adetalhouet.order.system.graphql.app
 
 import io.adetalhouet.order.system.graphql.GraphQLServer
+import org.slf4j.LoggerFactory
 
 class Server {
+    private val log = LoggerFactory.getLogger(Server::class.java)
 
     private var graphql = GraphQLServer()
 
     fun start() {
         val port = 8080
-        println("Start Graphql Server")
+        log.info("Start Graphql Server")
         graphql.start(port)
     }
 }

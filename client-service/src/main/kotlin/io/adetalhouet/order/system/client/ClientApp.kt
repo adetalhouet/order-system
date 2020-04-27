@@ -1,8 +1,12 @@
 package io.adetalhouet.order.system.client
 
 import com.google.inject.Singleton
+import io.adetalhouet.order.system.client.domain.model.Clients
+import io.adetalhouet.order.system.utils.db.DatabaseConfiguration
 import io.grpc.Server
 import io.grpc.ServerBuilder
+import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.transactions.transaction
 import java.io.IOException
 
 @Singleton
@@ -16,6 +20,8 @@ class CartServer(private val port: Int) {
             .addService(ClientServiceImpl())
             .build()
             .start()
+
+
         println("Client server started, listening on $port")
 
         Runtime.getRuntime().addShutdownHook(object : Thread() {
@@ -37,8 +43,16 @@ class CartServer(private val port: Int) {
 }
 
 fun main(args: Array<String>) {
+    val service = "client-service"
+
     val port = 9091
     val server = CartServer(port)
     server.start()
+
+    DatabaseConfiguration(service)
+    transaction {
+        SchemaUtils.create(Clients)
+    }
+
     server.blockUntilShutdown()
 }

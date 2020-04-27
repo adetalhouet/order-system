@@ -2,13 +2,13 @@ package io.adetalhouet.order.system.client
 
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.client.ClientServiceGrpc.getServiceDescriptor
-import io.adetalhouet.order.system.utils.Status
 import io.grpc.CallOptions
 import io.grpc.CallOptions.DEFAULT
 import io.grpc.Channel
 import io.grpc.Metadata
 import io.grpc.ServerServiceDefinition
 import io.grpc.ServerServiceDefinition.builder
+import io.grpc.Status
 import io.grpc.Status.UNIMPLEMENTED
 import io.grpc.StatusException
 import io.grpc.kotlin.AbstractCoroutineServerImpl
@@ -41,8 +41,7 @@ object ClientServiceGrpcKt {
 
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][io.grpc.Status].  If the RPC completes with another status, a
-     * corresponding
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
      * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
      * with the corresponding exception as a cause.
      *
@@ -50,7 +49,7 @@ object ClientServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun addClient(request: Client): Status = unaryRpc(
+    suspend fun addClient(request: Client): Empty = unaryRpc(
       channel,
       ClientServiceGrpc.getAddClientMethod(),
       request,
@@ -59,8 +58,7 @@ object ClientServiceGrpcKt {
     )
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][io.grpc.Status].  If the RPC completes with another status, a
-     * corresponding
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
      * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
      * with the corresponding exception as a cause.
      *
@@ -77,8 +75,7 @@ object ClientServiceGrpcKt {
     )
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][io.grpc.Status].  If the RPC completes with another status, a
-     * corresponding
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
      * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
      * with the corresponding exception as a cause.
      *
@@ -95,8 +92,7 @@ object ClientServiceGrpcKt {
     )
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][io.grpc.Status].  If the RPC completes with another status, a
-     * corresponding
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
      * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
      * with the corresponding exception as a cause.
      *
@@ -104,7 +100,7 @@ object ClientServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun deleteClientById(request: DeleteClientByIdRequest): Status = unaryRpc(
+    suspend fun deleteClientById(request: DeleteClientByIdRequest): Empty = unaryRpc(
       channel,
       ClientServiceGrpc.getDeleteClientByIdMethod(),
       request,
@@ -124,14 +120,14 @@ object ClientServiceGrpcKt {
      * io.adetalhouet.order.system.client.ClientService.AddClient.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [io.grpc.Status].  If this method fails with a [java.util.concurrent.CancellationException],
-     * the RPC will fail
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
      * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
      * fail with `Status.UNKNOWN` with the exception as a cause.
      *
      * @param request The request from the client.
      */
-    open suspend fun addClient(request: Client): Status = throw
+    open suspend fun addClient(request: Client): Empty = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.client.ClientService.AddClient is unimplemented"))
 
     /**
@@ -139,8 +135,8 @@ object ClientServiceGrpcKt {
      * io.adetalhouet.order.system.client.ClientService.GetClients.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [io.grpc.Status].  If this method fails with a [java.util.concurrent.CancellationException],
-     * the RPC will fail
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
      * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
      * fail with `Status.UNKNOWN` with the exception as a cause.
      *
@@ -154,8 +150,8 @@ object ClientServiceGrpcKt {
      * io.adetalhouet.order.system.client.ClientService.GetClientById.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [io.grpc.Status].  If this method fails with a [java.util.concurrent.CancellationException],
-     * the RPC will fail
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
      * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
      * fail with `Status.UNKNOWN` with the exception as a cause.
      *
@@ -169,14 +165,14 @@ object ClientServiceGrpcKt {
      * io.adetalhouet.order.system.client.ClientService.DeleteClientById.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [io.grpc.Status].  If this method fails with a [java.util.concurrent.CancellationException],
-     * the RPC will fail
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
      * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
      * fail with `Status.UNKNOWN` with the exception as a cause.
      *
      * @param request The request from the client.
      */
-    open suspend fun deleteClientById(request: DeleteClientByIdRequest): Status = throw
+    open suspend fun deleteClientById(request: DeleteClientByIdRequest): Empty = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.client.ClientService.DeleteClientById is unimplemented"))
 
     final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())

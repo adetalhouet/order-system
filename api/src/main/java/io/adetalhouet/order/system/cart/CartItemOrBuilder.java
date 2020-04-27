@@ -8,19 +8,10 @@ public interface CartItemOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-   * @return Whether the product field is set.
+   * <code>int64 product_id = 1;</code>
+   * @return The productId.
    */
-  boolean hasProduct();
-  /**
-   * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-   * @return The product.
-   */
-  io.adetalhouet.order.system.product.Product getProduct();
-  /**
-   * <code>.io.adetalhouet.order.system.product.Product product = 1;</code>
-   */
-  io.adetalhouet.order.system.product.ProductOrBuilder getProductOrBuilder();
+  long getProductId();
 
   /**
    * <code>int32 quantity = 2;</code>

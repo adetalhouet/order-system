@@ -8,17 +8,8 @@ public interface GetOrdersByClientRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-   * @return Whether the client field is set.
+   * <code>int64 client_id = 1;</code>
+   * @return The clientId.
    */
-  boolean hasClient();
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-   * @return The client.
-   */
-  io.adetalhouet.order.system.client.Client getClient();
-  /**
-   * <code>.io.adetalhouet.order.system.client.Client client = 1;</code>
-   */
-  io.adetalhouet.order.system.client.ClientOrBuilder getClientOrBuilder();
+  long getClientId();
 }

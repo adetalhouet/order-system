@@ -2,13 +2,13 @@ package io.adetalhouet.order.system.product
 
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.product.ProductServiceGrpc.getServiceDescriptor
-import io.adetalhouet.order.system.utils.Status
 import io.grpc.CallOptions
 import io.grpc.CallOptions.DEFAULT
 import io.grpc.Channel
 import io.grpc.Metadata
 import io.grpc.ServerServiceDefinition
 import io.grpc.ServerServiceDefinition.builder
+import io.grpc.Status
 import io.grpc.Status.UNIMPLEMENTED
 import io.grpc.StatusException
 import io.grpc.kotlin.AbstractCoroutineServerImpl
@@ -41,8 +41,7 @@ object ProductServiceGrpcKt {
 
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][io.grpc.Status].  If the RPC completes with another status, a
-     * corresponding
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
      * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
      * with the corresponding exception as a cause.
      *
@@ -50,7 +49,7 @@ object ProductServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun addProduct(request: Product): Status = unaryRpc(
+    suspend fun addProduct(request: Product): Empty = unaryRpc(
       channel,
       ProductServiceGrpc.getAddProductMethod(),
       request,
@@ -59,8 +58,7 @@ object ProductServiceGrpcKt {
     )
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][io.grpc.Status].  If the RPC completes with another status, a
-     * corresponding
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
      * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
      * with the corresponding exception as a cause.
      *
@@ -77,8 +75,7 @@ object ProductServiceGrpcKt {
     )
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][io.grpc.Status].  If the RPC completes with another status, a
-     * corresponding
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
      * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
      * with the corresponding exception as a cause.
      *
@@ -95,8 +92,7 @@ object ProductServiceGrpcKt {
     )
     /**
      * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][io.grpc.Status].  If the RPC completes with another status, a
-     * corresponding
+     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
      * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
      * with the corresponding exception as a cause.
      *
@@ -104,7 +100,7 @@ object ProductServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun deleteProductById(request: DeleteProductByIdRequest): Status = unaryRpc(
+    suspend fun deleteProductById(request: DeleteProductByIdRequest): Empty = unaryRpc(
       channel,
       ProductServiceGrpc.getDeleteProductByIdMethod(),
       request,
@@ -124,14 +120,14 @@ object ProductServiceGrpcKt {
      * io.adetalhouet.order.system.product.ProductService.AddProduct.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [io.grpc.Status].  If this method fails with a [java.util.concurrent.CancellationException],
-     * the RPC will fail
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
      * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
      * fail with `Status.UNKNOWN` with the exception as a cause.
      *
      * @param request The request from the client.
      */
-    open suspend fun addProduct(request: Product): Status = throw
+    open suspend fun addProduct(request: Product): Empty = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.product.ProductService.AddProduct is unimplemented"))
 
     /**
@@ -139,8 +135,8 @@ object ProductServiceGrpcKt {
      * io.adetalhouet.order.system.product.ProductService.GetProducts.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [io.grpc.Status].  If this method fails with a [java.util.concurrent.CancellationException],
-     * the RPC will fail
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
      * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
      * fail with `Status.UNKNOWN` with the exception as a cause.
      *
@@ -154,8 +150,8 @@ object ProductServiceGrpcKt {
      * io.adetalhouet.order.system.product.ProductService.GetProductById.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [io.grpc.Status].  If this method fails with a [java.util.concurrent.CancellationException],
-     * the RPC will fail
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
      * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
      * fail with `Status.UNKNOWN` with the exception as a cause.
      *
@@ -169,14 +165,14 @@ object ProductServiceGrpcKt {
      * io.adetalhouet.order.system.product.ProductService.DeleteProductById.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [io.grpc.Status].  If this method fails with a [java.util.concurrent.CancellationException],
-     * the RPC will fail
+     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
+     * will fail
      * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
      * fail with `Status.UNKNOWN` with the exception as a cause.
      *
      * @param request The request from the client.
      */
-    open suspend fun deleteProductById(request: DeleteProductByIdRequest): Status = throw
+    open suspend fun deleteProductById(request: DeleteProductByIdRequest): Empty = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.product.ProductService.DeleteProductById is unimplemented"))
 
     final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())

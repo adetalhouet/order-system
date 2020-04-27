@@ -31,7 +31,7 @@ plugins {
     kotlin("jvm") version "1.3.70" apply false
     id("org.asciidoctor.convert") version "1.5.6" apply false
     id("com.google.protobuf") version "0.8.11" apply false
-    id("org.flywaydb.flyway") version "6.3.3" apply false
+//    id("org.flywaydb.flyway") version "6.3.3" apply false
     application
 }
 
@@ -71,9 +71,7 @@ allprojects {
         implementation("org.jetbrains.exposed:exposed-jdbc:${rootProject.extra.get("exposedVersion")}")
         implementation("org.jetbrains.exposed:exposed-dao:${rootProject.extra.get("exposedVersion")}")
 
-        implementation("com.h2database", "h2", "1.4.200")
-        implementation("com.zaxxer:HikariCP:${rootProject.extra.get("hikariVersion")}")
-        implementation("mysql:mysql-connector-java:${rootProject.extra.get("mysqlVersion")}")
+        implementation("com.typesafe:config:1.4.0")
 
         testImplementation(kotlin("test"))
         testImplementation(kotlin("test-junit"))

@@ -38,17 +38,29 @@ public interface ClientOrBuilder extends
       getPasswordBytes();
 
   /**
-   * <code>.google.protobuf.Timestamp date_created = 4;</code>
+   * <code>string address = 4;</code>
+   * @return The address.
+   */
+  java.lang.String getAddress();
+  /**
+   * <code>string address = 4;</code>
+   * @return The bytes for address.
+   */
+  com.google.protobuf.ByteString
+      getAddressBytes();
+
+  /**
+   * <code>.google.protobuf.Timestamp date_created = 5;</code>
    * @return Whether the dateCreated field is set.
    */
   boolean hasDateCreated();
   /**
-   * <code>.google.protobuf.Timestamp date_created = 4;</code>
+   * <code>.google.protobuf.Timestamp date_created = 5;</code>
    * @return The dateCreated.
    */
   com.google.protobuf.Timestamp getDateCreated();
   /**
-   * <code>.google.protobuf.Timestamp date_created = 4;</code>
+   * <code>.google.protobuf.Timestamp date_created = 5;</code>
    */
   com.google.protobuf.TimestampOrBuilder getDateCreatedOrBuilder();
 }

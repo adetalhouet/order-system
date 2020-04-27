@@ -7,7 +7,7 @@ import io.adetalhouet.order.system.utils.Status
 
 class ProductServiceImpl : ProductServiceGrpcKt.ProductServiceCoroutineImplBase() {
 
-    private val products: Collection<Product> =
+    private val products: MutableCollection<Product> =
         Resources.asByteSource(Resources.getResource("products.json")).asCharSource(Charsets.UTF_8)
             .openBufferedStream()
             .use { reader ->

@@ -28,28 +28,28 @@ public final class ClientServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.client.Client,
-      io.adetalhouet.order.system.utils.Status> getAddClientMethod;
+      com.google.protobuf.Empty> getAddClientMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AddClient",
       requestType = io.adetalhouet.order.system.client.Client.class,
-      responseType = io.adetalhouet.order.system.utils.Status.class,
+      responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.client.Client,
-      io.adetalhouet.order.system.utils.Status> getAddClientMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.utils.Status> getAddClientMethod;
+      com.google.protobuf.Empty> getAddClientMethod() {
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.client.Client, com.google.protobuf.Empty> getAddClientMethod;
     if ((getAddClientMethod = ClientServiceGrpc.getAddClientMethod) == null) {
       synchronized (ClientServiceGrpc.class) {
         if ((getAddClientMethod = ClientServiceGrpc.getAddClientMethod) == null) {
           ClientServiceGrpc.getAddClientMethod = getAddClientMethod =
-              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.client.Client, io.adetalhouet.order.system.utils.Status>newBuilder()
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.client.Client, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AddClient"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.adetalhouet.order.system.client.Client.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.adetalhouet.order.system.utils.Status.getDefaultInstance()))
+                  com.google.protobuf.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("AddClient"))
               .build();
         }
@@ -121,28 +121,28 @@ public final class ClientServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.client.DeleteClientByIdRequest,
-      io.adetalhouet.order.system.utils.Status> getDeleteClientByIdMethod;
+      com.google.protobuf.Empty> getDeleteClientByIdMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "DeleteClientById",
       requestType = io.adetalhouet.order.system.client.DeleteClientByIdRequest.class,
-      responseType = io.adetalhouet.order.system.utils.Status.class,
+      responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.client.DeleteClientByIdRequest,
-      io.adetalhouet.order.system.utils.Status> getDeleteClientByIdMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.client.DeleteClientByIdRequest, io.adetalhouet.order.system.utils.Status> getDeleteClientByIdMethod;
+      com.google.protobuf.Empty> getDeleteClientByIdMethod() {
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.client.DeleteClientByIdRequest, com.google.protobuf.Empty> getDeleteClientByIdMethod;
     if ((getDeleteClientByIdMethod = ClientServiceGrpc.getDeleteClientByIdMethod) == null) {
       synchronized (ClientServiceGrpc.class) {
         if ((getDeleteClientByIdMethod = ClientServiceGrpc.getDeleteClientByIdMethod) == null) {
           ClientServiceGrpc.getDeleteClientByIdMethod = getDeleteClientByIdMethod =
-              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.client.DeleteClientByIdRequest, io.adetalhouet.order.system.utils.Status>newBuilder()
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.client.DeleteClientByIdRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeleteClientById"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.adetalhouet.order.system.client.DeleteClientByIdRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.adetalhouet.order.system.utils.Status.getDefaultInstance()))
+                  com.google.protobuf.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new ClientServiceMethodDescriptorSupplier("DeleteClientById"))
               .build();
         }
@@ -202,7 +202,7 @@ public final class ClientServiceGrpc {
     /**
      */
     public void addClient(io.adetalhouet.order.system.client.Client request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getAddClientMethod(), responseObserver);
     }
 
@@ -223,7 +223,7 @@ public final class ClientServiceGrpc {
     /**
      */
     public void deleteClientById(io.adetalhouet.order.system.client.DeleteClientByIdRequest request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnimplementedUnaryCall(getDeleteClientByIdMethod(), responseObserver);
     }
 
@@ -234,7 +234,7 @@ public final class ClientServiceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 io.adetalhouet.order.system.client.Client,
-                io.adetalhouet.order.system.utils.Status>(
+                com.google.protobuf.Empty>(
                   this, METHODID_ADD_CLIENT)))
           .addMethod(
             getGetClientsMethod(),
@@ -255,7 +255,7 @@ public final class ClientServiceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 io.adetalhouet.order.system.client.DeleteClientByIdRequest,
-                io.adetalhouet.order.system.utils.Status>(
+                com.google.protobuf.Empty>(
                   this, METHODID_DELETE_CLIENT_BY_ID)))
           .build();
     }
@@ -278,7 +278,7 @@ public final class ClientServiceGrpc {
     /**
      */
     public void addClient(io.adetalhouet.order.system.client.Client request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getAddClientMethod(), getCallOptions()), request, responseObserver);
     }
@@ -302,7 +302,7 @@ public final class ClientServiceGrpc {
     /**
      */
     public void deleteClientById(io.adetalhouet.order.system.client.DeleteClientByIdRequest request,
-        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status> responseObserver) {
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getDeleteClientByIdMethod(), getCallOptions()), request, responseObserver);
     }
@@ -324,7 +324,7 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public io.adetalhouet.order.system.utils.Status addClient(io.adetalhouet.order.system.client.Client request) {
+    public com.google.protobuf.Empty addClient(io.adetalhouet.order.system.client.Client request) {
       return blockingUnaryCall(
           getChannel(), getAddClientMethod(), getCallOptions(), request);
     }
@@ -345,7 +345,7 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public io.adetalhouet.order.system.utils.Status deleteClientById(io.adetalhouet.order.system.client.DeleteClientByIdRequest request) {
+    public com.google.protobuf.Empty deleteClientById(io.adetalhouet.order.system.client.DeleteClientByIdRequest request) {
       return blockingUnaryCall(
           getChannel(), getDeleteClientByIdMethod(), getCallOptions(), request);
     }
@@ -367,7 +367,7 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.utils.Status> addClient(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> addClient(
         io.adetalhouet.order.system.client.Client request) {
       return futureUnaryCall(
           getChannel().newCall(getAddClientMethod(), getCallOptions()), request);
@@ -391,7 +391,7 @@ public final class ClientServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.utils.Status> deleteClientById(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteClientById(
         io.adetalhouet.order.system.client.DeleteClientByIdRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getDeleteClientByIdMethod(), getCallOptions()), request);
@@ -422,7 +422,7 @@ public final class ClientServiceGrpc {
       switch (methodId) {
         case METHODID_ADD_CLIENT:
           serviceImpl.addClient((io.adetalhouet.order.system.client.Client) request,
-              (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_GET_CLIENTS:
           serviceImpl.getClients((com.google.protobuf.Empty) request,
@@ -434,7 +434,7 @@ public final class ClientServiceGrpc {
           break;
         case METHODID_DELETE_CLIENT_BY_ID:
           serviceImpl.deleteClientById((io.adetalhouet.order.system.client.DeleteClientByIdRequest) request,
-              (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.utils.Status>) responseObserver);
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
           throw new AssertionError();

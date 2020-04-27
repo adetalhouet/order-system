@@ -18,6 +18,11 @@ Combine Kotlin, gRPC, and graphql.
 | order   | 9092 |
 | product | 9093 |
 
+### Postgres Database
+
+```
+docker run -d --name order-system-db -e POSTGRES_PASSWORD=Password123 -e POSTGRES_DB=order-system -e POSTGRES_USER=order-system -d postgres
+```
 
 ### TODO
 - fix graphql server
@@ -55,18 +60,18 @@ query {
 }
 ```
 
-##### Add bill
+##### Add Client
 ```
 query {
-  addBill(
-    input: {
-      id: 1244
-      date_created: { seconds: 1587433346 }
-      client_id: 1
-      product_ids: [432, 432523]
+  addClient(input: {
+    address: "8 blv Markloand, H2R 2D0"
+    password: "1234"
+    email: "a@bob.jr"
+    date_created :{
+      seconds: 2353255325
     }
-  ) {
-    status
+  }) {
+    _
   }
 }
 ```

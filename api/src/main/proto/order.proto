@@ -5,14 +5,11 @@ package io.adetalhouet.order.system.order;
 option java_multiple_files = true;
 option java_package = "io.adetalhouet.order.system.order";
 
-import "cart.proto";
-import "client.proto";
-import "utils.proto";
-
+import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service OrderService {
-  rpc PlaceOrder (PlaceOrderRequest) returns (io.adetalhouet.order.system.utils.Status);
+  rpc PlaceOrder (PlaceOrderRequest) returns (google.protobuf.Empty);
   rpc TrackOrderById (TrackOrderByIdRequest) returns (TrackOrderByIdResponse);
   rpc GetOrdersByClient (GetOrdersByClientRequest) returns (Orders);
 }
@@ -31,7 +28,7 @@ message TrackOrderByIdResponse {
 }
 
 message GetOrdersByClientRequest {
-  io.adetalhouet.order.system.client.Client client = 1;
+  int64 client_id = 1;
 }
 
 message Orders {
