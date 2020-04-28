@@ -1,9 +1,11 @@
-package io.adetalhouet.order.system.utils.db
+package io.adetalhouet.order.system.db.utils
 
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import org.flywaydb.core.Flyway
+import org.flywaydb.core.api.FlywayException
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SqlLogger
 import org.jetbrains.exposed.sql.Transaction
@@ -13,8 +15,13 @@ import org.jetbrains.exposed.sql.statements.expandArgs
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.slf4j.LoggerFactory
 
-class DatabaseConfiguration(serviceName: String) {
+class DatabaseConfiguration(private val serviceName: String) {
     private val log = LoggerFactory.getLogger(DatabaseConfiguration::class.java)
+
+    private val conf: Config = ConfigFactory.load()
+    private val dbUrl = conf.getString("postgres.url")
+    private val dbUsername = conf.getString("postgres.username")
+    private val dbPassword = conf.getString("postgres.password")
 
     init {
         log.info("$serviceName: Order System database connection started")
@@ -22,18 +29,32 @@ class DatabaseConfiguration(serviceName: String) {
     }
 
     private fun hikari(): HikariDataSource {
-        val conf: Config = ConfigFactory.load()
-
         val config = HikariConfig().apply {
             driverClassName = "org.postgresql.Driver"
-            jdbcUrl = conf.getString("postgres.url")
-            username = conf.getString("postgres.username")
-            password = conf.getString("postgres.password")
+            jdbcUrl = dbUrl
+            username = dbUsername
+            password = dbPassword
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_REPEATABLE_READ"
         }
         config.validate()
         return HikariDataSource(config)
+    }
+
+    fun migrate() {
+        log.info("$serviceName: Database migration started")
+        val flyway = Flyway
+            .configure()
+            .baselineOnMigrate(true)
+            .dataSource(dbUrl, dbUsername, dbPassword)
+            .load()
+        try {
+            flyway.migrate()
+        } catch (e: FlywayException) {
+            log.error("$serviceName: Database migration failed with error: ${e.message}", e)
+            return
+        }
+        log.info("$serviceName: Database migration finished successfully")
     }
 }
 
@@ -52,4 +73,3 @@ private class SqlLogger(private val name: String) : SqlLogger {
         log.info("SQL: ${context.expandArgs(transaction)}")
     }
 }
-

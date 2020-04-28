@@ -13,8 +13,9 @@ dependencies {
     implementation("com.google.api.grpc:grpc-google-common-protos:${rootProject.extra.get("googleCommonsProtoVersion")}")
     implementation("com.google.protobuf:protobuf-java:${rootProject.extra.get("protobufVersion")}")
     implementation("io.grpc:grpc-netty-shaded:${rootProject.extra.get("grpcVersion")}")
-    implementation("io.grpc:grpc-stub:${rootProject.extra.get("grpcVersion")}")
     implementation("io.grpc:grpc-protobuf:${rootProject.extra.get("grpcVersion")}")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0")
 }
 
 protobuf {

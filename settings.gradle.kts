@@ -1,3 +1,11 @@
 rootProject.name = "order-system"
 
-include("utils", "graphql-gw", "api", "client-service", "cart-service", "order-service", "product-service", "docs")
+include("utils",
+    "db-model",
+    "graphql-gw",
+    "api",
+    "client-service",
+    "cart-service",
+    "order-service",
+    "product-service",
+    "docs")

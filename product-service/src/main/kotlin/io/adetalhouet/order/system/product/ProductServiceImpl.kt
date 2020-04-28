@@ -3,7 +3,6 @@ package io.adetalhouet.order.system.product
 import com.google.common.io.Resources
 import com.google.protobuf.Empty
 import com.google.protobuf.util.JsonFormat
-import io.adetalhouet.order.system.utils.Status
 
 class ProductServiceImpl : ProductServiceGrpcKt.ProductServiceCoroutineImplBase() {
 
@@ -17,11 +16,11 @@ class ProductServiceImpl : ProductServiceGrpcKt.ProductServiceCoroutineImplBase(
             }
 
 
-    override suspend fun addProduct(request: Product): Status {
+    override suspend fun addProduct(request: Product): Empty {
         return super.addProduct(request)
     }
 
-    override suspend fun deleteProductById(request: DeleteProductByIdRequest): Status {
+    override suspend fun deleteProductById(request: DeleteProductByIdRequest): Empty {
         return super.deleteProductById(request)
     }
 

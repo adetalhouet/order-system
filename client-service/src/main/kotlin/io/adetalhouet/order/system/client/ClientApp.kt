@@ -2,7 +2,7 @@ package io.adetalhouet.order.system.client
 
 import com.google.inject.Singleton
 import io.adetalhouet.order.system.client.domain.model.Clients
-import io.adetalhouet.order.system.utils.db.DatabaseConfiguration
+import io.adetalhouet.order.system.db.utils.DatabaseConfiguration
 import io.grpc.Server
 import io.grpc.ServerBuilder
 import org.jetbrains.exposed.sql.SchemaUtils

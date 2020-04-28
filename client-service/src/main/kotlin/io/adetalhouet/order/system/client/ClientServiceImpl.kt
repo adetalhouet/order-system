@@ -5,8 +5,7 @@ import com.google.protobuf.Empty
 import com.google.protobuf.util.JsonFormat
 import io.adetalhouet.order.system.client.domain.model.Client
 import io.adetalhouet.order.system.client.domain.model.toClients
-import io.adetalhouet.order.system.utils.db.DatabaseFactory.dbQuery
-import io.grpc.Status
+import io.adetalhouet.order.system.db.utils.DatabaseFactory.dbQuery
 import java.sql.SQLDataException
 
 class ClientServiceImpl : ClientServiceGrpcKt.ClientServiceCoroutineImplBase() {

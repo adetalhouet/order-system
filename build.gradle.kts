@@ -7,7 +7,7 @@ buildscript {
     val protobufVersion by rootProject.extra { "3.11.1" }
 
     val hikariVersion by rootProject.extra { "3.4.2" }
-    val mysqlVersion by rootProject.extra { "8.0.19" }
+    val postgresqlVersion by rootProject.extra { "42.1.4" }
     val h2database by rootProject.extra { "1.4.200" }
     val exposedVersion by rootProject.extra { "0.21.1" }
 
@@ -62,7 +62,6 @@ allprojects {
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra.get("kotlinxVersion")}")
 
         implementation("com.google.protobuf:protobuf-java-util:${rootProject.extra.get("protobufVersion")}")
-        // for graphql
         implementation("io.grpc:grpc-stub:${rootProject.extra.get("grpcVersion")}")
         implementation("io.grpc:grpc-kotlin-stub:${rootProject.extra.get("grpcKotlinVersion")}")
         implementation("io.grpc:grpc-netty-shaded:${rootProject.extra.get("grpcVersion")}")
@@ -70,6 +69,7 @@ allprojects {
         implementation("org.jetbrains.exposed:exposed-core:${rootProject.extra.get("exposedVersion")}")
         implementation("org.jetbrains.exposed:exposed-jdbc:${rootProject.extra.get("exposedVersion")}")
         implementation("org.jetbrains.exposed:exposed-dao:${rootProject.extra.get("exposedVersion")}")
+        implementation("org.postgresql:postgresql:${rootProject.extra.get("postgresqlVersion")}")
 
         implementation("com.typesafe:config:1.4.0")
 

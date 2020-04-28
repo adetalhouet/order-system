@@ -1,10 +1,10 @@
 package io.adetalhouet.order.system.order
 
-import io.adetalhouet.order.system.utils.Status
+import com.google.protobuf.Empty
 
 class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
-    override suspend fun placeOrder(request: PlaceOrderRequest): Status {
+    override suspend fun placeOrder(request: PlaceOrderRequest): Empty {
         return super.placeOrder(request)
     }
 
