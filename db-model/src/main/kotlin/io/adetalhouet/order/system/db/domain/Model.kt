@@ -1,6 +1,9 @@
 package io.adetalhouet.order.system.db.domain
 
+import com.google.protobuf.Timestamp
+import io.adetalhouet.order.system.client.Client
 import io.adetalhouet.order.system.order.Order
+import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 
 
@@ -23,6 +26,17 @@ object Clients : Table() {
 
     override val primaryKey = PrimaryKey(id, name = "PK_Clients_ID")
 }
+
+fun ResultRow.toClient(): Client =
+    Client.newBuilder()
+        .setEmail(this[Clients.email])
+        .setPassword(this[Clients.password])
+        .setAddress(this[Clients.address])
+        .setDateCreated(Timestamp.newBuilder().setSeconds(this[Clients.dateCreated]))
+        .build()
+
+fun List<Client>.toClients(): io.adetalhouet.order.system.client.Clients =
+    io.adetalhouet.order.system.client.Clients.newBuilder().addAllClients(this).build()
 
 object Carts : Table() {
     val id = long("id").autoIncrement()

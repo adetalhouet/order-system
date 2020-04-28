@@ -1,52 +1,37 @@
 package io.adetalhouet.order.system.client
 
-import com.google.common.io.Resources
 import com.google.protobuf.Empty
-import com.google.protobuf.util.JsonFormat
-import io.adetalhouet.order.system.client.domain.model.Client
-import io.adetalhouet.order.system.client.domain.model.toClients
+import io.adetalhouet.order.system.db.domain.Clients
+import io.adetalhouet.order.system.db.domain.toClient
+import io.adetalhouet.order.system.db.domain.toClients
 import io.adetalhouet.order.system.db.utils.DatabaseFactory.dbQuery
-import java.sql.SQLDataException
+import org.jetbrains.exposed.sql.deleteWhere
+import org.jetbrains.exposed.sql.insertIgnore
+import org.jetbrains.exposed.sql.select
+import org.jetbrains.exposed.sql.selectAll
 
 class ClientServiceImpl : ClientServiceGrpcKt.ClientServiceCoroutineImplBase() {
 
-    private var db: Collection<io.adetalhouet.order.system.client.Client> =
-        Resources.asByteSource(Resources.getResource("clients.json")).asCharSource(Charsets.UTF_8)
-            .openBufferedStream()
-            .use { reader ->
-                Clients.newBuilder().apply {
-                    JsonFormat.parser().merge(reader, this)
-                }.build().clientsList
-            }
-
-    override suspend fun addClient(request: io.adetalhouet.order.system.client.Client): Empty = dbQuery {
-        Client.find { io.adetalhouet.order.system.client.domain.model.Clients.email eq request.email }
-            .count().let {
-                if (it > 0) throw SQLDataException("Client (email=${request.email} already exist")
-                else {
-                    Client.new {
-                        email = request.email
-                        address = request.address
-                        password = request.password
-                        dateCreated = request.dateCreated.seconds
-                    }
-                }
-                Empty.getDefaultInstance()
-            }
-    }
-
-    override suspend fun deleteClientById(request: DeleteClientByIdRequest): Empty = dbQuery {
-        Client.findById(request.id)?.delete()
+    override suspend fun addClient(request: Client): Empty = dbQuery {
+        Clients.insertIgnore {
+            it[email] = request.email
+            it[address] = request.address
+            it[password] = request.password
+            it[dateCreated] = request.dateCreated.seconds
+        }
         Empty.getDefaultInstance()
     }
 
-    override suspend fun getClientById(request: GetClientByIdRequest): io.adetalhouet.order.system.client.Client =
-        dbQuery {
-            Client.findById(request.id)?.toClient()
-                ?: throw NoSuchElementException("Client (id=${request.id}) not found")
-        }
+    override suspend fun deleteClientById(request: DeleteClientByIdRequest): Empty = dbQuery {
+        Clients.deleteWhere { Clients.id eq request.id }
+        Empty.getDefaultInstance()
+    }
 
-    override suspend fun getClients(request: Empty): Clients = dbQuery {
-        Client.all().map { it.toClient() }.toClients()
+    override suspend fun getClientById(request: GetClientByIdRequest): Client = dbQuery {
+        Clients.select { Clients.id eq request.id }.single().toClient()
+    }
+
+    override suspend fun getClients(request: Empty): io.adetalhouet.order.system.client.Clients = dbQuery {
+        Clients.selectAll().map { it.toClient() }.toList().toClients()
     }
 }
