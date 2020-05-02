@@ -6,6 +6,6 @@ buildscript {
 
 dependencies {
     implementation(project(":api"))
-    implementation(project(":utils"))
+    implementation(project(":db-lib"))
     implementation("org.flywaydb:flyway-core:${rootProject.extra.get("flywayVersion")}")
 }

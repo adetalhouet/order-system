@@ -25,6 +25,11 @@ public final class CartOuterClass {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_io_adetalhouet_order_system_cart_CartItem_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_io_adetalhouet_order_system_cart_CartItems_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_io_adetalhouet_order_system_cart_CartItems_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_io_adetalhouet_order_system_cart_Cart_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -44,16 +49,18 @@ public final class CartOuterClass {
       "rtRequest\022\017\n\007cart_id\030\001 \001(\003\0228\n\004item\030\002 \001(\013" +
       "2*.io.adetalhouet.order.system.cart.Cart" +
       "Item\"E\n\010CartItem\022\022\n\nproduct_id\030\001 \001(\003\022\020\n\010" +
-      "quantity\030\002 \001(\005\022\023\n\013total_price\030\003 \001(\002\"b\n\004C" +
-      "art\022\n\n\002id\030\001 \001(\003\0229\n\005items\030\002 \003(\0132*.io.adet" +
-      "alhouet.order.system.cart.CartItem\022\023\n\013to" +
-      "tal_price\030\003 \001(\0012\306\001\n\013CartService\022X\n\tAddTo" +
-      "Cart\0223.io.adetalhouet.order.system.cart." +
-      "UpdateCartRequest\032\026.google.protobuf.Empt" +
-      "y\022]\n\016RemoteFromCart\0223.io.adetalhouet.ord" +
-      "er.system.cart.UpdateCartRequest\032\026.googl" +
-      "e.protobuf.EmptyB$\n io.adetalhouet.order" +
-      ".system.cartP\001b\006proto3"
+      "quantity\030\002 \001(\005\022\023\n\013total_price\030\003 \001(\001\"K\n\tC" +
+      "artItems\022>\n\ncart_items\030\001 \003(\0132*.io.adetal" +
+      "houet.order.system.cart.CartItem\"h\n\004Cart" +
+      "\022\n\n\002id\030\001 \001(\003\022?\n\ncart_items\030\002 \001(\0132+.io.ad" +
+      "etalhouet.order.system.cart.CartItems\022\023\n" +
+      "\013total_price\030\003 \001(\0012\306\001\n\013CartService\022X\n\tAd" +
+      "dToCart\0223.io.adetalhouet.order.system.ca" +
+      "rt.UpdateCartRequest\032\026.google.protobuf.E" +
+      "mpty\022]\n\016RemoteFromCart\0223.io.adetalhouet." +
+      "order.system.cart.UpdateCartRequest\032\026.go" +
+      "ogle.protobuf.EmptyB$\n io.adetalhouet.or" +
+      "der.system.cartP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -73,12 +80,18 @@ public final class CartOuterClass {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_cart_CartItem_descriptor,
         new java.lang.String[] { "ProductId", "Quantity", "TotalPrice", });
-    internal_static_io_adetalhouet_order_system_cart_Cart_descriptor =
+    internal_static_io_adetalhouet_order_system_cart_CartItems_descriptor =
       getDescriptor().getMessageTypes().get(2);
+    internal_static_io_adetalhouet_order_system_cart_CartItems_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_io_adetalhouet_order_system_cart_CartItems_descriptor,
+        new java.lang.String[] { "CartItems", });
+    internal_static_io_adetalhouet_order_system_cart_Cart_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_io_adetalhouet_order_system_cart_Cart_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_cart_Cart_descriptor,
-        new java.lang.String[] { "Id", "Items", "TotalPrice", });
+        new java.lang.String[] { "Id", "CartItems", "TotalPrice", });
     com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();
   }

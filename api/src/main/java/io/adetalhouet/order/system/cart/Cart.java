@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Cart() {
-    items_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -39,7 +38,6 @@ private static final long serialVersionUID = 0L;
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
-    int mutable_bitField0_ = 0;
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
         com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
@@ -56,12 +54,16 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              items_ = new java.util.ArrayList<io.adetalhouet.order.system.cart.CartItem>();
-              mutable_bitField0_ |= 0x00000001;
+            io.adetalhouet.order.system.cart.CartItems.Builder subBuilder = null;
+            if (cartItems_ != null) {
+              subBuilder = cartItems_.toBuilder();
             }
-            items_.add(
-                input.readMessage(io.adetalhouet.order.system.cart.CartItem.parser(), extensionRegistry));
+            cartItems_ = input.readMessage(io.adetalhouet.order.system.cart.CartItems.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(cartItems_);
+              cartItems_ = subBuilder.buildPartial();
+            }
+
             break;
           }
           case 25: {
@@ -84,9 +86,6 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      if (((mutable_bitField0_ & 0x00000001) != 0)) {
-        items_ = java.util.Collections.unmodifiableList(items_);
-      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -114,39 +113,27 @@ private static final long serialVersionUID = 0L;
     return id_;
   }
 
-  public static final int ITEMS_FIELD_NUMBER = 2;
-  private java.util.List<io.adetalhouet.order.system.cart.CartItem> items_;
+  public static final int CART_ITEMS_FIELD_NUMBER = 2;
+  private io.adetalhouet.order.system.cart.CartItems cartItems_;
   /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+   * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+   * @return Whether the cartItems field is set.
    */
-  public java.util.List<io.adetalhouet.order.system.cart.CartItem> getItemsList() {
-    return items_;
+  public boolean hasCartItems() {
+    return cartItems_ != null;
   }
   /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+   * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+   * @return The cartItems.
    */
-  public java.util.List<? extends io.adetalhouet.order.system.cart.CartItemOrBuilder> 
-      getItemsOrBuilderList() {
-    return items_;
+  public io.adetalhouet.order.system.cart.CartItems getCartItems() {
+    return cartItems_ == null ? io.adetalhouet.order.system.cart.CartItems.getDefaultInstance() : cartItems_;
   }
   /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+   * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
    */
-  public int getItemsCount() {
-    return items_.size();
-  }
-  /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-   */
-  public io.adetalhouet.order.system.cart.CartItem getItems(int index) {
-    return items_.get(index);
-  }
-  /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-   */
-  public io.adetalhouet.order.system.cart.CartItemOrBuilder getItemsOrBuilder(
-      int index) {
-    return items_.get(index);
+  public io.adetalhouet.order.system.cart.CartItemsOrBuilder getCartItemsOrBuilder() {
+    return getCartItems();
   }
 
   public static final int TOTAL_PRICE_FIELD_NUMBER = 3;
@@ -176,8 +163,8 @@ private static final long serialVersionUID = 0L;
     if (id_ != 0L) {
       output.writeInt64(1, id_);
     }
-    for (int i = 0; i < items_.size(); i++) {
-      output.writeMessage(2, items_.get(i));
+    if (cartItems_ != null) {
+      output.writeMessage(2, getCartItems());
     }
     if (totalPrice_ != 0D) {
       output.writeDouble(3, totalPrice_);
@@ -195,9 +182,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt64Size(1, id_);
     }
-    for (int i = 0; i < items_.size(); i++) {
+    if (cartItems_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(2, items_.get(i));
+        .computeMessageSize(2, getCartItems());
     }
     if (totalPrice_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
@@ -220,8 +207,11 @@ private static final long serialVersionUID = 0L;
 
     if (getId()
         != other.getId()) return false;
-    if (!getItemsList()
-        .equals(other.getItemsList())) return false;
+    if (hasCartItems() != other.hasCartItems()) return false;
+    if (hasCartItems()) {
+      if (!getCartItems()
+          .equals(other.getCartItems())) return false;
+    }
     if (java.lang.Double.doubleToLongBits(getTotalPrice())
         != java.lang.Double.doubleToLongBits(
             other.getTotalPrice())) return false;
@@ -239,9 +229,9 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + ID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getId());
-    if (getItemsCount() > 0) {
-      hash = (37 * hash) + ITEMS_FIELD_NUMBER;
-      hash = (53 * hash) + getItemsList().hashCode();
+    if (hasCartItems()) {
+      hash = (37 * hash) + CART_ITEMS_FIELD_NUMBER;
+      hash = (53 * hash) + getCartItems().hashCode();
     }
     hash = (37 * hash) + TOTAL_PRICE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
@@ -374,7 +364,6 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
-        getItemsFieldBuilder();
       }
     }
     @java.lang.Override
@@ -382,11 +371,11 @@ private static final long serialVersionUID = 0L;
       super.clear();
       id_ = 0L;
 
-      if (itemsBuilder_ == null) {
-        items_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+      if (cartItemsBuilder_ == null) {
+        cartItems_ = null;
       } else {
-        itemsBuilder_.clear();
+        cartItems_ = null;
+        cartItemsBuilder_ = null;
       }
       totalPrice_ = 0D;
 
@@ -416,16 +405,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public io.adetalhouet.order.system.cart.Cart buildPartial() {
       io.adetalhouet.order.system.cart.Cart result = new io.adetalhouet.order.system.cart.Cart(this);
-      int from_bitField0_ = bitField0_;
       result.id_ = id_;
-      if (itemsBuilder_ == null) {
-        if (((bitField0_ & 0x00000001) != 0)) {
-          items_ = java.util.Collections.unmodifiableList(items_);
-          bitField0_ = (bitField0_ & ~0x00000001);
-        }
-        result.items_ = items_;
+      if (cartItemsBuilder_ == null) {
+        result.cartItems_ = cartItems_;
       } else {
-        result.items_ = itemsBuilder_.build();
+        result.cartItems_ = cartItemsBuilder_.build();
       }
       result.totalPrice_ = totalPrice_;
       onBuilt();
@@ -479,31 +463,8 @@ private static final long serialVersionUID = 0L;
       if (other.getId() != 0L) {
         setId(other.getId());
       }
-      if (itemsBuilder_ == null) {
-        if (!other.items_.isEmpty()) {
-          if (items_.isEmpty()) {
-            items_ = other.items_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureItemsIsMutable();
-            items_.addAll(other.items_);
-          }
-          onChanged();
-        }
-      } else {
-        if (!other.items_.isEmpty()) {
-          if (itemsBuilder_.isEmpty()) {
-            itemsBuilder_.dispose();
-            itemsBuilder_ = null;
-            items_ = other.items_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-            itemsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getItemsFieldBuilder() : null;
-          } else {
-            itemsBuilder_.addAllMessages(other.items_);
-          }
-        }
+      if (other.hasCartItems()) {
+        mergeCartItems(other.getCartItems());
       }
       if (other.getTotalPrice() != 0D) {
         setTotalPrice(other.getTotalPrice());
@@ -536,7 +497,6 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int bitField0_;
 
     private long id_ ;
     /**
@@ -568,244 +528,123 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.util.List<io.adetalhouet.order.system.cart.CartItem> items_ =
-      java.util.Collections.emptyList();
-    private void ensureItemsIsMutable() {
-      if (!((bitField0_ & 0x00000001) != 0)) {
-        items_ = new java.util.ArrayList<io.adetalhouet.order.system.cart.CartItem>(items_);
-        bitField0_ |= 0x00000001;
-       }
+    private io.adetalhouet.order.system.cart.CartItems cartItems_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.adetalhouet.order.system.cart.CartItems, io.adetalhouet.order.system.cart.CartItems.Builder, io.adetalhouet.order.system.cart.CartItemsOrBuilder> cartItemsBuilder_;
+    /**
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+     * @return Whether the cartItems field is set.
+     */
+    public boolean hasCartItems() {
+      return cartItemsBuilder_ != null || cartItems_ != null;
     }
+    /**
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+     * @return The cartItems.
+     */
+    public io.adetalhouet.order.system.cart.CartItems getCartItems() {
+      if (cartItemsBuilder_ == null) {
+        return cartItems_ == null ? io.adetalhouet.order.system.cart.CartItems.getDefaultInstance() : cartItems_;
+      } else {
+        return cartItemsBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+     */
+    public Builder setCartItems(io.adetalhouet.order.system.cart.CartItems value) {
+      if (cartItemsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        cartItems_ = value;
+        onChanged();
+      } else {
+        cartItemsBuilder_.setMessage(value);
+      }
 
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.adetalhouet.order.system.cart.CartItem, io.adetalhouet.order.system.cart.CartItem.Builder, io.adetalhouet.order.system.cart.CartItemOrBuilder> itemsBuilder_;
+      return this;
+    }
+    /**
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+     */
+    public Builder setCartItems(
+        io.adetalhouet.order.system.cart.CartItems.Builder builderForValue) {
+      if (cartItemsBuilder_ == null) {
+        cartItems_ = builderForValue.build();
+        onChanged();
+      } else {
+        cartItemsBuilder_.setMessage(builderForValue.build());
+      }
 
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public java.util.List<io.adetalhouet.order.system.cart.CartItem> getItemsList() {
-      if (itemsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(items_);
-      } else {
-        return itemsBuilder_.getMessageList();
-      }
+      return this;
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
      */
-    public int getItemsCount() {
-      if (itemsBuilder_ == null) {
-        return items_.size();
-      } else {
-        return itemsBuilder_.getCount();
-      }
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public io.adetalhouet.order.system.cart.CartItem getItems(int index) {
-      if (itemsBuilder_ == null) {
-        return items_.get(index);
-      } else {
-        return itemsBuilder_.getMessage(index);
-      }
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public Builder setItems(
-        int index, io.adetalhouet.order.system.cart.CartItem value) {
-      if (itemsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
+    public Builder mergeCartItems(io.adetalhouet.order.system.cart.CartItems value) {
+      if (cartItemsBuilder_ == null) {
+        if (cartItems_ != null) {
+          cartItems_ =
+            io.adetalhouet.order.system.cart.CartItems.newBuilder(cartItems_).mergeFrom(value).buildPartial();
+        } else {
+          cartItems_ = value;
         }
-        ensureItemsIsMutable();
-        items_.set(index, value);
         onChanged();
       } else {
-        itemsBuilder_.setMessage(index, value);
+        cartItemsBuilder_.mergeFrom(value);
       }
+
       return this;
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
      */
-    public Builder setItems(
-        int index, io.adetalhouet.order.system.cart.CartItem.Builder builderForValue) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        items_.set(index, builderForValue.build());
+    public Builder clearCartItems() {
+      if (cartItemsBuilder_ == null) {
+        cartItems_ = null;
         onChanged();
       } else {
-        itemsBuilder_.setMessage(index, builderForValue.build());
+        cartItems_ = null;
+        cartItemsBuilder_ = null;
       }
+
       return this;
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
      */
-    public Builder addItems(io.adetalhouet.order.system.cart.CartItem value) {
-      if (itemsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureItemsIsMutable();
-        items_.add(value);
-        onChanged();
+    public io.adetalhouet.order.system.cart.CartItems.Builder getCartItemsBuilder() {
+      
+      onChanged();
+      return getCartItemsFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+     */
+    public io.adetalhouet.order.system.cart.CartItemsOrBuilder getCartItemsOrBuilder() {
+      if (cartItemsBuilder_ != null) {
+        return cartItemsBuilder_.getMessageOrBuilder();
       } else {
-        itemsBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public Builder addItems(
-        int index, io.adetalhouet.order.system.cart.CartItem value) {
-      if (itemsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureItemsIsMutable();
-        items_.add(index, value);
-        onChanged();
-      } else {
-        itemsBuilder_.addMessage(index, value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public Builder addItems(
-        io.adetalhouet.order.system.cart.CartItem.Builder builderForValue) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        items_.add(builderForValue.build());
-        onChanged();
-      } else {
-        itemsBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public Builder addItems(
-        int index, io.adetalhouet.order.system.cart.CartItem.Builder builderForValue) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        items_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        itemsBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public Builder addAllItems(
-        java.lang.Iterable<? extends io.adetalhouet.order.system.cart.CartItem> values) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, items_);
-        onChanged();
-      } else {
-        itemsBuilder_.addAllMessages(values);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public Builder clearItems() {
-      if (itemsBuilder_ == null) {
-        items_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-      } else {
-        itemsBuilder_.clear();
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public Builder removeItems(int index) {
-      if (itemsBuilder_ == null) {
-        ensureItemsIsMutable();
-        items_.remove(index);
-        onChanged();
-      } else {
-        itemsBuilder_.remove(index);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public io.adetalhouet.order.system.cart.CartItem.Builder getItemsBuilder(
-        int index) {
-      return getItemsFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public io.adetalhouet.order.system.cart.CartItemOrBuilder getItemsOrBuilder(
-        int index) {
-      if (itemsBuilder_ == null) {
-        return items_.get(index);  } else {
-        return itemsBuilder_.getMessageOrBuilder(index);
+        return cartItems_ == null ?
+            io.adetalhouet.order.system.cart.CartItems.getDefaultInstance() : cartItems_;
       }
     }
     /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+     * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
      */
-    public java.util.List<? extends io.adetalhouet.order.system.cart.CartItemOrBuilder> 
-         getItemsOrBuilderList() {
-      if (itemsBuilder_ != null) {
-        return itemsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(items_);
-      }
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public io.adetalhouet.order.system.cart.CartItem.Builder addItemsBuilder() {
-      return getItemsFieldBuilder().addBuilder(
-          io.adetalhouet.order.system.cart.CartItem.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public io.adetalhouet.order.system.cart.CartItem.Builder addItemsBuilder(
-        int index) {
-      return getItemsFieldBuilder().addBuilder(
-          index, io.adetalhouet.order.system.cart.CartItem.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-     */
-    public java.util.List<io.adetalhouet.order.system.cart.CartItem.Builder> 
-         getItemsBuilderList() {
-      return getItemsFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        io.adetalhouet.order.system.cart.CartItem, io.adetalhouet.order.system.cart.CartItem.Builder, io.adetalhouet.order.system.cart.CartItemOrBuilder> 
-        getItemsFieldBuilder() {
-      if (itemsBuilder_ == null) {
-        itemsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            io.adetalhouet.order.system.cart.CartItem, io.adetalhouet.order.system.cart.CartItem.Builder, io.adetalhouet.order.system.cart.CartItemOrBuilder>(
-                items_,
-                ((bitField0_ & 0x00000001) != 0),
+    private com.google.protobuf.SingleFieldBuilderV3<
+        io.adetalhouet.order.system.cart.CartItems, io.adetalhouet.order.system.cart.CartItems.Builder, io.adetalhouet.order.system.cart.CartItemsOrBuilder> 
+        getCartItemsFieldBuilder() {
+      if (cartItemsBuilder_ == null) {
+        cartItemsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            io.adetalhouet.order.system.cart.CartItems, io.adetalhouet.order.system.cart.CartItems.Builder, io.adetalhouet.order.system.cart.CartItemsOrBuilder>(
+                getCartItems(),
                 getParentForChildren(),
                 isClean());
-        items_ = null;
+        cartItems_ = null;
       }
-      return itemsBuilder_;
+      return cartItemsBuilder_;
     }
 
     private double totalPrice_ ;

@@ -58,9 +58,9 @@ private static final long serialVersionUID = 0L;
             quantity_ = input.readInt32();
             break;
           }
-          case 29: {
+          case 25: {
 
-            totalPrice_ = input.readFloat();
+            totalPrice_ = input.readDouble();
             break;
           }
           default: {
@@ -116,12 +116,12 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int TOTAL_PRICE_FIELD_NUMBER = 3;
-  private float totalPrice_;
+  private double totalPrice_;
   /**
-   * <code>float total_price = 3;</code>
+   * <code>double total_price = 3;</code>
    * @return The totalPrice.
    */
-  public float getTotalPrice() {
+  public double getTotalPrice() {
     return totalPrice_;
   }
 
@@ -145,8 +145,8 @@ private static final long serialVersionUID = 0L;
     if (quantity_ != 0) {
       output.writeInt32(2, quantity_);
     }
-    if (totalPrice_ != 0F) {
-      output.writeFloat(3, totalPrice_);
+    if (totalPrice_ != 0D) {
+      output.writeDouble(3, totalPrice_);
     }
     unknownFields.writeTo(output);
   }
@@ -165,9 +165,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, quantity_);
     }
-    if (totalPrice_ != 0F) {
+    if (totalPrice_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeFloatSize(3, totalPrice_);
+        .computeDoubleSize(3, totalPrice_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -188,8 +188,8 @@ private static final long serialVersionUID = 0L;
         != other.getProductId()) return false;
     if (getQuantity()
         != other.getQuantity()) return false;
-    if (java.lang.Float.floatToIntBits(getTotalPrice())
-        != java.lang.Float.floatToIntBits(
+    if (java.lang.Double.doubleToLongBits(getTotalPrice())
+        != java.lang.Double.doubleToLongBits(
             other.getTotalPrice())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
@@ -208,8 +208,8 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
     hash = (53 * hash) + getQuantity();
     hash = (37 * hash) + TOTAL_PRICE_FIELD_NUMBER;
-    hash = (53 * hash) + java.lang.Float.floatToIntBits(
-        getTotalPrice());
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getTotalPrice()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -347,7 +347,7 @@ private static final long serialVersionUID = 0L;
 
       quantity_ = 0;
 
-      totalPrice_ = 0F;
+      totalPrice_ = 0D;
 
       return this;
     }
@@ -432,7 +432,7 @@ private static final long serialVersionUID = 0L;
       if (other.getQuantity() != 0) {
         setQuantity(other.getQuantity());
       }
-      if (other.getTotalPrice() != 0F) {
+      if (other.getTotalPrice() != 0D) {
         setTotalPrice(other.getTotalPrice());
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -524,32 +524,32 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private float totalPrice_ ;
+    private double totalPrice_ ;
     /**
-     * <code>float total_price = 3;</code>
+     * <code>double total_price = 3;</code>
      * @return The totalPrice.
      */
-    public float getTotalPrice() {
+    public double getTotalPrice() {
       return totalPrice_;
     }
     /**
-     * <code>float total_price = 3;</code>
+     * <code>double total_price = 3;</code>
      * @param value The totalPrice to set.
      * @return This builder for chaining.
      */
-    public Builder setTotalPrice(float value) {
+    public Builder setTotalPrice(double value) {
       
       totalPrice_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>float total_price = 3;</code>
+     * <code>double total_price = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearTotalPrice() {
       
-      totalPrice_ = 0F;
+      totalPrice_ = 0D;
       onChanged();
       return this;
     }

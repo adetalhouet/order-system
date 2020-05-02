@@ -1,6 +1,7 @@
 package io.adetalhouet.order.system.cart
 
 import com.google.inject.Singleton
+import io.adetalhouet.order.system.db.utils.DatabaseConfiguration
 import io.grpc.Server
 import io.grpc.ServerBuilder
 import java.io.IOException
@@ -39,5 +40,8 @@ fun main(args: Array<String>) {
     val port = 9090
     val server = CartServer(port)
     server.start()
+
+    DatabaseConfiguration("cart-service")
+
     server.blockUntilShutdown()
 }

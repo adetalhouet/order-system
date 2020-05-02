@@ -1,12 +1,9 @@
 package io.adetalhouet.order.system.client
 
 import com.google.inject.Singleton
-import io.adetalhouet.order.system.client.domain.model.Clients
 import io.adetalhouet.order.system.db.utils.DatabaseConfiguration
 import io.grpc.Server
 import io.grpc.ServerBuilder
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.transactions.transaction
 import java.io.IOException
 
 @Singleton
@@ -50,9 +47,6 @@ fun main(args: Array<String>) {
     server.start()
 
     DatabaseConfiguration(service)
-    transaction {
-        SchemaUtils.create(Clients)
-    }
 
     server.blockUntilShutdown()
 }

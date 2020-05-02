@@ -83,7 +83,7 @@ configure(extra.get("services") as List<Project>) {
 
     dependencies {
         implementation(project(":api"))
-        implementation(project(":utils"))
+        implementation(project(":db-lib"))
         implementation(project(":db-model"))
     }
 }

@@ -4,7 +4,7 @@ import com.google.protobuf.Empty
 
 class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
-    override suspend fun placeOrder(request: PlaceOrderRequest): Empty {
+    override suspend fun placeOrder(request: Order): Empty {
         return super.placeOrder(request)
     }
 

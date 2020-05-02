@@ -1,4 +1,4 @@
-group = "${rootProject.group}.utils"
+group = "${rootProject.group}.db-lib"
 
 buildscript {
     val hikariVersion by rootProject.extra { "3.4.2" }

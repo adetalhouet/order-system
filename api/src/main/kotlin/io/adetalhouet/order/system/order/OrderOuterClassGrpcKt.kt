@@ -49,7 +49,7 @@ object OrderServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun placeOrder(request: PlaceOrderRequest): Empty = unaryRpc(
+    suspend fun placeOrder(request: Order): Empty = unaryRpc(
       channel,
       OrderServiceGrpc.getPlaceOrderMethod(),
       request,
@@ -109,7 +109,7 @@ object OrderServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun placeOrder(request: PlaceOrderRequest): Empty = throw
+    open suspend fun placeOrder(request: Order): Empty = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.order.OrderService.PlaceOrder is unimplemented"))
 
     /**

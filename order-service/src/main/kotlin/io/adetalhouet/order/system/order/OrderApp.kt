@@ -1,6 +1,8 @@
 package io.adetalhouet.order.system.order
 
 import com.google.inject.Singleton
+import io.adetalhouet.order.system.db.utils.DatabaseConfiguration
+import io.adetalhouet.order.system.db.utils.DatabaseFactory
 import io.grpc.Server
 import io.grpc.ServerBuilder
 import java.io.IOException
@@ -40,5 +42,8 @@ fun main(args: Array<String>) {
     val port = 9092
     val server = OrderServer(port)
     server.start()
+
+    DatabaseConfiguration("order-service")
+
     server.blockUntilShutdown()
 }

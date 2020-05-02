@@ -14,28 +14,19 @@ public interface CartOrBuilder extends
   long getId();
 
   /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+   * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+   * @return Whether the cartItems field is set.
    */
-  java.util.List<io.adetalhouet.order.system.cart.CartItem> 
-      getItemsList();
+  boolean hasCartItems();
   /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+   * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
+   * @return The cartItems.
    */
-  io.adetalhouet.order.system.cart.CartItem getItems(int index);
+  io.adetalhouet.order.system.cart.CartItems getCartItems();
   /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
+   * <code>.io.adetalhouet.order.system.cart.CartItems cart_items = 2;</code>
    */
-  int getItemsCount();
-  /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-   */
-  java.util.List<? extends io.adetalhouet.order.system.cart.CartItemOrBuilder> 
-      getItemsOrBuilderList();
-  /**
-   * <code>repeated .io.adetalhouet.order.system.cart.CartItem items = 2;</code>
-   */
-  io.adetalhouet.order.system.cart.CartItemOrBuilder getItemsOrBuilder(
-      int index);
+  io.adetalhouet.order.system.cart.CartItemsOrBuilder getCartItemsOrBuilder();
 
   /**
    * <code>double total_price = 3;</code>

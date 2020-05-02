@@ -1,6 +1,6 @@
 rootProject.name = "order-system"
 
-include("utils",
+include("db-lib",
     "db-model",
     "graphql-gw",
     "api",

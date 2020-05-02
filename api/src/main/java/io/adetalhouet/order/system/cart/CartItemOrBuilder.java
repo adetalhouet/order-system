@@ -20,8 +20,8 @@ public interface CartItemOrBuilder extends
   int getQuantity();
 
   /**
-   * <code>float total_price = 3;</code>
+   * <code>double total_price = 3;</code>
    * @return The totalPrice.
    */
-  float getTotalPrice();
+  double getTotalPrice();
 }
