@@ -4,13 +4,11 @@ import com.google.api.graphql.rejoiner.Query
 import com.google.api.graphql.rejoiner.SchemaModule
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.protobuf.Empty
-import graphql.GraphQLError
-import graphql.language.SourceLocation
-import io.adetalhouet.order.system.client.Client
-import io.adetalhouet.order.system.client.ClientServiceGrpc
-import io.adetalhouet.order.system.client.Clients
-import io.adetalhouet.order.system.client.DeleteClientByIdRequest
-import io.adetalhouet.order.system.client.GetClientByIdRequest
+import io.adetalhouet.order.system.client.grpc.Client
+import io.adetalhouet.order.system.client.grpc.ClientServiceGrpc
+import io.adetalhouet.order.system.client.grpc.Clients
+import io.adetalhouet.order.system.client.grpc.DeleteClientByIdRequest
+import io.adetalhouet.order.system.client.grpc.GetClientByIdRequest
 import io.adetalhouet.order.system.graphql.GraphQLException
 
 

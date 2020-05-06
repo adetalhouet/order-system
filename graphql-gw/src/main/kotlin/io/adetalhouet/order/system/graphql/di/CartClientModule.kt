@@ -1,7 +1,7 @@
 package io.adetalhouet.order.system.graphql.di
 
 import com.google.inject.AbstractModule
-import io.adetalhouet.order.system.cart.CartServiceGrpc
+import io.adetalhouet.order.system.cart.grpc.CartServiceGrpc
 import io.grpc.ManagedChannelBuilder
 
 class CartClientModule : AbstractModule() {

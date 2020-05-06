@@ -1,23 +1,27 @@
 syntax = "proto3";
 
-package io.adetalhouet.order.system.cart;
+package io.adetalhouet.order.system.cart.grpc;
 
 option java_multiple_files = true;
-option java_package = "io.adetalhouet.order.system.cart";
+option java_package = "io.adetalhouet.order.system.cart.grpc";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service CartService {
+  rpc CreateCart (google.protobuf.Empty) returns (CartId);
   rpc AddToCart (UpdateCartRequest) returns (google.protobuf.Empty);
   rpc RemoteFromCart (UpdateCartRequest) returns (google.protobuf.Empty);
-  // updateCartItem
-  // deleteCart
+  rpc DeleteCart (CartId) returns (google.protobuf.Empty);
 }
 
 message UpdateCartRequest {
   int64 cart_id = 1;
   CartItem item = 2;
+}
+
+message CartId {
+  int64 cart_id = 1;
 }
 
 message CartItem {
@@ -34,4 +38,5 @@ message Cart {
   int64 id = 1;
   CartItems cart_items = 2;
   double total_price = 3;
+  google.protobuf.Timestamp last_updated = 5;
 }

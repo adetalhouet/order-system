@@ -1,6 +1,10 @@
 package io.adetalhouet.order.system.client
 
 import com.google.protobuf.Empty
+import io.adetalhouet.order.system.client.grpc.Client
+import io.adetalhouet.order.system.client.grpc.ClientServiceGrpcKt
+import io.adetalhouet.order.system.client.grpc.DeleteClientByIdRequest
+import io.adetalhouet.order.system.client.grpc.GetClientByIdRequest
 import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.toClient
 import io.adetalhouet.order.system.db.domain.toClients
@@ -17,7 +21,7 @@ class ClientServiceImpl : ClientServiceGrpcKt.ClientServiceCoroutineImplBase() {
             it[email] = request.email
             it[address] = request.address
             it[password] = request.password
-            it[dateCreated] = request.dateCreated.seconds
+            it[dateCreatedMillis] = System.currentTimeMillis()
         }
         Empty.getDefaultInstance()
     }
@@ -31,7 +35,7 @@ class ClientServiceImpl : ClientServiceGrpcKt.ClientServiceCoroutineImplBase() {
         Clients.select { Clients.id eq request.id }.single().toClient()
     }
 
-    override suspend fun getClients(request: Empty): io.adetalhouet.order.system.client.Clients = dbQuery {
+    override suspend fun getClients(request: Empty): io.adetalhouet.order.system.client.grpc.Clients = dbQuery {
         Clients.selectAll().map { it.toClient() }.toList().toClients()
     }
 }

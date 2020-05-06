@@ -3,6 +3,11 @@ package io.adetalhouet.order.system.product
 import com.google.common.io.Resources
 import com.google.protobuf.Empty
 import com.google.protobuf.util.JsonFormat
+import io.adetalhouet.order.system.product.grpc.DeleteProductByIdRequest
+import io.adetalhouet.order.system.product.grpc.GetProductByIdRequest
+import io.adetalhouet.order.system.product.grpc.Product
+import io.adetalhouet.order.system.product.grpc.ProductServiceGrpcKt
+import io.adetalhouet.order.system.product.grpc.Products
 
 class ProductServiceImpl : ProductServiceGrpcKt.ProductServiceCoroutineImplBase() {
 

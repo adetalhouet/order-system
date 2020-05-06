@@ -4,11 +4,11 @@ import com.google.api.graphql.rejoiner.Query
 import com.google.api.graphql.rejoiner.SchemaModule
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.protobuf.Empty
-import io.adetalhouet.order.system.product.DeleteProductByIdRequest
-import io.adetalhouet.order.system.product.GetProductByIdRequest
-import io.adetalhouet.order.system.product.Product
-import io.adetalhouet.order.system.product.ProductServiceGrpc
-import io.adetalhouet.order.system.product.Products
+import io.adetalhouet.order.system.product.grpc.DeleteProductByIdRequest
+import io.adetalhouet.order.system.product.grpc.GetProductByIdRequest
+import io.adetalhouet.order.system.product.grpc.Product
+import io.adetalhouet.order.system.product.grpc.ProductServiceGrpc
+import io.adetalhouet.order.system.product.grpc.Products
 
 class ProductSchemaModule : SchemaModule() {
 

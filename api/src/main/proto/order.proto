@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package io.adetalhouet.order.system.order;
+package io.adetalhouet.order.system.order.grpc;
 
 option java_multiple_files = true;
-option java_package = "io.adetalhouet.order.system.order";
+option java_package = "io.adetalhouet.order.system.order.grpc";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";

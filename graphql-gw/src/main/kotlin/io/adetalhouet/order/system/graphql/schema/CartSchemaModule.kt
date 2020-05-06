@@ -4,8 +4,8 @@ import com.google.api.graphql.rejoiner.Query
 import com.google.api.graphql.rejoiner.SchemaModule
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.protobuf.Empty
-import io.adetalhouet.order.system.cart.CartServiceGrpc
-import io.adetalhouet.order.system.cart.UpdateCartRequest
+import io.adetalhouet.order.system.cart.grpc.CartServiceGrpc
+import io.adetalhouet.order.system.cart.grpc.UpdateCartRequest
 
 class CartSchemaModule : SchemaModule() {
 

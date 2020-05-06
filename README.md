@@ -9,6 +9,22 @@ Combine Kotlin, gRPC, and graphql.
 ### Model
 ![architecture](https://github.com/adetalhouet/order-system/raw/master/docs/src/docs/resources/model.png)
 
+
+    id: '{{index()}}',
+    email: '{{email()}}',
+    address: '{{integer(100, 999)}} {{street()}}, {{city()}}, {{state()}}, {{integer(100, 10000)}}',
+    password: '{{objectId()}}',
+    date_created: '{{date(new Date(2014, 0, 1), new Date()).getTime()}}'
+
+    id: '{{index()}}',
+    price: '{{floating(10, 200, 1)}}',
+    quantity: '{{integer(10, 100)}}',
+    name: function (tags) {
+      return 'Product #' + this.id;
+    },
+    last_updated: '{{date(new Date(2014, 0, 1), new Date()).getTime()}}'
+
+
 ### Services port
 
 | Service | Port |
