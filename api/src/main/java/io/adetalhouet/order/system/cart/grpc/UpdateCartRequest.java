@@ -66,6 +66,11 @@ private static final long serialVersionUID = 0L;
 
             break;
           }
+          case 24: {
+
+            isAdd_ = input.readBool();
+            break;
+          }
           default: {
             if (!parseUnknownField(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -131,6 +136,16 @@ private static final long serialVersionUID = 0L;
     return getItem();
   }
 
+  public static final int ISADD_FIELD_NUMBER = 3;
+  private boolean isAdd_;
+  /**
+   * <code>bool isAdd = 3;</code>
+   * @return The isAdd.
+   */
+  public boolean getIsAdd() {
+    return isAdd_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -151,6 +166,9 @@ private static final long serialVersionUID = 0L;
     if (item_ != null) {
       output.writeMessage(2, getItem());
     }
+    if (isAdd_ != false) {
+      output.writeBool(3, isAdd_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -167,6 +185,10 @@ private static final long serialVersionUID = 0L;
     if (item_ != null) {
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(2, getItem());
+    }
+    if (isAdd_ != false) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(3, isAdd_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -190,6 +212,8 @@ private static final long serialVersionUID = 0L;
       if (!getItem()
           .equals(other.getItem())) return false;
     }
+    if (getIsAdd()
+        != other.getIsAdd()) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -208,6 +232,9 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + ITEM_FIELD_NUMBER;
       hash = (53 * hash) + getItem().hashCode();
     }
+    hash = (37 * hash) + ISADD_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getIsAdd());
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -349,6 +376,8 @@ private static final long serialVersionUID = 0L;
         item_ = null;
         itemBuilder_ = null;
       }
+      isAdd_ = false;
+
       return this;
     }
 
@@ -381,6 +410,7 @@ private static final long serialVersionUID = 0L;
       } else {
         result.item_ = itemBuilder_.build();
       }
+      result.isAdd_ = isAdd_;
       onBuilt();
       return result;
     }
@@ -434,6 +464,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.hasItem()) {
         mergeItem(other.getItem());
+      }
+      if (other.getIsAdd() != false) {
+        setIsAdd(other.getIsAdd());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -611,6 +644,36 @@ private static final long serialVersionUID = 0L;
         item_ = null;
       }
       return itemBuilder_;
+    }
+
+    private boolean isAdd_ ;
+    /**
+     * <code>bool isAdd = 3;</code>
+     * @return The isAdd.
+     */
+    public boolean getIsAdd() {
+      return isAdd_;
+    }
+    /**
+     * <code>bool isAdd = 3;</code>
+     * @param value The isAdd to set.
+     * @return This builder for chaining.
+     */
+    public Builder setIsAdd(boolean value) {
+      
+      isAdd_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool isAdd = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearIsAdd() {
+      
+      isAdd_ = false;
+      onChanged();
+      return this;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

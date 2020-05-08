@@ -59,65 +59,34 @@ public final class CartServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest,
-      com.google.protobuf.Empty> getAddToCartMethod;
+      com.google.protobuf.Empty> getUpdateCartMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "AddToCart",
+      fullMethodName = SERVICE_NAME + '/' + "UpdateCart",
       requestType = io.adetalhouet.order.system.cart.grpc.UpdateCartRequest.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest,
-      com.google.protobuf.Empty> getAddToCartMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest, com.google.protobuf.Empty> getAddToCartMethod;
-    if ((getAddToCartMethod = CartServiceGrpc.getAddToCartMethod) == null) {
+      com.google.protobuf.Empty> getUpdateCartMethod() {
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest, com.google.protobuf.Empty> getUpdateCartMethod;
+    if ((getUpdateCartMethod = CartServiceGrpc.getUpdateCartMethod) == null) {
       synchronized (CartServiceGrpc.class) {
-        if ((getAddToCartMethod = CartServiceGrpc.getAddToCartMethod) == null) {
-          CartServiceGrpc.getAddToCartMethod = getAddToCartMethod =
+        if ((getUpdateCartMethod = CartServiceGrpc.getUpdateCartMethod) == null) {
+          CartServiceGrpc.getUpdateCartMethod = getUpdateCartMethod =
               io.grpc.MethodDescriptor.<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AddToCart"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "UpdateCart"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   io.adetalhouet.order.system.cart.grpc.UpdateCartRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new CartServiceMethodDescriptorSupplier("AddToCart"))
+              .setSchemaDescriptor(new CartServiceMethodDescriptorSupplier("UpdateCart"))
               .build();
         }
       }
     }
-    return getAddToCartMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest,
-      com.google.protobuf.Empty> getRemoteFromCartMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "RemoteFromCart",
-      requestType = io.adetalhouet.order.system.cart.grpc.UpdateCartRequest.class,
-      responseType = com.google.protobuf.Empty.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest,
-      com.google.protobuf.Empty> getRemoteFromCartMethod() {
-    io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest, com.google.protobuf.Empty> getRemoteFromCartMethod;
-    if ((getRemoteFromCartMethod = CartServiceGrpc.getRemoteFromCartMethod) == null) {
-      synchronized (CartServiceGrpc.class) {
-        if ((getRemoteFromCartMethod = CartServiceGrpc.getRemoteFromCartMethod) == null) {
-          CartServiceGrpc.getRemoteFromCartMethod = getRemoteFromCartMethod =
-              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.cart.grpc.UpdateCartRequest, com.google.protobuf.Empty>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RemoteFromCart"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  io.adetalhouet.order.system.cart.grpc.UpdateCartRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.google.protobuf.Empty.getDefaultInstance()))
-              .setSchemaDescriptor(new CartServiceMethodDescriptorSupplier("RemoteFromCart"))
-              .build();
-        }
-      }
-    }
-    return getRemoteFromCartMethod;
+    return getUpdateCartMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.CartId,
@@ -208,16 +177,9 @@ public final class CartServiceGrpc {
 
     /**
      */
-    public void addToCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request,
+    public void updateCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(getAddToCartMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public void remoteFromCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnimplementedUnaryCall(getRemoteFromCartMethod(), responseObserver);
+      asyncUnimplementedUnaryCall(getUpdateCartMethod(), responseObserver);
     }
 
     /**
@@ -237,19 +199,12 @@ public final class CartServiceGrpc {
                 io.adetalhouet.order.system.cart.grpc.CartId>(
                   this, METHODID_CREATE_CART)))
           .addMethod(
-            getAddToCartMethod(),
+            getUpdateCartMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 io.adetalhouet.order.system.cart.grpc.UpdateCartRequest,
                 com.google.protobuf.Empty>(
-                  this, METHODID_ADD_TO_CART)))
-          .addMethod(
-            getRemoteFromCartMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                io.adetalhouet.order.system.cart.grpc.UpdateCartRequest,
-                com.google.protobuf.Empty>(
-                  this, METHODID_REMOTE_FROM_CART)))
+                  this, METHODID_UPDATE_CART)))
           .addMethod(
             getDeleteCartMethod(),
             asyncUnaryCall(
@@ -285,18 +240,10 @@ public final class CartServiceGrpc {
 
     /**
      */
-    public void addToCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request,
+    public void updateCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getAddToCartMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void remoteFromCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request,
-        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getRemoteFromCartMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getUpdateCartMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -331,16 +278,9 @@ public final class CartServiceGrpc {
 
     /**
      */
-    public com.google.protobuf.Empty addToCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request) {
+    public com.google.protobuf.Empty updateCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request) {
       return blockingUnaryCall(
-          getChannel(), getAddToCartMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public com.google.protobuf.Empty remoteFromCart(io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getRemoteFromCartMethod(), getCallOptions(), request);
+          getChannel(), getUpdateCartMethod(), getCallOptions(), request);
     }
 
     /**
@@ -375,18 +315,10 @@ public final class CartServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> addToCart(
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> updateCart(
         io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request) {
       return futureUnaryCall(
-          getChannel().newCall(getAddToCartMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> remoteFromCart(
-        io.adetalhouet.order.system.cart.grpc.UpdateCartRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getRemoteFromCartMethod(), getCallOptions()), request);
+          getChannel().newCall(getUpdateCartMethod(), getCallOptions()), request);
     }
 
     /**
@@ -399,9 +331,8 @@ public final class CartServiceGrpc {
   }
 
   private static final int METHODID_CREATE_CART = 0;
-  private static final int METHODID_ADD_TO_CART = 1;
-  private static final int METHODID_REMOTE_FROM_CART = 2;
-  private static final int METHODID_DELETE_CART = 3;
+  private static final int METHODID_UPDATE_CART = 1;
+  private static final int METHODID_DELETE_CART = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -424,12 +355,8 @@ public final class CartServiceGrpc {
           serviceImpl.createCart((com.google.protobuf.Empty) request,
               (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.cart.grpc.CartId>) responseObserver);
           break;
-        case METHODID_ADD_TO_CART:
-          serviceImpl.addToCart((io.adetalhouet.order.system.cart.grpc.UpdateCartRequest) request,
-              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
-          break;
-        case METHODID_REMOTE_FROM_CART:
-          serviceImpl.remoteFromCart((io.adetalhouet.order.system.cart.grpc.UpdateCartRequest) request,
+        case METHODID_UPDATE_CART:
+          serviceImpl.updateCart((io.adetalhouet.order.system.cart.grpc.UpdateCartRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         case METHODID_DELETE_CART:
@@ -498,8 +425,7 @@ public final class CartServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new CartServiceFileDescriptorSupplier())
               .addMethod(getCreateCartMethod())
-              .addMethod(getAddToCartMethod())
-              .addMethod(getRemoteFromCartMethod())
+              .addMethod(getUpdateCartMethod())
               .addMethod(getDeleteCartMethod())
               .build();
         }

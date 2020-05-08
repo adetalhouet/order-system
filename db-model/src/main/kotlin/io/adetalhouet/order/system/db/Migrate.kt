@@ -17,6 +17,6 @@ fun main() {
 // we have to create the model dump manually before letting the
 // migration do its job; at least for the first time.
     transaction {
-        SchemaUtils.create(Orders, Clients, Carts, CartItems, Products)
+        SchemaUtils.create(Orders, Clients, Carts, Products)
     }
 }

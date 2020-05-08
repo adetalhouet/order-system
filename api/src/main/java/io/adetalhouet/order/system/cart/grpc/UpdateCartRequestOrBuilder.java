@@ -27,4 +27,10 @@ public interface UpdateCartRequestOrBuilder extends
    * <code>.io.adetalhouet.order.system.cart.grpc.CartItem item = 2;</code>
    */
   io.adetalhouet.order.system.cart.grpc.CartItemOrBuilder getItemOrBuilder();
+
+  /**
+   * <code>bool isAdd = 3;</code>
+   * @return The isAdd.
+   */
+  boolean getIsAdd();
 }

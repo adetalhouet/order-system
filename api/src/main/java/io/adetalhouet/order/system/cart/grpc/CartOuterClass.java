@@ -50,29 +50,27 @@ public final class CartOuterClass {
     java.lang.String[] descriptorData = {
       "\n\ncart.proto\022%io.adetalhouet.order.syste" +
       "m.cart.grpc\032\033google/protobuf/empty.proto" +
-      "\032\037google/protobuf/timestamp.proto\"c\n\021Upd" +
+      "\032\037google/protobuf/timestamp.proto\"r\n\021Upd" +
       "ateCartRequest\022\017\n\007cart_id\030\001 \001(\003\022=\n\004item\030" +
       "\002 \001(\0132/.io.adetalhouet.order.system.cart" +
-      ".grpc.CartItem\"\031\n\006CartId\022\017\n\007cart_id\030\001 \001(" +
-      "\003\"E\n\010CartItem\022\022\n\nproduct_id\030\001 \001(\003\022\020\n\010qua" +
-      "ntity\030\002 \001(\005\022\023\n\013total_price\030\003 \001(\001\"P\n\tCart" +
-      "Items\022C\n\ncart_items\030\001 \003(\0132/.io.adetalhou" +
-      "et.order.system.cart.grpc.CartItem\"\237\001\n\004C" +
-      "art\022\n\n\002id\030\001 \001(\003\022D\n\ncart_items\030\002 \001(\01320.io" +
-      ".adetalhouet.order.system.cart.grpc.Cart" +
-      "Items\022\023\n\013total_price\030\003 \001(\001\0220\n\014last_updat" +
-      "ed\030\005 \001(\0132\032.google.protobuf.Timestamp2\372\002\n" +
-      "\013CartService\022S\n\nCreateCart\022\026.google.prot" +
-      "obuf.Empty\032-.io.adetalhouet.order.system" +
-      ".cart.grpc.CartId\022]\n\tAddToCart\0228.io.adet" +
-      "alhouet.order.system.cart.grpc.UpdateCar" +
-      "tRequest\032\026.google.protobuf.Empty\022b\n\016Remo" +
-      "teFromCart\0228.io.adetalhouet.order.system" +
-      ".cart.grpc.UpdateCartRequest\032\026.google.pr" +
-      "otobuf.Empty\022S\n\nDeleteCart\022-.io.adetalho" +
-      "uet.order.system.cart.grpc.CartId\032\026.goog" +
-      "le.protobuf.EmptyB)\n%io.adetalhouet.orde" +
-      "r.system.cart.grpcP\001b\006proto3"
+      ".grpc.CartItem\022\r\n\005isAdd\030\003 \001(\010\"\031\n\006CartId\022" +
+      "\017\n\007cart_id\030\001 \001(\003\"?\n\010CartItem\022\022\n\nproduct_" +
+      "id\030\001 \001(\003\022\020\n\010quantity\030\002 \001(\005\022\r\n\005price\030\003 \001(" +
+      "\001\"P\n\tCartItems\022C\n\ncart_items\030\001 \003(\0132/.io." +
+      "adetalhouet.order.system.cart.grpc.CartI" +
+      "tem\"\237\001\n\004Cart\022\n\n\002id\030\001 \001(\003\022D\n\ncart_items\030\002" +
+      " \001(\01320.io.adetalhouet.order.system.cart." +
+      "grpc.CartItems\022\023\n\013total_price\030\003 \001(\001\0220\n\014l" +
+      "ast_updated\030\005 \001(\0132\032.google.protobuf.Time" +
+      "stamp2\227\002\n\013CartService\022S\n\nCreateCart\022\026.go" +
+      "ogle.protobuf.Empty\032-.io.adetalhouet.ord" +
+      "er.system.cart.grpc.CartId\022^\n\nUpdateCart" +
+      "\0228.io.adetalhouet.order.system.cart.grpc" +
+      ".UpdateCartRequest\032\026.google.protobuf.Emp" +
+      "ty\022S\n\nDeleteCart\022-.io.adetalhouet.order." +
+      "system.cart.grpc.CartId\032\026.google.protobu" +
+      "f.EmptyB)\n%io.adetalhouet.order.system.c" +
+      "art.grpcP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -85,7 +83,7 @@ public final class CartOuterClass {
     internal_static_io_adetalhouet_order_system_cart_grpc_UpdateCartRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_cart_grpc_UpdateCartRequest_descriptor,
-        new java.lang.String[] { "CartId", "Item", });
+        new java.lang.String[] { "CartId", "Item", "IsAdd", });
     internal_static_io_adetalhouet_order_system_cart_grpc_CartId_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_io_adetalhouet_order_system_cart_grpc_CartId_fieldAccessorTable = new
@@ -97,7 +95,7 @@ public final class CartOuterClass {
     internal_static_io_adetalhouet_order_system_cart_grpc_CartItem_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_cart_grpc_CartItem_descriptor,
-        new java.lang.String[] { "ProductId", "Quantity", "TotalPrice", });
+        new java.lang.String[] { "ProductId", "Quantity", "Price", });
     internal_static_io_adetalhouet_order_system_cart_grpc_CartItems_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_io_adetalhouet_order_system_cart_grpc_CartItems_fieldAccessorTable = new

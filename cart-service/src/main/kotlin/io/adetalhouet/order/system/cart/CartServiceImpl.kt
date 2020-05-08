@@ -2,13 +2,11 @@ package io.adetalhouet.order.system.cart
 
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.cart.grpc.CartId
-import io.adetalhouet.order.system.cart.grpc.CartItem
 import io.adetalhouet.order.system.cart.grpc.CartItems
 import io.adetalhouet.order.system.cart.grpc.CartServiceGrpcKt
 import io.adetalhouet.order.system.cart.grpc.UpdateCartRequest
 import io.adetalhouet.order.system.db.domain.Carts
 import io.adetalhouet.order.system.db.domain.toCart
-import io.adetalhouet.order.system.db.domain.toCartItems
 import io.adetalhouet.order.system.db.domain.toJsonString
 import io.adetalhouet.order.system.db.utils.DatabaseFactory.Grpc.dbQuery
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
@@ -38,61 +36,23 @@ class CartServiceImpl : CartServiceGrpcKt.CartServiceCoroutineImplBase() {
         Empty.getDefaultInstance()
     }
 
-    override suspend fun addToCart(request: UpdateCartRequest): Empty = dbQuery {
+    override suspend fun updateCart(request: UpdateCartRequest): Empty = dbQuery {
         val cartToUpdate = Carts.select(Carts.id eq request.cartId).single().toCart()
-        var itemToAdd: CartItem = CartItem.getDefaultInstance()
+
         val cartItemList = cartToUpdate.cartItems.cartItemsList.toMutableList()
-
-        var updated = false
-        cartItemList.firstOrNull() { it.productId == request.item.productId }?.let {
-            updated = true
-            val newQuantity = it.quantity + request.item.quantity
-            val newTotal = it.totalPrice + request.item.totalPrice
-
-            itemToAdd = CartItem.newBuilder()
-                .setProductId(it.productId)
-                .setQuantity(newQuantity)
-                .setTotalPrice(newTotal)
-                .build()
-        } ?: run {
-            itemToAdd = request.item
-        }
-
-        if (updated) cartItemList.removeIf { it.productId == request.item.productId }
-        cartItemList.add(itemToAdd)
-
-        val itemList = CartItems.newBuilder()
-            .addAllCartItems(cartItemList)
-            .build()
-
-        val newTotalPrice = cartItemList.sumByDouble { it.totalPrice }
+        cartItemList.removeIf { it.productId == request.item.productId }
+        if (request.isAdd) cartItemList.add(request.item)
 
         Carts.update {
             it[id] = request.cartId
-            it[items] = itemList.toJsonString()
-            it[totalPrice] = newTotalPrice
+            it[items] = CartItems.newBuilder().addAllCartItems(cartItemList).build().toJsonString()
+            it[totalPrice] = cartItemList.sumByDouble { it.price * it.quantity }
             it[lastUpdatedMillis] = System.currentTimeMillis()
         }
 
-        log.debug("Added item(${request.item} to cart(id=${request.cartId}")
+        if (request.isAdd) log.debug("Added item(${request.item} to cart(id=${request.cartId}")
+        else log.debug("Remove item(${request.item} from cart(id=${request.cartId}")
+
         Empty.getDefaultInstance()
     }
-
-    override suspend fun remoteFromCart(request: UpdateCartRequest): Empty = dbQuery {
-        val cartToUpdate = Carts.select(Carts.id eq request.cartId).single().toCart()
-        val newTotalPrice = cartToUpdate.totalPrice - request.item.totalPrice
-
-        val newItemList = cartToUpdate.cartItems.cartItemsList.toMutableList()
-        newItemList.remove(request.item)
-
-        Carts.update {
-            it[id] = request.cartId
-            it[items] = newItemList.toCartItems()
-            it[totalPrice] = newTotalPrice
-        }
-
-        log.debug("Remove item(${request.item} from cart(id=${request.cartId}")
-        Empty.getDefaultInstance()
-    }
-
 }

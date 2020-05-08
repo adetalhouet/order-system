@@ -10,14 +10,14 @@ import "google/protobuf/timestamp.proto";
 
 service CartService {
   rpc CreateCart (google.protobuf.Empty) returns (CartId);
-  rpc AddToCart (UpdateCartRequest) returns (google.protobuf.Empty);
-  rpc RemoteFromCart (UpdateCartRequest) returns (google.protobuf.Empty);
+  rpc UpdateCart (UpdateCartRequest) returns (google.protobuf.Empty);
   rpc DeleteCart (CartId) returns (google.protobuf.Empty);
 }
 
 message UpdateCartRequest {
   int64 cart_id = 1;
   CartItem item = 2;
+  bool isAdd = 3;
 }
 
 message CartId {
@@ -27,7 +27,7 @@ message CartId {
 message CartItem {
   int64 product_id = 1;
   int32 quantity = 2;
-  double total_price = 3;
+  double price = 3;
 }
 
 message CartItems {

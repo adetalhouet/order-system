@@ -60,7 +60,7 @@ private static final long serialVersionUID = 0L;
           }
           case 25: {
 
-            totalPrice_ = input.readDouble();
+            price_ = input.readDouble();
             break;
           }
           default: {
@@ -115,14 +115,14 @@ private static final long serialVersionUID = 0L;
     return quantity_;
   }
 
-  public static final int TOTAL_PRICE_FIELD_NUMBER = 3;
-  private double totalPrice_;
+  public static final int PRICE_FIELD_NUMBER = 3;
+  private double price_;
   /**
-   * <code>double total_price = 3;</code>
-   * @return The totalPrice.
+   * <code>double price = 3;</code>
+   * @return The price.
    */
-  public double getTotalPrice() {
-    return totalPrice_;
+  public double getPrice() {
+    return price_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -145,8 +145,8 @@ private static final long serialVersionUID = 0L;
     if (quantity_ != 0) {
       output.writeInt32(2, quantity_);
     }
-    if (totalPrice_ != 0D) {
-      output.writeDouble(3, totalPrice_);
+    if (price_ != 0D) {
+      output.writeDouble(3, price_);
     }
     unknownFields.writeTo(output);
   }
@@ -165,9 +165,9 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, quantity_);
     }
-    if (totalPrice_ != 0D) {
+    if (price_ != 0D) {
       size += com.google.protobuf.CodedOutputStream
-        .computeDoubleSize(3, totalPrice_);
+        .computeDoubleSize(3, price_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -188,9 +188,9 @@ private static final long serialVersionUID = 0L;
         != other.getProductId()) return false;
     if (getQuantity()
         != other.getQuantity()) return false;
-    if (java.lang.Double.doubleToLongBits(getTotalPrice())
+    if (java.lang.Double.doubleToLongBits(getPrice())
         != java.lang.Double.doubleToLongBits(
-            other.getTotalPrice())) return false;
+            other.getPrice())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -207,9 +207,9 @@ private static final long serialVersionUID = 0L;
         getProductId());
     hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
     hash = (53 * hash) + getQuantity();
-    hash = (37 * hash) + TOTAL_PRICE_FIELD_NUMBER;
+    hash = (37 * hash) + PRICE_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        java.lang.Double.doubleToLongBits(getTotalPrice()));
+        java.lang.Double.doubleToLongBits(getPrice()));
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -347,7 +347,7 @@ private static final long serialVersionUID = 0L;
 
       quantity_ = 0;
 
-      totalPrice_ = 0D;
+      price_ = 0D;
 
       return this;
     }
@@ -377,7 +377,7 @@ private static final long serialVersionUID = 0L;
       io.adetalhouet.order.system.cart.grpc.CartItem result = new io.adetalhouet.order.system.cart.grpc.CartItem(this);
       result.productId_ = productId_;
       result.quantity_ = quantity_;
-      result.totalPrice_ = totalPrice_;
+      result.price_ = price_;
       onBuilt();
       return result;
     }
@@ -432,8 +432,8 @@ private static final long serialVersionUID = 0L;
       if (other.getQuantity() != 0) {
         setQuantity(other.getQuantity());
       }
-      if (other.getTotalPrice() != 0D) {
-        setTotalPrice(other.getTotalPrice());
+      if (other.getPrice() != 0D) {
+        setPrice(other.getPrice());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -524,32 +524,32 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private double totalPrice_ ;
+    private double price_ ;
     /**
-     * <code>double total_price = 3;</code>
-     * @return The totalPrice.
+     * <code>double price = 3;</code>
+     * @return The price.
      */
-    public double getTotalPrice() {
-      return totalPrice_;
+    public double getPrice() {
+      return price_;
     }
     /**
-     * <code>double total_price = 3;</code>
-     * @param value The totalPrice to set.
+     * <code>double price = 3;</code>
+     * @param value The price to set.
      * @return This builder for chaining.
      */
-    public Builder setTotalPrice(double value) {
+    public Builder setPrice(double value) {
       
-      totalPrice_ = value;
+      price_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>double total_price = 3;</code>
+     * <code>double price = 3;</code>
      * @return This builder for chaining.
      */
-    public Builder clearTotalPrice() {
+    public Builder clearPrice() {
       
-      totalPrice_ = 0D;
+      price_ = 0D;
       onChanged();
       return this;
     }

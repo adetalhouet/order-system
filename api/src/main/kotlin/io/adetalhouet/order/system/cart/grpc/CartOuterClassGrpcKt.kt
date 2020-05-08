@@ -66,26 +66,9 @@ object CartServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun addToCart(request: UpdateCartRequest): Empty = unaryRpc(
+    suspend fun updateCart(request: UpdateCartRequest): Empty = unaryRpc(
       channel,
-      CartServiceGrpc.getAddToCartMethod(),
-      request,
-      callOptions,
-      Metadata()
-    )
-    /**
-     * Executes this RPC and returns the response message, suspending until the RPC completes
-     * with [`Status.OK`][Status].  If the RPC completes with another status, a corresponding
-     * [StatusException] is thrown.  If this coroutine is cancelled, the RPC is also cancelled
-     * with the corresponding exception as a cause.
-     *
-     * @param request The request message to send to the server.
-     *
-     * @return The single response from the server.
-     */
-    suspend fun remoteFromCart(request: UpdateCartRequest): Empty = unaryRpc(
-      channel,
-      CartServiceGrpc.getRemoteFromCartMethod(),
+      CartServiceGrpc.getUpdateCartMethod(),
       request,
       callOptions,
       Metadata()
@@ -132,7 +115,7 @@ object CartServiceGrpcKt {
 
     /**
      * Returns the response to an RPC for
-     * io.adetalhouet.order.system.cart.grpc.CartService.AddToCart.
+     * io.adetalhouet.order.system.cart.grpc.CartService.UpdateCart.
      *
      * If this method fails with a [StatusException], the RPC will fail with the corresponding
      * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
@@ -142,23 +125,8 @@ object CartServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun addToCart(request: UpdateCartRequest): Empty = throw
-        StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.cart.grpc.CartService.AddToCart is unimplemented"))
-
-    /**
-     * Returns the response to an RPC for
-     * io.adetalhouet.order.system.cart.grpc.CartService.RemoteFromCart.
-     *
-     * If this method fails with a [StatusException], the RPC will fail with the corresponding
-     * [Status].  If this method fails with a [java.util.concurrent.CancellationException], the RPC
-     * will fail
-     * with status `Status.CANCELLED`.  If this method fails for any other reason, the RPC will
-     * fail with `Status.UNKNOWN` with the exception as a cause.
-     *
-     * @param request The request from the client.
-     */
-    open suspend fun remoteFromCart(request: UpdateCartRequest): Empty = throw
-        StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.cart.grpc.CartService.RemoteFromCart is unimplemented"))
+    open suspend fun updateCart(request: UpdateCartRequest): Empty = throw
+        StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.cart.grpc.CartService.UpdateCart is unimplemented"))
 
     /**
      * Returns the response to an RPC for
@@ -183,13 +151,8 @@ object CartServiceGrpcKt {
     ))
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
-      descriptor = CartServiceGrpc.getAddToCartMethod(),
-      implementation = ::addToCart
-    ))
-      .addMethod(unaryServerMethodDefinition(
-      context = this.context,
-      descriptor = CartServiceGrpc.getRemoteFromCartMethod(),
-      implementation = ::remoteFromCart
+      descriptor = CartServiceGrpc.getUpdateCartMethod(),
+      implementation = ::updateCart
     ))
       .addMethod(unaryServerMethodDefinition(
       context = this.context,
