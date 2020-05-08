@@ -28,10 +28,11 @@ extra["services"] = listOf(
 )
 
 plugins {
+    groovy
     kotlin("jvm") version "1.3.70" apply false
     id("org.asciidoctor.convert") version "1.5.6" apply false
     id("com.google.protobuf") version "0.8.11" apply false
-//    id("org.flywaydb.flyway") version "6.3.3" apply false
+//    id("com.github.ksoichiro.console.reporter") version "0.6.2"
     application
 }
 
@@ -41,6 +42,7 @@ application {
 
 allprojects {
     apply(plugin = "kotlin")
+    apply(plugin = "groovy")
 
     group = "io.adetalhouet.order.system"
     version = "1.0.0"

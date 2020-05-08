@@ -21,9 +21,15 @@ class DatabaseConfiguration(private val serviceName: String) {
     private val log = LoggerFactory.getLogger(DatabaseConfiguration::class.java)
 
     private val conf: Config = ConfigFactory.load()
-    private val dbUrl = conf.getString("postgres.url")
     private val dbUsername = conf.getString("postgres.username")
     private val dbPassword = conf.getString("postgres.password")
+    private var dbUrl = conf.getString("postgres.url")
+    private var driverName = "org.postgresql.Driver"
+
+    constructor(serviceName: String, url: String, driver: String) : this(serviceName) {
+        dbUrl = url
+        driverName = driver
+    }
 
     init {
         log.info("$serviceName: Order System database connection started")
@@ -32,7 +38,7 @@ class DatabaseConfiguration(private val serviceName: String) {
 
     private fun hikari(): HikariDataSource {
         val config = HikariConfig().apply {
-            driverClassName = "org.postgresql.Driver"
+            driverClassName = driverName
             jdbcUrl = dbUrl
             username = dbUsername
             password = dbPassword
