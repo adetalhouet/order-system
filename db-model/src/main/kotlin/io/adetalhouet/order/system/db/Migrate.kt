@@ -1,6 +1,5 @@
 package io.adetalhouet.order.system.db
 
-import io.adetalhouet.order.system.db.domain.CartItems
 import io.adetalhouet.order.system.db.domain.Carts
 import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.Orders

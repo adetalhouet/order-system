@@ -17,23 +17,24 @@ import org.jetbrains.exposed.sql.statements.expandArgs
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.slf4j.LoggerFactory
 
-class DatabaseConfiguration(private val serviceName: String) {
+class DatabaseConfiguration {
     private val log = LoggerFactory.getLogger(DatabaseConfiguration::class.java)
 
     private val conf: Config = ConfigFactory.load()
     private val dbUsername = conf.getString("postgres.username")
     private val dbPassword = conf.getString("postgres.password")
-    private var dbUrl = conf.getString("postgres.url")
-    private var driverName = "org.postgresql.Driver"
+    private var driverName: String
+    private var dbUrl: String
+    private val serviceName: String
 
-    constructor(serviceName: String, url: String, driver: String) : this(serviceName) {
-        dbUrl = url
-        driverName = driver
-    }
+    constructor(serviceName: String) : this(serviceName, "", "org.postgresql.Driver")
 
-    init {
-        log.info("$serviceName: Order System database connection started")
+    constructor(serviceName: String, url: String, driver: String) {
+        this.serviceName = serviceName
+        this.dbUrl = if (url.isBlank()) conf.getString("postgres.url") else url
+        this.driverName = driver
         Database.connect(hikari())
+        log.info("$serviceName: Order System database connection started")
     }
 
     private fun hikari(): HikariDataSource {

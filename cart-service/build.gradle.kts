@@ -7,10 +7,8 @@ application {
 dependencies {
     testImplementation(platform("org.spockframework:spock-bom:1.3-groovy-2.5"))
     testImplementation("org.spockframework", "spock-core", "1.3-groovy-2.5")
+    testImplementation("org.spockframework", "spock-guice", "1.3-groovy-2.5")
+    testImplementation("com.h2database", "h2", "1.4.200")
 
-    testImplementation("org.spockframework", "spock-core", "1.3-groovy-2.5")
-    testImplementation("org.codehaus.groovy.modules.http-builder", "http-builder", "0.7.2") {
-        exclude("commons-logging", "commons-logging")
-    }
-    testRuntime("org.slf4j", "jcl-over-slf4j", "1.7.26")
+    testImplementation("io.grpc:grpc-testing:${rootProject.extra.get("grpcVersion")}")
 }
