@@ -1,6 +1,7 @@
 rootProject.name = "order-system"
 
 include("db-lib",
+    "nats-lib",
     "db-model",
     "graphql-gw",
     "api",

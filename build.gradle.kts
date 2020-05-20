@@ -72,7 +72,7 @@ allprojects {
         implementation("org.jetbrains.exposed:exposed-dao:${rootProject.extra.get("exposedVersion")}")
         implementation("org.postgresql:postgresql:${rootProject.extra.get("postgresqlVersion")}")
 
-        implementation("com.typesafe:config:1.4.0")
+        implementation("io.github.config4k:config4k:0.4.1")
 
         testImplementation(kotlin("test"))
         testImplementation(kotlin("test-junit"))
