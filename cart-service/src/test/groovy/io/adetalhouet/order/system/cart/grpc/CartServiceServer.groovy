@@ -3,8 +3,6 @@ package io.adetalhouet.order.system.cart.grpc
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.cart.CartServiceImpl
 import io.adetalhouet.order.system.cart.TestUtilsKt
-import io.adetalhouet.order.system.cart.grpc.CartId
-import io.adetalhouet.order.system.cart.grpc.CartServiceGrpcKt
 import io.adetalhouet.order.system.cart.utils.GrpcCallInterceptor
 import io.grpc.ManagedChannel
 import io.grpc.inprocess.InProcessChannelBuilder
@@ -45,6 +43,12 @@ class CartServiceServer {
     CartId createCart() {
         return TestUtilsKt.runBlocking { cont ->
             stub.createCart(Empty.getDefaultInstance(), cont)
+        }
+    }
+
+    def deleteCart(CartId cartId) {
+        return TestUtilsKt.runBlocking { cont ->
+            stub.deleteCart(cartId, cont)
         }
     }
 

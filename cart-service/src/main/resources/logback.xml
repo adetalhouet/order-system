@@ -9,6 +9,6 @@
     </root>
     <logger name="org.eclipse.jetty" level="INFO"/>
     <logger name="io.netty" level="INFO"/>
-    <logger name="org.jetbrains.exposed" level="DEBUG"/>
+    <logger name="org.jetbrains.exposed" level="INFO"/>
     <logger name="io.adetalhouet.order.system.cart" level="DEBUG"/>
 </configuration>

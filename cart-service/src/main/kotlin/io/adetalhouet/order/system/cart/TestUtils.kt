@@ -1,5 +1,6 @@
 package io.adetalhouet.order.system.cart
 
+import io.adetalhouet.order.system.client.grpc.Client
 import io.adetalhouet.order.system.db.domain.Carts
 import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.Orders
@@ -7,6 +8,8 @@ import io.adetalhouet.order.system.db.domain.Products
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.deleteAll
+import org.jetbrains.exposed.sql.selectAll
 
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.Optional
@@ -31,3 +34,9 @@ fun <T : Any> runBlocking(lambda: (Continuation<T>) -> Any) = runBlocking {
 }
 
 fun createTables() = transaction { SchemaUtils.create(Orders, Clients, Carts, Products) }
+
+fun cleanTables() = transaction {
+    Carts.deleteAll()
+}
+
+fun getCartSize(): Int = transaction { Carts.selectAll().count() }

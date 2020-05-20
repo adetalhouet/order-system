@@ -29,7 +29,7 @@ extra["services"] = listOf(
 
 plugins {
     groovy
-    kotlin("jvm") version "1.3.70" apply false
+    kotlin("jvm") version "1.3.70"
     id("org.asciidoctor.convert") version "1.5.6" apply false
     id("com.google.protobuf") version "0.8.11" apply false
     application
@@ -78,6 +78,11 @@ allprojects {
         testImplementation(kotlin("test-junit"))
     }
 }
+
+//tasks.compileTestGroovy {
+//    dependsOn(tasks.compileTestKotlin)
+//    classpath += files(tasks.compileTestKotlin.get().destinationDir)
+//}
 
 configure(extra.get("services") as List<Project>) {
     apply(plugin = "application")
