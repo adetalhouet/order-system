@@ -26,16 +26,10 @@ public interface ProductOrBuilder extends
       getNameBytes();
 
   /**
-   * <code>string price = 3;</code>
+   * <code>double price = 3;</code>
    * @return The price.
    */
-  java.lang.String getPrice();
-  /**
-   * <code>string price = 3;</code>
-   * @return The bytes for price.
-   */
-  com.google.protobuf.ByteString
-      getPriceBytes();
+  double getPrice();
 
   /**
    * <code>int32 quantity = 4;</code>

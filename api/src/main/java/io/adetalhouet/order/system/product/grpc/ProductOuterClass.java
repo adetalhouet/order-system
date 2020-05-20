@@ -51,7 +51,7 @@ public final class ProductOuterClass {
       "Products\022C\n\010products\030\001 \003(\01321.io.adetalho" +
       "uet.order.system.product.grpc.Product\"v\n" +
       "\007Product\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005pr" +
-      "ice\030\003 \001(\t\022\020\n\010quantity\030\004 \001(\005\0220\n\014last_upda" +
+      "ice\030\003 \001(\001\022\020\n\010quantity\030\004 \001(\005\0220\n\014last_upda" +
       "ted\030\005 \001(\0132\032.google.protobuf.Timestamp2\274\003" +
       "\n\016ProductService\022W\n\nAddProduct\0221.io.adet" +
       "alhouet.order.system.product.grpc.Produc" +

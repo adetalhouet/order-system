@@ -17,7 +17,6 @@ private static final long serialVersionUID = 0L;
   }
   private Product() {
     name_ = "";
-    price_ = "";
   }
 
   @java.lang.Override
@@ -61,10 +60,9 @@ private static final long serialVersionUID = 0L;
             name_ = s;
             break;
           }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
+          case 25: {
 
-            price_ = s;
+            price_ = input.readDouble();
             break;
           }
           case 32: {
@@ -164,39 +162,13 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int PRICE_FIELD_NUMBER = 3;
-  private volatile java.lang.Object price_;
+  private double price_;
   /**
-   * <code>string price = 3;</code>
+   * <code>double price = 3;</code>
    * @return The price.
    */
-  public java.lang.String getPrice() {
-    java.lang.Object ref = price_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      price_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string price = 3;</code>
-   * @return The bytes for price.
-   */
-  public com.google.protobuf.ByteString
-      getPriceBytes() {
-    java.lang.Object ref = price_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      price_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public double getPrice() {
+    return price_;
   }
 
   public static final int QUANTITY_FIELD_NUMBER = 4;
@@ -252,8 +224,8 @@ private static final long serialVersionUID = 0L;
     if (!getNameBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
     }
-    if (!getPriceBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, price_);
+    if (price_ != 0D) {
+      output.writeDouble(3, price_);
     }
     if (quantity_ != 0) {
       output.writeInt32(4, quantity_);
@@ -277,8 +249,9 @@ private static final long serialVersionUID = 0L;
     if (!getNameBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
     }
-    if (!getPriceBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, price_);
+    if (price_ != 0D) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeDoubleSize(3, price_);
     }
     if (quantity_ != 0) {
       size += com.google.protobuf.CodedOutputStream
@@ -307,8 +280,9 @@ private static final long serialVersionUID = 0L;
         != other.getId()) return false;
     if (!getName()
         .equals(other.getName())) return false;
-    if (!getPrice()
-        .equals(other.getPrice())) return false;
+    if (java.lang.Double.doubleToLongBits(getPrice())
+        != java.lang.Double.doubleToLongBits(
+            other.getPrice())) return false;
     if (getQuantity()
         != other.getQuantity()) return false;
     if (hasLastUpdated() != other.hasLastUpdated()) return false;
@@ -333,7 +307,8 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
     hash = (37 * hash) + PRICE_FIELD_NUMBER;
-    hash = (53 * hash) + getPrice().hashCode();
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        java.lang.Double.doubleToLongBits(getPrice()));
     hash = (37 * hash) + QUANTITY_FIELD_NUMBER;
     hash = (53 * hash) + getQuantity();
     if (hasLastUpdated()) {
@@ -477,7 +452,7 @@ private static final long serialVersionUID = 0L;
 
       name_ = "";
 
-      price_ = "";
+      price_ = 0D;
 
       quantity_ = 0;
 
@@ -577,9 +552,8 @@ private static final long serialVersionUID = 0L;
         name_ = other.name_;
         onChanged();
       }
-      if (!other.getPrice().isEmpty()) {
-        price_ = other.price_;
-        onChanged();
+      if (other.getPrice() != 0D) {
+        setPrice(other.getPrice());
       }
       if (other.getQuantity() != 0) {
         setQuantity(other.getQuantity());
@@ -722,78 +696,32 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object price_ = "";
+    private double price_ ;
     /**
-     * <code>string price = 3;</code>
+     * <code>double price = 3;</code>
      * @return The price.
      */
-    public java.lang.String getPrice() {
-      java.lang.Object ref = price_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        price_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    public double getPrice() {
+      return price_;
     }
     /**
-     * <code>string price = 3;</code>
-     * @return The bytes for price.
-     */
-    public com.google.protobuf.ByteString
-        getPriceBytes() {
-      java.lang.Object ref = price_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        price_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string price = 3;</code>
+     * <code>double price = 3;</code>
      * @param value The price to set.
      * @return This builder for chaining.
      */
-    public Builder setPrice(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
+    public Builder setPrice(double value) {
+      
       price_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string price = 3;</code>
+     * <code>double price = 3;</code>
      * @return This builder for chaining.
      */
     public Builder clearPrice() {
       
-      price_ = getDefaultInstance().getPrice();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string price = 3;</code>
-     * @param value The bytes for price to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPriceBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      price_ = value;
+      price_ = 0D;
       onChanged();
       return this;
     }

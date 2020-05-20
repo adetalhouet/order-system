@@ -6,6 +6,7 @@ import io.adetalhouet.order.system.cart.grpc.Cart
 import io.adetalhouet.order.system.cart.grpc.CartItem
 import io.adetalhouet.order.system.client.grpc.Client
 import io.adetalhouet.order.system.order.grpc.Order
+import io.adetalhouet.order.system.product.grpc.Product
 import org.jetbrains.exposed.sql.ResultRow
 import java.util.concurrent.TimeUnit
 
@@ -60,3 +61,15 @@ fun List<CartItem>.toCartItems(): String = io.adetalhouet.order.system.cart.grpc
     .newBuilder().addAllCartItems(this).build().toJsonString()
 
 fun io.adetalhouet.order.system.cart.grpc.CartItems.toJsonString(): String = JsonFormat.printer().print(this)
+
+fun ResultRow.toProduct(): Product =
+    Product.newBuilder()
+        .setId(this[Products.id])
+        .setQuantity(this[Products.quantity])
+        .setName(this[Products.name])
+        .setPrice(this[Products.price])
+        .setLastUpdated(this[Products.lastUpdatedMillis].toTimestamp())
+        .build()
+
+fun List<Product>.toProducts(): io.adetalhouet.order.system.product.grpc.Products =
+    io.adetalhouet.order.system.product.grpc.Products.newBuilder().addAllProducts(this).build()
