@@ -6,5 +6,4 @@ buildscript {
 
 dependencies {
     implementation("io.nats:jnats:${rootProject.extra.get("natsVersion")}")
-
 }

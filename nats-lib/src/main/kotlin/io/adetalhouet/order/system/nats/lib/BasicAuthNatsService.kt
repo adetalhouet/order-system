@@ -18,7 +18,7 @@ class BasicAuthNatsService(private val natsConnectionProperties: BasicAuthNatsCo
                         natsConnectionProperties.password.toCharArray())
                     .connectionTimeout(Duration.ofSeconds(natsConnectionProperties.connectionTimeout))
                     .pingInterval(Duration.ofSeconds(natsConnectionProperties.pingInterval))
-                    .maxPingsOut(natsConnectionProperties.pingsOut)
+                    .maxPingsOut(natsConnectionProperties.maxPingsOut)
                     .maxReconnects(natsConnectionProperties.maxReconnects)
                     .reconnectWait(Duration.ofSeconds(natsConnectionProperties.reconnectWait))
                     .connectionName(natsConnectionProperties.connectionName)

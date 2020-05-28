@@ -13,7 +13,7 @@ class NatsPropertiesService {
         natsService(conf.extract<BasicAuthNatsConnectionProperties>())
     }
 
-    private fun natsService(natsConnectionProperties: NatsConnectionProperties): NatsService {
+    fun natsService(natsConnectionProperties: NatsConnectionProperties): NatsService {
         return when (natsConnectionProperties) {
             is BasicAuthNatsConnectionProperties -> {
                 BasicAuthNatsService(natsConnectionProperties)

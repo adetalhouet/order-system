@@ -74,15 +74,13 @@ allprojects {
 
         implementation("io.github.config4k:config4k:0.4.1")
 
-        testImplementation(kotlin("test"))
-        testImplementation(kotlin("test-junit"))
+        testImplementation(platform("org.spockframework:spock-bom:1.3-groovy-2.5"))
+        testImplementation("org.spockframework", "spock-core", "1.3-groovy-2.5")
+        testImplementation("org.spockframework", "spock-guice", "1.3-groovy-2.5")
+        testImplementation("com.h2database", "h2", "1.4.200")
+        testImplementation("io.grpc:grpc-testing:${rootProject.extra.get("grpcVersion")}")
     }
 }
-
-//tasks.compileTestGroovy {
-//    dependsOn(tasks.compileTestKotlin)
-//    classpath += files(tasks.compileTestKotlin.get().destinationDir)
-//}
 
 configure(extra.get("services") as List<Project>) {
     apply(plugin = "application")

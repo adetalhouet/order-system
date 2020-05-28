@@ -7,7 +7,7 @@ import io.nats.client.MessageHandler
 import io.nats.client.Subscription
 import java.time.Duration
 
-interface NatsService {
+interface NatsService : AutoCloseable {
 
     fun connection(): Connection
 
@@ -15,24 +15,27 @@ interface NatsService {
         return connection().request(subject, message, Duration.ofMillis(timeout))
     }
 
-    suspend fun requestAndGetMultipleReplies(subject: String, replySubject: String, message: ByteArray,
-                                             messageHandler: MessageHandler) {
-        val natsConnection = connection()
-        val dispatcher = natsConnection.createDispatcher(messageHandler)
-        dispatcher.subscribe(replySubject)
-        natsConnection.publish(subject, replySubject, message)
-    }
-
-    suspend fun replySubscribe(subject: String, messageHandler: MessageHandler): Dispatcher {
-        val dispatcher = connection().createDispatcher(messageHandler)
-        return dispatcher.subscribe(subject)
+    suspend fun createDispatcher(messageHandler: MessageHandler): Dispatcher {
+        return connection().createDispatcher(messageHandler)
     }
 
     suspend fun publish(subject: String, message: ByteArray) {
         connection().publish(subject, message)
     }
 
-    suspend fun subscribe(subject: String, queueName: String): Subscription {
-        return connection().subscribe(subject, queueName)
+    suspend fun publish(subject: String, replyTo: String, message: ByteArray) {
+        connection().publish(subject, replyTo, message)
+    }
+
+    suspend fun subscribe(subject: String): Subscription {
+        return connection().subscribe(subject)
+    }
+
+    fun flush(duration: Duration) {
+        connection().flush(duration)
+    }
+
+    override fun close() {
+        connection().close()
     }
 }
