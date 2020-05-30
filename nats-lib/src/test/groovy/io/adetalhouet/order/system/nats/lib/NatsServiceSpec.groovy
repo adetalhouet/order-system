@@ -6,10 +6,12 @@ import com.typesafe.config.ConfigFactory
 import io.nats.client.Dispatcher
 import io.nats.client.Message
 import io.nats.client.Subscription
+import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import java.time.Duration
 
+@Ignore
 class NatsServiceSpec extends Specification {
 
     @Shared
