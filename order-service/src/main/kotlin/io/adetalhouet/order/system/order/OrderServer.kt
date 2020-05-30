@@ -1,30 +1,34 @@
-package io.adetalhouet.order.system.client
+package io.adetalhouet.order.system.order
 
+import com.google.inject.Inject
 import com.google.inject.Singleton
-import io.adetalhouet.order.system.db.lib.DatabaseConnectionConfiguration
+import io.adetalhouet.order.system.order.grpc.OrderServiceGrpcKt
 import io.grpc.Server
 import io.grpc.ServerBuilder
 import java.io.IOException
 
 @Singleton
-class CartServer(private val port: Int) {
+class OrderServer(private val port: Int) {
+
+    @Inject
+    private lateinit var orderService: OrderServiceGrpcKt.OrderServiceCoroutineImplBase
+
     private var server: Server? = null
 
     @Throws(IOException::class)
     fun start() {
 
-        server = ServerBuilder.forPort(port)
-            .addService(ClientServiceImpl())
+        server = ServerBuilder
+            .forPort(port)
+            .addService(orderService)
             .build()
             .start()
-
-
-        println("Client server started, listening on $port")
+        println("Order server started, listening on $port")
 
         Runtime.getRuntime().addShutdownHook(object : Thread() {
             override fun run() {
                 println("*** shutting down gRPC server since JVM is shutting down")
-                this@CartServer.stop()
+                this@OrderServer.stop()
             }
         })
     }
@@ -37,16 +41,4 @@ class CartServer(private val port: Int) {
     fun blockUntilShutdown() {
         server?.awaitTermination()
     }
-}
-
-fun main(args: Array<String>) {
-    val service = "client-service"
-
-    val port = 9091
-    val server = CartServer(port)
-    server.start()
-
-    DatabaseConnectionConfiguration(service)
-
-    server.blockUntilShutdown()
 }

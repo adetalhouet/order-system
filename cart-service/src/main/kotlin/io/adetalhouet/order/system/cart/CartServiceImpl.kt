@@ -8,7 +8,7 @@ import io.adetalhouet.order.system.cart.grpc.UpdateCartRequest
 import io.adetalhouet.order.system.db.domain.Carts
 import io.adetalhouet.order.system.db.domain.toCart
 import io.adetalhouet.order.system.db.domain.toJsonString
-import io.adetalhouet.order.system.db.utils.DatabaseFactory.Grpc.dbQuery
+import io.adetalhouet.order.system.db.lib.DatabaseFactory.Grpc.dbQuery
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert

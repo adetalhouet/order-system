@@ -1,5 +1,8 @@
 package io.adetalhouet.order.system.nats.lib
 
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
+import io.github.config4k.extract
 import io.nats.client.Connection
 import io.nats.client.Dispatcher
 import io.nats.client.Message
@@ -7,7 +10,16 @@ import io.nats.client.MessageHandler
 import io.nats.client.Subscription
 import java.time.Duration
 
+internal fun defaultNatsInstance(natsPropertiesService: NatsPropertiesService): NatsService {
+    val conf: Config = ConfigFactory.load()
+    return natsPropertiesService.natsService(conf.extract<BasicAuthNatsConnectionProperties>())
+}
+
 interface NatsService : AutoCloseable {
+
+    enum class Inbox {
+        ORDER, PRODUCT
+    }
 
     fun connection(): Connection
 
@@ -19,7 +31,7 @@ interface NatsService : AutoCloseable {
         return connection().createDispatcher(messageHandler)
     }
 
-    suspend fun publish(subject: String, message: ByteArray) {
+    fun publish(subject: String, message: ByteArray) {
         connection().publish(subject, message)
     }
 
@@ -27,7 +39,7 @@ interface NatsService : AutoCloseable {
         connection().publish(subject, replyTo, message)
     }
 
-    suspend fun subscribe(subject: String): Subscription {
+    fun subscribe(subject: String): Subscription {
         return connection().subscribe(subject)
     }
 

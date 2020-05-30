@@ -8,7 +8,7 @@ import io.adetalhouet.order.system.client.grpc.GetClientByIdRequest
 import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.toClient
 import io.adetalhouet.order.system.db.domain.toClients
-import io.adetalhouet.order.system.db.utils.DatabaseFactory.dbQuery
+import io.adetalhouet.order.system.db.lib.DatabaseFactory.dbQuery
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insertIgnore
 import org.jetbrains.exposed.sql.select

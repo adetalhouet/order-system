@@ -1,4 +1,4 @@
-package io.adetalhouet.order.system.db.utils
+package io.adetalhouet.order.system.db.lib
 
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
@@ -17,8 +17,8 @@ import org.jetbrains.exposed.sql.statements.expandArgs
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction
 import org.slf4j.LoggerFactory
 
-class DatabaseConfiguration {
-    private val log = LoggerFactory.getLogger(DatabaseConfiguration::class.java)
+class DatabaseConnectionConfiguration {
+    private val log = LoggerFactory.getLogger(DatabaseConnectionConfiguration::class.java)
 
     private val conf: Config = ConfigFactory.load()
     private val dbUsername = conf.getString("postgres.username")

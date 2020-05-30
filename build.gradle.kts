@@ -17,6 +17,9 @@ buildscript {
 
     val graphqlRejoinerVersion by rootProject.extra { "0.0.4" }
 
+    val natsVersion by rootProject.extra { "2.6.7" }
+
+
 }
 
 extra["services"] = listOf(
@@ -74,6 +77,8 @@ allprojects {
 
         implementation("io.github.config4k:config4k:0.4.1")
 
+        implementation("io.nats:jnats:${rootProject.extra.get("natsVersion")}")
+
         testImplementation(platform("org.spockframework:spock-bom:1.3-groovy-2.5"))
         testImplementation("org.spockframework", "spock-core", "1.3-groovy-2.5")
         testImplementation("org.spockframework", "spock-guice", "1.3-groovy-2.5")
@@ -89,6 +94,7 @@ configure(extra.get("services") as List<Project>) {
         implementation(project(":api"))
         implementation(project(":db-lib"))
         implementation(project(":db-model"))
+        implementation(project(":nats-lib"))
     }
 }
 

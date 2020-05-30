@@ -6,7 +6,7 @@ import com.google.protobuf.util.JsonFormat
 import io.adetalhouet.order.system.db.domain.Products
 import io.adetalhouet.order.system.db.domain.toProduct
 import io.adetalhouet.order.system.db.domain.toProducts
-import io.adetalhouet.order.system.db.utils.DatabaseFactory.Grpc.dbQuery
+import io.adetalhouet.order.system.db.lib.DatabaseFactory.Grpc.dbQuery
 import io.adetalhouet.order.system.product.grpc.DeleteProductByIdRequest
 import io.adetalhouet.order.system.product.grpc.GetProductByIdRequest
 import io.adetalhouet.order.system.product.grpc.Product

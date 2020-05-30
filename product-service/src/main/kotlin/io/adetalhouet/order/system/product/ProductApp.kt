@@ -1,43 +1,34 @@
 package io.adetalhouet.order.system.product
 
-import com.google.inject.Singleton
-import io.grpc.Server
-import io.grpc.ServerBuilder
-import java.io.IOException
+import com.google.inject.Guice
+import com.google.inject.Inject
+import io.adetalhouet.order.system.cart.di.CartClientModule
+import io.nats.client.MessageHandler
+import io.adetalhouet.order.system.db.lib.DatabaseConnectionConfiguration
+import io.adetalhouet.order.system.nats.lib.NatsModule
+import io.adetalhouet.order.system.nats.lib.NatsService
+import io.adetalhouet.order.system.order.grpc.Order
 
-@Singleton
-class ProductServer(private val port: Int) {
-    private var server: Server? = null
+class ProductApp {
+    @Inject
+    lateinit var natsService: NatsService
 
-    @Throws(IOException::class)
-    fun start() {
-        server = ServerBuilder.forPort(port)
-            .addService(ProductServiceImpl())
-            .build()
-            .start()
-        println("Order server started, listening on $port")
-
-        Runtime.getRuntime().addShutdownHook(object : Thread() {
-            override fun run() {
-                println("*** shutting down gRPC server since JVM is shutting down")
-                this@ProductServer.stop()
-            }
-        })
+    init {
+        Guice.createInjector(ProductModule(), NatsModule(), CartClientModule())
+        startApp()
     }
 
-    fun stop() {
-        server?.shutdown()
-    }
+    fun startApp() {
+        DatabaseConnectionConfiguration("order-service")
 
-    @Throws(InterruptedException::class)
-    fun blockUntilShutdown() {
-        server?.awaitTermination()
-    }
-}
+        val port = 9093
+        val server = ProductServer(port)
+        server.start()
+        server.blockUntilShutdown()
 
-fun main(args: Array<String>) {
-    val port = 9093
-    val server = ProductServer(port)
-    server.start()
-    server.blockUntilShutdown()
+//        val messageHandler =
+//        natsService.createDispatcher(messageHandler)
+
+        natsService.subscribe(NatsService.Inbox.PRODUCT.name)
+    }
 }

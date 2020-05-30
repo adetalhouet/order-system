@@ -1,10 +1,12 @@
 package io.adetalhouet.order.system.order
 
+import com.google.inject.Inject
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.db.domain.Orders
 import io.adetalhouet.order.system.db.domain.toOrder
 import io.adetalhouet.order.system.db.domain.toOrders
-import io.adetalhouet.order.system.db.utils.DatabaseFactory.Grpc.dbQuery
+import io.adetalhouet.order.system.db.lib.DatabaseFactory.Grpc.dbQuery
+import io.adetalhouet.order.system.nats.lib.NatsService
 import io.adetalhouet.order.system.order.grpc.GetOrdersByClientRequest
 import io.adetalhouet.order.system.order.grpc.Order
 import io.adetalhouet.order.system.order.grpc.OrderServiceGrpcKt
@@ -16,19 +18,25 @@ import org.jetbrains.exposed.sql.select
 
 class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
-    override suspend fun placeOrder(request: Order): Empty = dbQuery {
+    @Inject
+    private lateinit var natsService: NatsService
+
+    override suspend fun placeOrder(request: Order): Empty {
 
         // send message to product service to decrease inventory of product
+        natsService.publish(NatsService.Inbox.PRODUCT.name, request.toByteArray())
 
-        Orders.insert {
-            it[id] = request.id
-            it[clientId] = request.clientId
-            it[cartId] = request.cartId
-            it[state] = Order.State.PLACED
-            it[dateCreatedMillis] = System.currentTimeMillis()
+        dbQuery {
+            Orders.insert {
+                it[id] = request.id
+                it[clientId] = request.clientId
+                it[cartId] = request.cartId
+                it[state] = Order.State.PLACED
+                it[dateCreatedMillis] = System.currentTimeMillis()
+            }
         }
 
-        Empty.getDefaultInstance()
+        return Empty.getDefaultInstance()
     }
 
     override suspend fun trackOrderById(request: TrackOrderByIdRequest): TrackOrderByIdResponse = dbQuery {

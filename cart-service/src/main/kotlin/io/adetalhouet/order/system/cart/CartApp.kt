@@ -1,47 +1,20 @@
 package io.adetalhouet.order.system.cart
 
-import com.google.inject.Singleton
-import io.adetalhouet.order.system.db.utils.DatabaseConfiguration
-import io.grpc.Server
-import io.grpc.ServerBuilder
-import java.io.IOException
+import com.google.inject.Guice
+import io.adetalhouet.order.system.cart.di.CartServerModule
+import io.adetalhouet.order.system.db.lib.DatabaseConnectionConfiguration
+import io.adetalhouet.order.system.nats.lib.NatsModule
 
-@Singleton
-class CartServer(private val port: Int) {
-    private var server: Server? = null
+class CartApp {
 
-    @Throws(IOException::class)
-    fun start() {
+    init {
 
-        server = ServerBuilder.forPort(port)
-            .addService(CartServiceImpl())
-            .build()
-            .start()
-        println("Cart server started, listening on $port")
-        Runtime.getRuntime().addShutdownHook(object : Thread() {
-            override fun run() {
-                println("*** shutting down gRPC server since JVM is shutting down")
-                this@CartServer.stop()
-            }
-        })
+        Guice.createInjector(CartServerModule(), NatsModule())
+        val server = CartServer()
+        server.start()
+
+        DatabaseConnectionConfiguration("cart-service")
+
+        server.blockUntilShutdown()
     }
-
-    fun stop() {
-        server?.shutdown()
-    }
-
-    @Throws(InterruptedException::class)
-    fun blockUntilShutdown() {
-        server?.awaitTermination()
-    }
-}
-
-fun main(args: Array<String>) {
-    val port = 9090
-    val server = CartServer(port)
-    server.start()
-
-    DatabaseConfiguration("cart-service")
-
-    server.blockUntilShutdown()
 }
