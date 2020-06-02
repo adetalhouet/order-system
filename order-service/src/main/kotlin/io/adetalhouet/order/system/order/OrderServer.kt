@@ -1,14 +1,16 @@
 package io.adetalhouet.order.system.order
 
 import com.google.inject.Inject
-import com.google.inject.Singleton
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
 import io.adetalhouet.order.system.order.grpc.OrderServiceGrpcKt
 import io.grpc.Server
 import io.grpc.ServerBuilder
+import org.slf4j.LoggerFactory
 import java.io.IOException
 
-@Singleton
-class OrderServer(private val port: Int) {
+class OrderServer {
+    private val log = LoggerFactory.getLogger(OrderServer::class.java)
 
     @Inject
     private lateinit var orderService: OrderServiceGrpcKt.OrderServiceCoroutineImplBase
@@ -18,16 +20,16 @@ class OrderServer(private val port: Int) {
     @Throws(IOException::class)
     fun start() {
 
-        server = ServerBuilder
-            .forPort(port)
+        val conf: Config = ConfigFactory.load()
+        server = ServerBuilder.forPort(conf.getInt("order.port"))
             .addService(orderService)
             .build()
             .start()
-        println("Order server started, listening on $port")
+        log.info("Order server started")
 
         Runtime.getRuntime().addShutdownHook(object : Thread() {
             override fun run() {
-                println("*** shutting down gRPC server since JVM is shutting down")
+                log.info("*** shutting down gRPC server since JVM is shutting down")
                 this@OrderServer.stop()
             }
         })

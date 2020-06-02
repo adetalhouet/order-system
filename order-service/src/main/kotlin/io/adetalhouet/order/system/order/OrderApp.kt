@@ -1,28 +1,17 @@
 package io.adetalhouet.order.system.order
 
 import com.google.inject.Guice
-import com.google.inject.Inject
-import io.adetalhouet.order.system.db.lib.DatabaseConnectionConfiguration
+import io.adetalhouet.order.system.db.lib.DatabaseModule
 import io.adetalhouet.order.system.nats.lib.NatsModule
-import io.adetalhouet.order.system.nats.lib.NatsService
+import io.adetalhouet.order.system.order.di.OrderServerModule
 
-class OrderApp {
+fun main() {
+    val injector = Guice.createInjector(OrderServerModule(), DatabaseModule(), NatsModule())
 
-    @Inject
-    lateinit var natsService: NatsService
+    val db = injector.getInstance(DatabaseModule.DEFAULT_INSTANCE)
+    db.connect()
 
-    init {
-        Guice.createInjector(OrderServerModule(), NatsModule())
-        startApp()
-    }
-
-    private fun startApp() {
-        DatabaseConnectionConfiguration("order-service")
-
-        val port = 9092
-        val server = OrderServer(port)
-        server.start()
-        server.blockUntilShutdown()
-//        natsService.
-    }
+    val server = injector.getInstance(OrderServer::class.java)
+    server.start()
+    server.blockUntilShutdown()
 }

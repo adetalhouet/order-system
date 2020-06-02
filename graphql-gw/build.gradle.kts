@@ -7,7 +7,6 @@ application {
 dependencies {
     implementation("com.google.api.graphql:rejoiner:${rootProject.extra.get("graphqlRejoinerVersion")}")
     implementation("org.eclipse.jetty:jetty-server:9.4.28.v20200408")
-    implementation(kotlin("reflect"))
 
     implementation(project(":order-service"))
     implementation(project(":client-service"))

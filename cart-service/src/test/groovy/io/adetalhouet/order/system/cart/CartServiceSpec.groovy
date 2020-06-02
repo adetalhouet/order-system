@@ -1,14 +1,17 @@
 package io.adetalhouet.order.system.cart
 
 import com.google.inject.Inject
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigBeanFactory
+import com.typesafe.config.ConfigFactory
 import io.adetalhouet.order.system.cart.di.TestModule
 import io.adetalhouet.order.system.cart.grpc.CartId
 import io.adetalhouet.order.system.cart.grpc.CartServiceServer
 import io.adetalhouet.order.system.cart.utils.GrpcCallInterceptor
-import io.adetalhouet.order.system.db.utils.DatabaseConfiguration
+import io.adetalhouet.order.system.db.lib.DatabaseConnectionProperties
+import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
 import spock.guice.UseModules
 import spock.lang.Specification
-import spock.lang.Unroll
 
 @UseModules(TestModule)
 class CartServiceSpec extends Specification {
@@ -17,7 +20,15 @@ class CartServiceSpec extends Specification {
     CartServiceServer server
 
     def setupSpec() {
-        DatabaseConfiguration db = new DatabaseConfiguration("test-carts-service", "jdbc:h2:mem:carts", "org.h2.Driver")
+        DatabaseConnectionProperties props = new DatabaseConnectionProperties(
+                "org.h2.Driver",
+                "jdbc:h2:mem:carts",
+                "order-system",
+                "Password123"
+        )
+        DatabaseServiceImpl db = new DatabaseServiceImpl(props)
+        db.connect()
+
         TestUtilsKt.createTables()
         TestUtilsKt.getCartSize()
         TestUtilsKt.cleanTables()

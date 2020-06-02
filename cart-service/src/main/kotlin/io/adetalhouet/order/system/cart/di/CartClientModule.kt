@@ -10,7 +10,7 @@ class CartClientModule : AbstractModule() {
     override fun configure() {
         val conf: Config = ConfigFactory.load()
         val channel = ManagedChannelBuilder
-            .forAddress(conf.getString("cart.host"), conf.getInt("cart.port"))
+            .forAddress(conf.getString("cart.url"), conf.getInt("cart.port"))
             .usePlaintext()
             .build()
         bind(CartServiceGrpc.CartServiceFutureStub::class.java)

@@ -2,19 +2,15 @@ package io.adetalhouet.order.system.cart
 
 import com.google.inject.Guice
 import io.adetalhouet.order.system.cart.di.CartServerModule
-import io.adetalhouet.order.system.db.lib.DatabaseConnectionConfiguration
-import io.adetalhouet.order.system.nats.lib.NatsModule
+import io.adetalhouet.order.system.db.lib.DatabaseModule
 
-class CartApp {
+fun main() {
+    val injector = Guice.createInjector(CartServerModule(), DatabaseModule())
 
-    init {
+    val db = injector.getInstance(DatabaseModule.DEFAULT_INSTANCE)
+    db.connect()
 
-        Guice.createInjector(CartServerModule(), NatsModule())
-        val server = CartServer()
-        server.start()
-
-        DatabaseConnectionConfiguration("cart-service")
-
-        server.blockUntilShutdown()
-    }
+    val server = injector.getInstance(CartServer::class.java)
+    server.start()
+    server.blockUntilShutdown()
 }

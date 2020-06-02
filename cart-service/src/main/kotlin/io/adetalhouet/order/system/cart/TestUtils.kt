@@ -1,6 +1,5 @@
 package io.adetalhouet.order.system.cart
 
-import io.adetalhouet.order.system.client.grpc.Client
 import io.adetalhouet.order.system.db.domain.Carts
 import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.Orders

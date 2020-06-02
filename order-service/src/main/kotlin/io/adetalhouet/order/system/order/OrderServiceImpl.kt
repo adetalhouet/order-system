@@ -1,11 +1,12 @@
 package io.adetalhouet.order.system.order
 
 import com.google.inject.Inject
+import com.google.inject.name.Named
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.db.domain.Orders
 import io.adetalhouet.order.system.db.domain.toOrder
 import io.adetalhouet.order.system.db.domain.toOrders
-import io.adetalhouet.order.system.db.lib.DatabaseFactory.Grpc.dbQuery
+import io.adetalhouet.order.system.db.lib.DatabaseTransaction.dbQuery
 import io.adetalhouet.order.system.nats.lib.NatsService
 import io.adetalhouet.order.system.order.grpc.GetOrdersByClientRequest
 import io.adetalhouet.order.system.order.grpc.Order
@@ -19,6 +20,7 @@ import org.jetbrains.exposed.sql.select
 class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
     @Inject
+    @Named("Default")
     private lateinit var natsService: NatsService
 
     override suspend fun placeOrder(request: Order): Empty {

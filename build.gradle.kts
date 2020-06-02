@@ -18,8 +18,6 @@ buildscript {
     val graphqlRejoinerVersion by rootProject.extra { "0.0.4" }
 
     val natsVersion by rootProject.extra { "2.6.7" }
-
-
 }
 
 extra["services"] = listOf(
@@ -56,11 +54,11 @@ allprojects {
     dependencies {
         implementation(platform(kotlin("bom")))
         implementation(kotlin("stdlib-jdk8"))
+        implementation(kotlin("reflect"))
 
         implementation("ch.qos.logback:logback-classic:${rootProject.extra.get("logbackVersion")}")
 
         implementation("com.google.guava:guava:29.0-jre")
-
         implementation("com.google.inject:guice:${rootProject.extra.get("guiceVersion")}")
 
         implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra.get("kotlinxVersion")}")
@@ -79,10 +77,12 @@ allprojects {
 
         implementation("io.nats:jnats:${rootProject.extra.get("natsVersion")}")
 
+        implementation("com.zaxxer:HikariCP:${rootProject.extra.get("hikariVersion")}")
+
         testImplementation(platform("org.spockframework:spock-bom:1.3-groovy-2.5"))
         testImplementation("org.spockframework", "spock-core", "1.3-groovy-2.5")
         testImplementation("org.spockframework", "spock-guice", "1.3-groovy-2.5")
-        testImplementation("com.h2database", "h2", "1.4.200")
+        testImplementation("com.h2database", "h2", "${rootProject.extra.get("h2database")}")
         testImplementation("io.grpc:grpc-testing:${rootProject.extra.get("grpcVersion")}")
     }
 }

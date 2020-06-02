@@ -1,34 +1,25 @@
 package io.adetalhouet.order.system.product
 
 import com.google.inject.Guice
-import com.google.inject.Inject
 import io.adetalhouet.order.system.cart.di.CartClientModule
-import io.nats.client.MessageHandler
-import io.adetalhouet.order.system.db.lib.DatabaseConnectionConfiguration
+import io.adetalhouet.order.system.db.lib.DatabaseModule
 import io.adetalhouet.order.system.nats.lib.NatsModule
 import io.adetalhouet.order.system.nats.lib.NatsService
-import io.adetalhouet.order.system.order.grpc.Order
+import io.adetalhouet.order.system.product.di.ProductServerModule
 
-class ProductApp {
-    @Inject
-    lateinit var natsService: NatsService
+fun main() {
+    val injector = Guice.createInjector(ProductServerModule(), CartClientModule(), DatabaseModule(), NatsModule())
 
-    init {
-        Guice.createInjector(ProductModule(), NatsModule(), CartClientModule())
-        startApp()
-    }
+    val db = injector.getInstance(DatabaseModule.DEFAULT_INSTANCE)
+    db.connect()
 
-    fun startApp() {
-        DatabaseConnectionConfiguration("order-service")
+    val server = injector.getInstance(ProductServer::class.java)
+    server.start()
 
-        val port = 9093
-        val server = ProductServer(port)
-        server.start()
-        server.blockUntilShutdown()
+    val nats = injector.getInstance(NatsService.DEFAULT_INSTANCE)
 
-//        val messageHandler =
-//        natsService.createDispatcher(messageHandler)
+//    val messageHandler = nats.createDispatcher(messageHandler)
+    nats.subscribe(NatsService.Inbox.PRODUCT.name)
 
-        natsService.subscribe(NatsService.Inbox.PRODUCT.name)
-    }
+    server.blockUntilShutdown()
 }
