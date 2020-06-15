@@ -19,16 +19,6 @@ import io.adetalhouet.order.system.product.grpc.Products as ProductList
 
 class ProductServiceImpl : ProductServiceGrpcKt.ProductServiceCoroutineImplBase() {
 
-    private val products: MutableCollection<Product> =
-        Resources.asByteSource(Resources.getResource("products.json")).asCharSource(Charsets.UTF_8)
-            .openBufferedStream()
-            .use { reader ->
-                ProductList.newBuilder().apply {
-                    JsonFormat.parser().merge(reader, this)
-                }.build().productsList
-            }
-
-
     override suspend fun addProduct(request: Product): Empty = dbQuery {
         Products.insert {
             it[id] = request.id

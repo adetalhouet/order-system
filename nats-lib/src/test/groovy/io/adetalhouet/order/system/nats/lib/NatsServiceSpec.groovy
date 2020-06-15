@@ -3,15 +3,18 @@ package io.adetalhouet.order.system.nats.lib
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigBeanFactory
 import com.typesafe.config.ConfigFactory
+import io.adetalhouet.order.system.db.test.TestUtilsKt
+import io.adetalhouet.order.system.nats.lib.service.NatsPropertiesService
+import io.adetalhouet.order.system.nats.lib.service.NatsService
 import io.nats.client.Dispatcher
 import io.nats.client.Message
 import io.nats.client.Subscription
-import spock.lang.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import java.time.Duration
 
-@Ignore
+// MUST RUN NATS LOCALLY
+// $ nats-server -DV --user order-system --pass Password123
 class NatsServiceSpec extends Specification {
 
     @Shared
@@ -33,8 +36,6 @@ class NatsServiceSpec extends Specification {
         natsClient.close()
     }
 
-    // MUST RUN NATS LOCALLY
-    // $ nats-server --user order-system --pass Password123
     def "send message and subscribe to mailbox"() {
         expect:
         TestUtilsKt.runBlocking { con ->
@@ -45,8 +46,7 @@ class NatsServiceSpec extends Specification {
         }
     }
 
-    // MUST RUN NATS LOCALLY
-    // $ nats-server --user order-system --pass Password123
+
     def "send message dispatch reply"() {
         expect:
         TestUtilsKt.runBlocking { con ->
@@ -66,8 +66,6 @@ class NatsServiceSpec extends Specification {
         }
     }
 
-    // MUST RUN NATS LOCALLY
-    // $ nats-server --user order-system --pass Password123
     def "send message and replyTo"() {
         expect:
         TestUtilsKt.runBlocking { con ->

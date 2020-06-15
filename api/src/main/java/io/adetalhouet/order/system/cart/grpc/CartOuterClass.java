@@ -62,14 +62,17 @@ public final class CartOuterClass {
       " \001(\01320.io.adetalhouet.order.system.cart." +
       "grpc.CartItems\022\023\n\013total_price\030\003 \001(\001\0220\n\014l" +
       "ast_updated\030\005 \001(\0132\032.google.protobuf.Time" +
-      "stamp2\227\002\n\013CartService\022S\n\nCreateCart\022\026.go" +
+      "stamp2\217\003\n\013CartService\022S\n\nCreateCart\022\026.go" +
       "ogle.protobuf.Empty\032-.io.adetalhouet.ord" +
       "er.system.cart.grpc.CartId\022^\n\nUpdateCart" +
       "\0228.io.adetalhouet.order.system.cart.grpc" +
       ".UpdateCartRequest\032\026.google.protobuf.Emp" +
       "ty\022S\n\nDeleteCart\022-.io.adetalhouet.order." +
       "system.cart.grpc.CartId\032\026.google.protobu" +
-      "f.EmptyB)\n%io.adetalhouet.order.system.c" +
+      "f.Empty\022v\n\023GetProductsByCartId\022-.io.adet" +
+      "alhouet.order.system.cart.grpc.CartId\0320." +
+      "io.adetalhouet.order.system.cart.grpc.Ca" +
+      "rtItemsB)\n%io.adetalhouet.order.system.c" +
       "art.grpcP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor

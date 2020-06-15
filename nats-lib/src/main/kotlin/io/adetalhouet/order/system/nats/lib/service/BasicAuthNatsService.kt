@@ -1,11 +1,13 @@
-package io.adetalhouet.order.system.nats.lib
+package io.adetalhouet.order.system.nats.lib.service
 
+import io.adetalhouet.order.system.nats.lib.BasicAuthNatsConnectionProperties
 import io.nats.client.Connection
 import io.nats.client.Nats
 import io.nats.client.Options
 import java.time.Duration
 
-class BasicAuthNatsService(private val natsConnectionProperties: BasicAuthNatsConnectionProperties) : NatsService {
+class BasicAuthNatsService(private val natsConnectionProperties: BasicAuthNatsConnectionProperties) :
+    NatsService {
 
     lateinit var natsServer: Connection
 

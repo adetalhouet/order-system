@@ -7,7 +7,8 @@ import io.adetalhouet.order.system.db.domain.Orders
 import io.adetalhouet.order.system.db.domain.toOrder
 import io.adetalhouet.order.system.db.domain.toOrders
 import io.adetalhouet.order.system.db.lib.DatabaseTransaction.dbQuery
-import io.adetalhouet.order.system.nats.lib.NatsService
+import io.adetalhouet.order.system.nats.lib.message.dataAsString
+import io.adetalhouet.order.system.nats.lib.service.NatsService
 import io.adetalhouet.order.system.order.grpc.GetOrdersByClientRequest
 import io.adetalhouet.order.system.order.grpc.Order
 import io.adetalhouet.order.system.order.grpc.OrderServiceGrpcKt
@@ -25,8 +26,13 @@ class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
     override suspend fun placeOrder(request: Order): Empty {
 
+        val REQUEST_TIMEOUT_MILLIS = 30_000L
+
         // send message to product service to decrease inventory of product
-        natsService.publish(NatsService.Inbox.PRODUCT.name, request.toByteArray())
+        val inventoryResponse = natsService.requestAndGetOneReply(NatsService.Inbox.PRODUCT.name,
+            request.toByteArray(),
+            REQUEST_TIMEOUT_MILLIS)
+        inventoryResponse.dataAsString()
 
         dbQuery {
             Orders.insert {

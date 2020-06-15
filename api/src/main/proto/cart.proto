@@ -12,6 +12,9 @@ service CartService {
   rpc CreateCart (google.protobuf.Empty) returns (CartId);
   rpc UpdateCart (UpdateCartRequest) returns (google.protobuf.Empty);
   rpc DeleteCart (CartId) returns (google.protobuf.Empty);
+
+  // internal
+  rpc GetProductsByCartId (CartId) returns (CartItems);
 }
 
 message UpdateCartRequest {

@@ -120,6 +120,37 @@ public final class CartServiceGrpc {
     return getDeleteCartMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.CartId,
+      io.adetalhouet.order.system.cart.grpc.CartItems> getGetProductsByCartIdMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "GetProductsByCartId",
+      requestType = io.adetalhouet.order.system.cart.grpc.CartId.class,
+      responseType = io.adetalhouet.order.system.cart.grpc.CartItems.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.CartId,
+      io.adetalhouet.order.system.cart.grpc.CartItems> getGetProductsByCartIdMethod() {
+    io.grpc.MethodDescriptor<io.adetalhouet.order.system.cart.grpc.CartId, io.adetalhouet.order.system.cart.grpc.CartItems> getGetProductsByCartIdMethod;
+    if ((getGetProductsByCartIdMethod = CartServiceGrpc.getGetProductsByCartIdMethod) == null) {
+      synchronized (CartServiceGrpc.class) {
+        if ((getGetProductsByCartIdMethod = CartServiceGrpc.getGetProductsByCartIdMethod) == null) {
+          CartServiceGrpc.getGetProductsByCartIdMethod = getGetProductsByCartIdMethod =
+              io.grpc.MethodDescriptor.<io.adetalhouet.order.system.cart.grpc.CartId, io.adetalhouet.order.system.cart.grpc.CartItems>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "GetProductsByCartId"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  io.adetalhouet.order.system.cart.grpc.CartId.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  io.adetalhouet.order.system.cart.grpc.CartItems.getDefaultInstance()))
+              .setSchemaDescriptor(new CartServiceMethodDescriptorSupplier("GetProductsByCartId"))
+              .build();
+        }
+      }
+    }
+    return getGetProductsByCartIdMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -189,6 +220,16 @@ public final class CartServiceGrpc {
       asyncUnimplementedUnaryCall(getDeleteCartMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     * internal
+     * </pre>
+     */
+    public void getProductsByCartId(io.adetalhouet.order.system.cart.grpc.CartId request,
+        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.cart.grpc.CartItems> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetProductsByCartIdMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -212,6 +253,13 @@ public final class CartServiceGrpc {
                 io.adetalhouet.order.system.cart.grpc.CartId,
                 com.google.protobuf.Empty>(
                   this, METHODID_DELETE_CART)))
+          .addMethod(
+            getGetProductsByCartIdMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                io.adetalhouet.order.system.cart.grpc.CartId,
+                io.adetalhouet.order.system.cart.grpc.CartItems>(
+                  this, METHODID_GET_PRODUCTS_BY_CART_ID)))
           .build();
     }
   }
@@ -253,6 +301,17 @@ public final class CartServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getDeleteCartMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     * internal
+     * </pre>
+     */
+    public void getProductsByCartId(io.adetalhouet.order.system.cart.grpc.CartId request,
+        io.grpc.stub.StreamObserver<io.adetalhouet.order.system.cart.grpc.CartItems> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetProductsByCartIdMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -288,6 +347,16 @@ public final class CartServiceGrpc {
     public com.google.protobuf.Empty deleteCart(io.adetalhouet.order.system.cart.grpc.CartId request) {
       return blockingUnaryCall(
           getChannel(), getDeleteCartMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * internal
+     * </pre>
+     */
+    public io.adetalhouet.order.system.cart.grpc.CartItems getProductsByCartId(io.adetalhouet.order.system.cart.grpc.CartId request) {
+      return blockingUnaryCall(
+          getChannel(), getGetProductsByCartIdMethod(), getCallOptions(), request);
     }
   }
 
@@ -328,11 +397,23 @@ public final class CartServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getDeleteCartMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     * internal
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<io.adetalhouet.order.system.cart.grpc.CartItems> getProductsByCartId(
+        io.adetalhouet.order.system.cart.grpc.CartId request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetProductsByCartIdMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_CREATE_CART = 0;
   private static final int METHODID_UPDATE_CART = 1;
   private static final int METHODID_DELETE_CART = 2;
+  private static final int METHODID_GET_PRODUCTS_BY_CART_ID = 3;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -362,6 +443,10 @@ public final class CartServiceGrpc {
         case METHODID_DELETE_CART:
           serviceImpl.deleteCart((io.adetalhouet.order.system.cart.grpc.CartId) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_GET_PRODUCTS_BY_CART_ID:
+          serviceImpl.getProductsByCartId((io.adetalhouet.order.system.cart.grpc.CartId) request,
+              (io.grpc.stub.StreamObserver<io.adetalhouet.order.system.cart.grpc.CartItems>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -427,6 +512,7 @@ public final class CartServiceGrpc {
               .addMethod(getCreateCartMethod())
               .addMethod(getUpdateCartMethod())
               .addMethod(getDeleteCartMethod())
+              .addMethod(getGetProductsByCartIdMethod())
               .build();
         }
       }

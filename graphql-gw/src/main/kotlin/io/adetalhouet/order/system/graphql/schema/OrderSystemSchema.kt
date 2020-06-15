@@ -6,13 +6,11 @@ import com.google.inject.Guice
 import com.google.inject.Key
 import graphql.schema.GraphQLSchema
 import io.adetalhouet.order.system.cart.di.CartClientModule
-import io.adetalhouet.order.system.graphql.di.ClientClientModule
-import io.adetalhouet.order.system.graphql.di.OrderClientModule
-import io.adetalhouet.order.system.graphql.di.ProductClientModule
-
+import io.adetalhouet.order.system.client.di.ClientClientModule
+import io.adetalhouet.order.system.order.di.OrderClientModule
+import io.adetalhouet.order.system.product.di.ProductClientModule
 
 object OrderSystemSchema {
-
     val schema: GraphQLSchema = Guice
         .createInjector(
             SchemaProviderModule(),
@@ -24,7 +22,6 @@ object OrderSystemSchema {
             OrderSchemaModule(),
             ProductClientModule(),
             ProductSchemaModule()
-//            OrderSystemSchemaModule()
         )
         .getInstance(Key.get(GraphQLSchema::class.java, Schema::class.java))
 }

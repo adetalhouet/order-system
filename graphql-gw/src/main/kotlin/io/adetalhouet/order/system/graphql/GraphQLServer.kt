@@ -18,6 +18,7 @@ import org.eclipse.jetty.server.handler.ResourceHandler
 import org.eclipse.jetty.util.resource.Resource
 import java.io.IOException
 import java.lang.RuntimeException
+import java.net.InetSocketAddress
 import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
@@ -38,11 +39,11 @@ class GraphQLServer : AbstractHandler() {
 
     @Throws(Exception::class)
     fun start(port: Int) {
-        val server = Server(port)
+        val server = Server(InetSocketAddress("localhost", port))
 
         val resourceHandler = ResourceHandler()
         resourceHandler.welcomeFiles = arrayOf("index.html")
-        resourceHandler.isDirectoriesListed = true
+        resourceHandler.isDirectoriesListed = false
         resourceHandler.baseResource = Resource.newResource("./src/main/resources")
 
         val handlerList = HandlerList()

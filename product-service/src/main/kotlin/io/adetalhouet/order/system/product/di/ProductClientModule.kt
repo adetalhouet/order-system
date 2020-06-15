@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import io.adetalhouet.order.system.product.grpc.ProductServiceGrpc
+import io.adetalhouet.order.system.product.grpc.ProductServiceGrpcKt
 import io.grpc.ManagedChannelBuilder
 
 class ProductClientModule : AbstractModule() {
@@ -15,5 +16,7 @@ class ProductClientModule : AbstractModule() {
             .build()
         bind(ProductServiceGrpc.ProductServiceFutureStub::class.java)
             .toInstance(ProductServiceGrpc.newFutureStub(channel))
+        bind(ProductServiceGrpcKt.ProductServiceCoroutineStub::class.java)
+            .toInstance(ProductServiceGrpcKt.ProductServiceCoroutineStub(channel))
     }
 }

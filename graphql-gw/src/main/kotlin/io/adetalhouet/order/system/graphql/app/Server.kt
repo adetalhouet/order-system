@@ -1,6 +1,7 @@
 package io.adetalhouet.order.system.graphql.app
 
 import io.adetalhouet.order.system.graphql.GraphQLServer
+import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 
 class Server {
@@ -15,6 +16,6 @@ class Server {
     }
 }
 
-fun main(args: Array<String>) {
+fun main() = runBlocking {
     Server().start()
 }

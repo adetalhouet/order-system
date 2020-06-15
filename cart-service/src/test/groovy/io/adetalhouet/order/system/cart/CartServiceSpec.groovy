@@ -1,19 +1,17 @@
 package io.adetalhouet.order.system.cart
 
 import com.google.inject.Inject
-import com.typesafe.config.Config
-import com.typesafe.config.ConfigBeanFactory
-import com.typesafe.config.ConfigFactory
-import io.adetalhouet.order.system.cart.di.TestModule
+import io.adetalhouet.order.system.cart.di.CartServerModule
 import io.adetalhouet.order.system.cart.grpc.CartId
 import io.adetalhouet.order.system.cart.grpc.CartServiceServer
 import io.adetalhouet.order.system.cart.utils.GrpcCallInterceptor
 import io.adetalhouet.order.system.db.lib.DatabaseConnectionProperties
 import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
+import io.adetalhouet.order.system.db.test.TestUtilsKt
 import spock.guice.UseModules
 import spock.lang.Specification
 
-@UseModules(TestModule)
+@UseModules(CartServerModule)
 class CartServiceSpec extends Specification {
 
     @Inject

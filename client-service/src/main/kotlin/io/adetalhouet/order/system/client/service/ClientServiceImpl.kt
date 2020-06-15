@@ -1,4 +1,4 @@
-package io.adetalhouet.order.system.client
+package io.adetalhouet.order.system.client.service
 
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.client.grpc.Client

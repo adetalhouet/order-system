@@ -4,6 +4,7 @@ import com.google.inject.AbstractModule
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigFactory
 import io.adetalhouet.order.system.order.grpc.OrderServiceGrpc
+import io.adetalhouet.order.system.order.grpc.OrderServiceGrpcKt
 import io.grpc.ManagedChannelBuilder
 
 class OrderClientModule : AbstractModule() {
@@ -15,5 +16,7 @@ class OrderClientModule : AbstractModule() {
             .build()
         bind(OrderServiceGrpc.OrderServiceFutureStub::class.java)
             .toInstance(OrderServiceGrpc.newFutureStub(channel))
+        bind(OrderServiceGrpcKt.OrderServiceCoroutineStub::class.java)
+            .toInstance(OrderServiceGrpcKt.OrderServiceCoroutineStub(channel))
     }
 }

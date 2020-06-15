@@ -1,4 +1,4 @@
-package io.adetalhouet.order.system.cart
+package io.adetalhouet.order.system.cart.service
 
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.cart.grpc.CartId
@@ -54,5 +54,9 @@ class CartServiceImpl : CartServiceGrpcKt.CartServiceCoroutineImplBase() {
         else log.debug("Remove item(${request.item} from cart(id=${request.cartId}")
 
         Empty.getDefaultInstance()
+    }
+
+    override suspend fun getProductsByCartId(request: CartId): CartItems = dbQuery {
+        Carts.select(Carts.id eq request.cartId).single().toCart().cartItems
     }
 }
