@@ -3,8 +3,7 @@ package io.adetalhouet.order.system.cart
 import com.google.inject.Inject
 import io.adetalhouet.order.system.cart.di.CartServerModule
 import io.adetalhouet.order.system.cart.grpc.CartId
-import io.adetalhouet.order.system.cart.grpc.CartServiceServer
-import io.adetalhouet.order.system.cart.utils.GrpcCallInterceptor
+import io.adetalhouet.order.system.cart.grpc.CartService
 import io.adetalhouet.order.system.db.lib.DatabaseConnectionProperties
 import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
 import io.adetalhouet.order.system.db.test.TestUtilsKt
@@ -15,7 +14,7 @@ import spock.lang.Specification
 class CartServiceSpec extends Specification {
 
     @Inject
-    CartServiceServer server
+    CartService server
 
     def setupSpec() {
         DatabaseConnectionProperties props = new DatabaseConnectionProperties(
@@ -28,7 +27,6 @@ class CartServiceSpec extends Specification {
         db.connect()
 
         TestUtilsKt.createTables()
-        TestUtilsKt.getCartSize()
         TestUtilsKt.cleanTables()
     }
 
@@ -39,7 +37,6 @@ class CartServiceSpec extends Specification {
     def "create one cart"() {
         expect:
         server.createCart().cartId == 1
-        GrpcCallInterceptor.instance.intercepted
     }
 
     def "create 10 carts"() {

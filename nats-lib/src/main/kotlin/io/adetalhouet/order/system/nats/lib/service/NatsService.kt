@@ -10,8 +10,6 @@ import io.nats.client.Dispatcher
 import io.nats.client.Message
 import io.nats.client.MessageHandler
 import io.nats.client.Subscription
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import java.time.Duration
 
 internal fun defaultNatsInstance(natsPropertiesService: NatsPropertiesService): NatsService {
@@ -38,17 +36,10 @@ interface NatsService : AutoCloseable {
             NatsService::class.java, Names.named("Default"))
     }
 
-    enum class Inbox {
-        ORDER, PRODUCT
-    }
-
     fun connection(): Connection
 
-    suspend fun requestAndGetOneReply(subject: String, message: ByteArray, timeout: Long): Message {
-        return withContext(Dispatchers.IO) {
-            connection().request(subject, message, Duration.ofMillis(timeout))
-        }
-    }
+    fun requestAndGetOneReply(subject: String, message: ByteArray, timeout: Long): Message =
+        connection().request(subject, message, Duration.ofMillis(timeout))
 
     suspend fun createDispatcher(messageHandler: MessageHandler): Dispatcher {
         return connection().createDispatcher(messageHandler)

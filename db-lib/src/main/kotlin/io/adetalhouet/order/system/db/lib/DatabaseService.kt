@@ -6,7 +6,7 @@ import com.zaxxer.hikari.HikariDataSource
 import io.github.config4k.extract
 import org.jetbrains.exposed.sql.Database
 
-fun defaultDatabaseConnection(): DatabaseService {
+internal fun defaultDatabaseConnection(): DatabaseService {
     val conf: Config = ConfigFactory.load()
     return DatabaseServiceImpl(conf.extract("postgres"))
 }

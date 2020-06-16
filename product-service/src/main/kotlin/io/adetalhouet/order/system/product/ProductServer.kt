@@ -37,9 +37,4 @@ class ProductServer {
     fun stop() {
         server?.shutdown()
     }
-
-    @Throws(InterruptedException::class)
-    fun blockUntilShutdown() {
-        server?.awaitTermination()
-    }
 }

@@ -7,7 +7,9 @@ import io.adetalhouet.order.system.db.domain.Orders
 import io.adetalhouet.order.system.db.domain.toOrder
 import io.adetalhouet.order.system.db.domain.toOrders
 import io.adetalhouet.order.system.db.lib.DatabaseTransaction.dbQuery
-import io.adetalhouet.order.system.nats.lib.message.dataAsString
+import io.adetalhouet.order.system.nats.lib.NatsInbox
+import io.adetalhouet.order.system.nats.lib.message.NatsMessageStatus
+import io.adetalhouet.order.system.nats.lib.message.toNatsMessage
 import io.adetalhouet.order.system.nats.lib.service.NatsService
 import io.adetalhouet.order.system.order.grpc.GetOrdersByClientRequest
 import io.adetalhouet.order.system.order.grpc.Order
@@ -15,6 +17,8 @@ import io.adetalhouet.order.system.order.grpc.OrderServiceGrpcKt
 import io.adetalhouet.order.system.order.grpc.Orders as ClientOrderList
 import io.adetalhouet.order.system.order.grpc.TrackOrderByIdRequest
 import io.adetalhouet.order.system.order.grpc.TrackOrderByIdResponse
+import io.grpc.Status
+import io.grpc.StatusException
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
 
@@ -26,13 +30,7 @@ class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
     override suspend fun placeOrder(request: Order): Empty {
 
-        val REQUEST_TIMEOUT_MILLIS = 30_000L
-
-        // send message to product service to decrease inventory of product
-        val inventoryResponse = natsService.requestAndGetOneReply(NatsService.Inbox.PRODUCT.name,
-            request.toByteArray(),
-            REQUEST_TIMEOUT_MILLIS)
-        inventoryResponse.dataAsString()
+        validateInventoryOrThrow(request)
 
         dbQuery {
             Orders.insert {
@@ -54,5 +52,17 @@ class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
     override suspend fun getOrdersByClient(request: GetOrdersByClientRequest): ClientOrderList = dbQuery {
         Orders.select { Orders.clientId eq request.clientId }.map { it.toOrder() }.toList().toOrders()
+    }
+
+    private fun validateInventoryOrThrow(request: Order) {
+        // FIXME configure timeout
+        val message = natsService.requestAndGetOneReply(NatsInbox.PRODUCT.name, request.toByteArray(), 10000L)
+        val domainMessage = message.toNatsMessage()
+        when (domainMessage.status) {
+            NatsMessageStatus.SUCCESS -> return
+            NatsMessageStatus.FAILURE -> throw StatusException(Status.INTERNAL.withDescription(domainMessage.message))
+            NatsMessageStatus.INVALID -> throw StatusException(Status.INVALID_ARGUMENT.withDescription(domainMessage.message))
+            NatsMessageStatus.INSUFFISANT_QUANTITY -> throw StatusException(Status.FAILED_PRECONDITION.withDescription(domainMessage.message))
+        }
     }
 }

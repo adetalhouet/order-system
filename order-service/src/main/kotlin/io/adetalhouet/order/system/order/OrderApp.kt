@@ -8,8 +8,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
-fun main() = runBlocking<Unit> {
-    val injector = Guice.createInjector(OrderServerModule(), DatabaseModule(),
+fun main() = runBlocking {
+    val injector = Guice.createInjector(
+        OrderServerModule(),
+        DatabaseModule(),
         NatsModule())
 
     val db = injector.getInstance(DatabaseModule.DEFAULT_INSTANCE)
@@ -18,6 +20,5 @@ fun main() = runBlocking<Unit> {
     val server = injector.getInstance(OrderServer::class.java)
     withContext(Dispatchers.IO) {
         server.start()
-        server.blockUntilShutdown()
     }
 }

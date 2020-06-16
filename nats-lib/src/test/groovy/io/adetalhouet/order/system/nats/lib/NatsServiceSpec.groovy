@@ -57,8 +57,8 @@ class NatsServiceSpec extends Specification {
             dispatcher.subscribe("hello")
             dispatcher.subscribe("world")
 
-            Message msg = natsClient.requestAndGetOneReply("hello", "ping".getBytes("UTF-8"), 1000)
-            Message msg1 = natsClient.requestAndGetOneReply("world", "ping".getBytes("UTF-8"), 1000)
+            Message msg = natsClient.requestAndGetOneReply("hello", "ping".getBytes("UTF-8"), 1000L)
+            Message msg1 = natsClient.requestAndGetOneReply("world", "ping".getBytes("UTF-8"), 1000L)
 
             new String(msg.data) == "pong"
             new String(msg1.data) == "pong"

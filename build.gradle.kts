@@ -31,7 +31,6 @@ extra["services"] = listOf(
 plugins {
     groovy
     kotlin("jvm") version "1.3.70"
-    id("org.asciidoctor.convert") version "1.5.6" apply false
     id("com.google.protobuf") version "0.8.11" apply false
     application
 }
@@ -101,15 +100,4 @@ configure(extra.get("services") as List<Project>) {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-tasks.distZip {
-    from(project(":docs").tasks["asciidoctor"]) {
-        into(project.name)
-    }
-}
-tasks.distTar {
-    from(project(":docs").tasks["asciidoctor"]) {
-        into(project.name)
-    }
 }
