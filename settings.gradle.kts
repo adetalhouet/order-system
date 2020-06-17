@@ -8,4 +8,5 @@ include("db-lib",
     "client-service",
     "cart-service",
     "order-service",
-    "product-service")
+    "product-service",
+    "integTest")

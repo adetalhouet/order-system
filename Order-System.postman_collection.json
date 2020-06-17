@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "6c80bfe6-2020-4dda-aaff-80e5d4f7702e",
+		"name": "Order-System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Client",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3882ed9b-e942-4b55-b94e-c64d55b8db6b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  addClient(input: {\n    address: \"8 blv Markloand, H2R 2D0\"\n    password: \"\"\n    email: \"a@bvcacacdfcfob.jr\"\n    date_created :{\n      seconds: {{$timestamp}}\n    }\n  }) {\n    _\n  }\n}",
+						"variables": ""
+					},
+					"options": {
+						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Clients",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  getClients {\n    clients {\n      email\n      id\n      password\n      address\n    }\n  }\n}\n",
+						"variables": ""
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Client By Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  getClientById(input: { id: 9 }) {\n    email\n    id\n    password\n    address\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Client By Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n  deleteClientById(input: { id: 9 }) {\n    _\n  }\n}\n",
+						"variables": ""
+					},
+					"options": {
+						"graphql": {}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory
 object DatabaseTransaction {
     private val log = LoggerFactory.getLogger(DatabaseTransaction::class.java)
 
-    @Throws(StatusException::class)
     suspend fun <T> dbQuery(block: () -> T): T = newSuspendedTransaction {
         addLogger(SqlLogger(block.javaClass.name))
 
@@ -21,7 +20,7 @@ object DatabaseTransaction {
             block()
         } catch (e: Exception) {
             log.error("SQL(id=${this.id}) failed", e)
-            throw StatusException(Status.INTERNAL.withDescription("Fail to perform database transaction(id= ${this.id})"))
+            throw e
         }
     }
 }

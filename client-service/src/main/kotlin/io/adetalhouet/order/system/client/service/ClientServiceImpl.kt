@@ -9,6 +9,8 @@ import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.toClient
 import io.adetalhouet.order.system.db.domain.toClients
 import io.adetalhouet.order.system.db.lib.DatabaseTransaction.dbQuery
+import io.grpc.Status
+import io.grpc.StatusException
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insertIgnore
 import org.jetbrains.exposed.sql.select
@@ -17,6 +19,11 @@ import org.jetbrains.exposed.sql.selectAll
 class ClientServiceImpl : ClientServiceGrpcKt.ClientServiceCoroutineImplBase() {
 
     override suspend fun addClient(request: Client): Empty = dbQuery {
+
+        Clients.select { Clients.email eq request.email }.singleOrNull()?.let {
+            throw StatusException(Status.ALREADY_EXISTS)
+        }
+
         Clients.insertIgnore {
             it[email] = request.email
             it[address] = request.address

@@ -1,20 +1,15 @@
 package io.adetalhouet.order.system.cart
 
-import com.google.inject.Inject
-import io.adetalhouet.order.system.cart.di.CartServerModule
 import io.adetalhouet.order.system.cart.grpc.CartId
 import io.adetalhouet.order.system.cart.grpc.CartService
 import io.adetalhouet.order.system.db.lib.DatabaseConnectionProperties
 import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
 import io.adetalhouet.order.system.db.test.TestUtilsKt
-import spock.guice.UseModules
 import spock.lang.Specification
 
-@UseModules(CartServerModule)
 class CartServiceSpec extends Specification {
 
-    @Inject
-    CartService server
+    private CartService server = new CartService()
 
     def setupSpec() {
         DatabaseConnectionProperties props = new DatabaseConnectionProperties(

@@ -4,6 +4,9 @@ import com.google.api.graphql.rejoiner.Query
 import com.google.api.graphql.rejoiner.SchemaModule
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.protobuf.Empty
+import io.adetalhouet.order.system.graphql.checkNullOrEmpty
+import io.adetalhouet.order.system.graphql.mustBeSet
+import io.adetalhouet.order.system.graphql.returnFailedFutureOnException
 import io.adetalhouet.order.system.product.grpc.DeleteProductByIdRequest
 import io.adetalhouet.order.system.product.grpc.GetProductByIdRequest
 import io.adetalhouet.order.system.product.grpc.Product
@@ -13,25 +16,34 @@ import io.adetalhouet.order.system.product.grpc.Products
 class ProductSchemaModule : SchemaModule() {
 
     @Query("addProduct")
-    fun addProduct(client: ProductServiceGrpc.ProductServiceFutureStub, request: Product): ListenableFuture<Empty> {
-        return client.addProduct(request)
-    }
+    fun addProduct(client: ProductServiceGrpc.ProductServiceFutureStub, request: Product): ListenableFuture<Empty> =
+        returnFailedFutureOnException {
+            checkNullOrEmpty(request.name) { "Name".mustBeSet() }
+            checkNotNull(request.price) { "Price".mustBeSet() }
+            checkNotNull(request.quantity) { "Quantity".mustBeSet() }
+            client.addProduct(request)
+        }
 
     @Query("deleteProductById")
     fun deleteProductById(client: ProductServiceGrpc.ProductServiceFutureStub,
-                          request: DeleteProductByIdRequest): ListenableFuture<Empty> {
-        return client.deleteProductById(request)
-    }
+                          request: DeleteProductByIdRequest): ListenableFuture<Empty> =
+        returnFailedFutureOnException {
+            checkNotNull(request.id) { "Product ID".mustBeSet() }
+            client.deleteProductById(request)
+        }
 
     @Query("getProductById")
     fun getProductById(client: ProductServiceGrpc.ProductServiceFutureStub,
-                       request: GetProductByIdRequest): ListenableFuture<Product>? {
-        return client.getProductById(request)
-    }
+                       request: GetProductByIdRequest): ListenableFuture<Product>? =
+        returnFailedFutureOnException {
+            checkNotNull(request.id) { "Product ID".mustBeSet() }
+            client.getProductById(request)
+        }
 
     @Query("getProducts")
     fun getProducts(client: ProductServiceGrpc.ProductServiceFutureStub,
-                    request: Empty): ListenableFuture<Products>? {
-        return client.getProducts(request)
-    }
+                    request: Empty): ListenableFuture<Products>? =
+        returnFailedFutureOnException {
+            client.getProducts(request)
+        }
 }

@@ -9,35 +9,37 @@ import io.adetalhouet.order.system.client.grpc.ClientServiceGrpc
 import io.adetalhouet.order.system.client.grpc.Clients
 import io.adetalhouet.order.system.client.grpc.DeleteClientByIdRequest
 import io.adetalhouet.order.system.client.grpc.GetClientByIdRequest
-import io.adetalhouet.order.system.graphql.GraphQLException
-
+import io.adetalhouet.order.system.graphql.checkNullOrEmpty
+import io.adetalhouet.order.system.graphql.mustBeSet
+import io.adetalhouet.order.system.graphql.returnFailedFutureOnException
 
 class ClientSchemaModule : SchemaModule() {
 
     @Query("addClient")
-    fun addClient(client: ClientServiceGrpc.ClientServiceFutureStub, request: Client): ListenableFuture<Empty> {
-        try {
-            return client.addClient(request)
-        } catch (e: Exception) {
-            throw GraphQLException(e.message)
+    fun addClient(client: ClientServiceGrpc.ClientServiceFutureStub, request: Client): ListenableFuture<Empty> =
+        returnFailedFutureOnException {
+            checkNullOrEmpty(request.email) { "Email".mustBeSet() }
+            checkNullOrEmpty(request.password) { "Password".mustBeSet() }
+            client.addClient(request)
         }
-    }
 
     @Query("deleteClientById")
     fun deleteClientById(client: ClientServiceGrpc.ClientServiceFutureStub,
-                         request: DeleteClientByIdRequest): ListenableFuture<Empty> {
-        return client.deleteClientById(request)
+                         request: DeleteClientByIdRequest): ListenableFuture<Empty> = returnFailedFutureOnException {
+        checkNotNull(request.id) { "Id".mustBeSet() }
+        client.deleteClientById(request)
     }
 
     @Query("getClientById")
     fun getClientById(client: ClientServiceGrpc.ClientServiceFutureStub,
-                      request: GetClientByIdRequest): ListenableFuture<Client>? {
-        return client.getClientById(request)
+                      request: GetClientByIdRequest): ListenableFuture<Client>? = returnFailedFutureOnException {
+        checkNotNull(request.id) { "Id".mustBeSet() }
+        client.getClientById(request)
     }
 
-    @Query("clients")
+    @Query("getClients")
     fun getClients(client: ClientServiceGrpc.ClientServiceFutureStub,
-                   request: com.google.protobuf.Empty): ListenableFuture<Clients>? {
-        return client.getClients(request)
+                   request: Empty): ListenableFuture<Clients>? = returnFailedFutureOnException {
+        client.getClients(request)
     }
 }

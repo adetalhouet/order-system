@@ -7,22 +7,28 @@ import com.google.protobuf.Empty
 import io.adetalhouet.order.system.cart.grpc.CartId
 import io.adetalhouet.order.system.cart.grpc.CartServiceGrpc
 import io.adetalhouet.order.system.cart.grpc.UpdateCartRequest
+import io.adetalhouet.order.system.graphql.mustBeSet
+import io.adetalhouet.order.system.graphql.returnFailedFutureOnException
 
 class CartSchemaModule : SchemaModule() {
 
     @Query("createCart")
-    fun createCart(client: CartServiceGrpc.CartServiceFutureStub): ListenableFuture<CartId> {
-        return client.createCart(Empty.getDefaultInstance());
-    }
+    fun createCart(client: CartServiceGrpc.CartServiceFutureStub): ListenableFuture<CartId> =
+        returnFailedFutureOnException {
+            client.createCart(Empty.getDefaultInstance());
+        }
 
     @Query("updateCart")
-    fun updateCart(client: CartServiceGrpc.CartServiceFutureStub, request: UpdateCartRequest): ListenableFuture<Empty> {
-        return client.updateCart(request)
-    }
+    fun updateCart(client: CartServiceGrpc.CartServiceFutureStub, request: UpdateCartRequest): ListenableFuture<Empty> =
+        returnFailedFutureOnException {
+            checkNotNull(request.cartId) { "Cart ID".mustBeSet() }
+            client.updateCart(request)
+        }
 
     @Query("deleteCart")
     fun deleteCart(client: CartServiceGrpc.CartServiceFutureStub,
-                   request: CartId): ListenableFuture<Empty> {
-        return client.deleteCart(request)
+                   request: CartId): ListenableFuture<Empty> = returnFailedFutureOnException {
+        checkNotNull(request.cartId) { "Cart ID".mustBeSet() }
+        client.deleteCart(request)
     }
 }

@@ -34,6 +34,7 @@ fun List<Order>.toOrders(): io.adetalhouet.order.system.order.grpc.Orders =
 
 fun ResultRow.toClient(): Client =
     Client.newBuilder()
+        .setId(this[Clients.id])
         .setEmail(this[Clients.email])
         .setPassword(this[Clients.password])
         .setAddress(this[Clients.address])
