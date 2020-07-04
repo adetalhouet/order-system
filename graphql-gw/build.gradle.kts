@@ -1,7 +1,7 @@
 group = "${rootProject.group}.graphql.gw"
 
 application {
-    mainClassName = "io.adetalhouet.order.system.graphql.gw.GraphqlGwAppKt"
+    mainClassName = "io.adetalhouet.order.system.graphql.app.ServerKt"
 }
 
 dependencies {

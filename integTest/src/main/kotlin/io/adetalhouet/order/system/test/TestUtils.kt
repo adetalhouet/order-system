@@ -1,13 +1,15 @@
-package io.adetalhouet.order.system.db.test
+package io.adetalhouet.order.system.test
 
 import com.google.common.io.Resources
 import com.google.protobuf.util.JsonFormat
 import io.adetalhouet.order.system.db.domain.Carts
 import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.Orders
+import io.adetalhouet.order.system.nats.lib.message.toNatsMessage
 import io.adetalhouet.order.system.db.domain.Products
 import io.adetalhouet.order.system.product.grpc.Products as ProtoProducts
 import io.adetalhouet.order.system.product.grpc.Product
+import io.nats.client.Message
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.jetbrains.exposed.sql.SchemaUtils
@@ -35,6 +37,8 @@ fun <T : Any> runBlocking(lambda: (Continuation<T>) -> Any) = runBlocking {
         if (result.get() !== COROUTINE_SUSPENDED) cont.resume(result.get() as T)
     }
 }
+
+fun toNatsMessage(msg: Message) = msg.toNatsMessage()
 
 fun loadProducts() {
     val products: MutableCollection<Product> =

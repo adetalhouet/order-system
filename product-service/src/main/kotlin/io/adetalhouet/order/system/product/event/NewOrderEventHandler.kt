@@ -44,8 +44,8 @@ class NewOrderEventHandler : MessageHandler, CoroutineScope {
     }
 
     private suspend fun handleMessage(msg: Message?) {
-        if (msg == null || msg.data.isEmpty()) {
-            natsService.publish(NatsInbox.ORDER.name, receivedEmptyMessage())
+        if (msg == null || msg.replyTo != null || msg.data.isEmpty()) {
+            natsService.publish(msg!!.replyTo, receivedEmptyMessage())
             return
         }
 
@@ -56,7 +56,7 @@ class NewOrderEventHandler : MessageHandler, CoroutineScope {
             decrementInventory(products)
         }
 
-        natsService.publish(NatsInbox.ORDER.name, NatsMessage(NatsMessageStatus.SUCCESS).toByteArray())
+        natsService.publish(msg.replyTo, NatsMessage(NatsMessageStatus.SUCCESS).toByteArray())
     }
 
     private suspend fun checkProductsAvailability(products: CartItems) {
