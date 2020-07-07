@@ -20,7 +20,7 @@ object DatabaseTransaction {
             block()
         } catch (e: Exception) {
             log.error("SQL(id=${this.id}) failed", e)
-            throw e
+            throw StatusException(Status.INTERNAL.withDescription(e.message).withCause(e))
         }
     }
 }

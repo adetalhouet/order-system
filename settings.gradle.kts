@@ -9,4 +9,5 @@ include("db-lib",
     "cart-service",
     "order-service",
     "product-service",
+    "test-utils",
     "integTest")

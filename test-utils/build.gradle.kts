@@ -1,7 +1,6 @@
-group = "${rootProject.group}.integTest"
+group = "${rootProject.group}.test-utils"
 
 dependencies {
-    implementation("com.google.api.graphql:rejoiner:${rootProject.extra.get("graphqlRejoinerVersion")}")
     implementation(project(":graphql-gw"))
 
     implementation(project(":product-service"))
@@ -15,5 +14,4 @@ dependencies {
     implementation(project(":nats-lib"))
 
     testImplementation("np.com.madanpokharel.embed:nats-embedded:1.1.0")
-    testImplementation("org.codehaus.groovy.modules.http-builder:http-builder:0.7.1")
 }

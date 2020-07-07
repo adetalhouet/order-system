@@ -3,18 +3,20 @@ package io.adetalhouet.order.system.nats.lib
 import com.typesafe.config.Config
 import com.typesafe.config.ConfigBeanFactory
 import com.typesafe.config.ConfigFactory
-import io.adetalhouet.order.system.db.test.TestUtilsKt
 import io.adetalhouet.order.system.nats.lib.service.NatsPropertiesService
 import io.adetalhouet.order.system.nats.lib.service.NatsService
+import io.adetalhouet.order.system.test.TestUtilsKt
 import io.nats.client.Dispatcher
 import io.nats.client.Message
 import io.nats.client.Subscription
+import org.junit.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import java.time.Duration
 
 // MUST RUN NATS LOCALLY
 // $ nats-server -DV --user order-system --pass Password123
+@Ignore
 class NatsServiceSpec extends Specification {
 
     @Shared

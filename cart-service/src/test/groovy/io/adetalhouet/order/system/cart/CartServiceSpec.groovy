@@ -4,7 +4,7 @@ import io.adetalhouet.order.system.cart.grpc.CartId
 import io.adetalhouet.order.system.cart.grpc.CartService
 import io.adetalhouet.order.system.db.lib.DatabaseConnectionProperties
 import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
-import io.adetalhouet.order.system.db.test.TestUtilsKt
+import io.adetalhouet.order.system.test.TestUtilsKt
 import spock.lang.Specification
 
 class CartServiceSpec extends Specification {

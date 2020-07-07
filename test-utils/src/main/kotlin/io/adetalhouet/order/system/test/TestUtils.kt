@@ -1,12 +1,15 @@
 package io.adetalhouet.order.system.test
 
 import com.google.common.io.Resources
+import com.google.gson.Gson
 import com.google.protobuf.util.JsonFormat
+import io.adetalhouet.order.system.client.grpc.Client
 import io.adetalhouet.order.system.db.domain.Carts
 import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.Orders
 import io.adetalhouet.order.system.nats.lib.message.toNatsMessage
 import io.adetalhouet.order.system.db.domain.Products
+import io.adetalhouet.order.system.db.domain.toClient
 import io.adetalhouet.order.system.product.grpc.Products as ProtoProducts
 import io.adetalhouet.order.system.product.grpc.Product
 import io.nats.client.Message
@@ -72,4 +75,5 @@ fun cleanTables() = transaction {
     Products.deleteAll()
 }
 
+fun getClients(): List<Client> = transaction { Clients.selectAll().map { it.toClient() }.toList() }
 fun getCartSize(): Int = transaction { Carts.selectAll().count() }

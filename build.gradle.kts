@@ -83,6 +83,8 @@ allprojects {
         testImplementation("org.spockframework", "spock-guice", "1.3-groovy-2.5")
         testImplementation("com.h2database", "h2", "${rootProject.extra.get("h2database")}")
         testImplementation("io.grpc:grpc-testing:${rootProject.extra.get("grpcVersion")}")
+
+        testImplementation(project(":test-utils"))
     }
 }
 

@@ -12,6 +12,7 @@ import io.adetalhouet.order.system.db.lib.DatabaseTransaction.dbQuery
 import io.grpc.Status
 import io.grpc.StatusException
 import org.jetbrains.exposed.sql.deleteWhere
+import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.insertIgnore
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
@@ -24,7 +25,7 @@ class ClientServiceImpl : ClientServiceGrpcKt.ClientServiceCoroutineImplBase() {
             throw StatusException(Status.ALREADY_EXISTS)
         }
 
-        Clients.insertIgnore {
+        Clients.insert {
             it[email] = request.email
             it[address] = request.address
             it[password] = request.password
