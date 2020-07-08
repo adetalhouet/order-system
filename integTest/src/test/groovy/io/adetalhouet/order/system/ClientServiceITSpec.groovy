@@ -2,15 +2,9 @@ package io.adetalhouet.order.system
 
 import groovyx.net.http.RESTClient
 import io.adetalhouet.order.system.client.ClientAppKt
-import io.adetalhouet.order.system.db.lib.DatabaseConnectionProperties
-import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
 import io.adetalhouet.order.system.graphql.app.GraphQLAppKt
 import io.adetalhouet.order.system.test.TestUtilsKt
-import np.com.madanpokharel.embed.nats.EmbeddedNatsConfig
-import np.com.madanpokharel.embed.nats.EmbeddedNatsServer
-import np.com.madanpokharel.embed.nats.NatsServerConfig
-import np.com.madanpokharel.embed.nats.NatsVersion
-import np.com.madanpokharel.embed.nats.ServerType
+import io.adetalhouet.order.system.utils.Utils
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
@@ -18,30 +12,18 @@ import spock.lang.Unroll
 import static groovyx.net.http.ContentType.JSON
 
 @Stepwise
-class OrderSystemSpec extends Specification {
-
-    @Shared
-    private EmbeddedNatsServer natsServer
+class ClientServiceITSpec extends Specification {
 
     @Shared
     private def graphqlClient = new RESTClient("http://localhost:8080/graphql")
 
-
     def setupSpec() {
-        setupDB()
-//        setupNATS()
-//        Thread.start { CartAppKt.main() }
+        Utils.setupDB()
         Thread.start { ClientAppKt.main() }
-//        Thread.start { OrderAppKt.main() }
-//        Thread.start { ProductAppKt.main() }
         Thread.start { GraphQLAppKt.main() }
 
         // give time for the apps to start
         Thread.sleep(10000)
-    }
-
-    def cleanupSpec() {
-//        natsServer.stopServer()
     }
 
     @Unroll
@@ -120,7 +102,6 @@ class OrderSystemSpec extends Specification {
         "9 Okload Street, Kawai, Hawai" | "Passwr1" | 'joe@black.ca'
         "9 Okload Street, Kawai, Hawai" | "Passwr2" | 'mike@bol.or'
     }
-
 
     def 'get all clients email/id/password/address should return 200 code (OK)'() {
         when: 'try to get all clients'
@@ -227,36 +208,5 @@ class OrderSystemSpec extends Specification {
         -1 | _
         9  | _
         13 | _
-    }
-
-    private static def setupDB() {
-        DatabaseConnectionProperties props = new DatabaseConnectionProperties(
-                "org.h2.Driver",
-                "jdbc:h2:mem:order-system",
-                "order-system",
-                "Password123"
-        )
-        DatabaseServiceImpl db = new DatabaseServiceImpl(props)
-        db.connect()
-
-        TestUtilsKt.createTables()
-        TestUtilsKt.cleanTables()
-        TestUtilsKt.loadProducts()
-    }
-
-    private def setupNATS() {
-        EmbeddedNatsConfig config = new EmbeddedNatsConfig.Builder()
-                .withNatsServerConfig(
-                        new NatsServerConfig.Builder()
-                                .withServerType(ServerType.NATS)
-                                .withNatsVersion(NatsVersion.V2_1_0)
-                                .withConfigParam("--trace", "--trace")
-                                .withConfigParam("--user", "order-system")
-                                .withConfigParam("--pass", "Password123")
-                                .build()
-                )
-                .build()
-        natsServer = new EmbeddedNatsServer(config)
-        natsServer.startServer()
     }
 }

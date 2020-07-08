@@ -1,14 +1,18 @@
 package io.adetalhouet.order.system.test
 
 import com.google.common.io.Resources
-import com.google.gson.Gson
 import com.google.protobuf.util.JsonFormat
+import io.adetalhouet.order.system.cart.grpc.Cart
+import io.adetalhouet.order.system.cart.grpc.CartItem
 import io.adetalhouet.order.system.client.grpc.Client
 import io.adetalhouet.order.system.db.domain.Carts
 import io.adetalhouet.order.system.db.domain.Clients
 import io.adetalhouet.order.system.db.domain.Orders
 import io.adetalhouet.order.system.nats.lib.message.toNatsMessage
 import io.adetalhouet.order.system.db.domain.Products
+import io.adetalhouet.order.system.db.domain.toCart
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+
 import io.adetalhouet.order.system.db.domain.toClient
 import io.adetalhouet.order.system.product.grpc.Products as ProtoProducts
 import io.adetalhouet.order.system.product.grpc.Product
@@ -18,6 +22,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.deleteAll
 import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.util.Optional
@@ -76,4 +81,6 @@ fun cleanTables() = transaction {
 }
 
 fun getClients(): List<Client> = transaction { Clients.selectAll().map { it.toClient() }.toList() }
-fun getCartSize(): Int = transaction { Carts.selectAll().count() }
+
+fun getCarts(): List<Cart> = transaction { Carts.selectAll().map { it.toCart() }.toList() }
+fun getCart(cartId: Long): Cart = transaction { Carts.select(Carts.id eq cartId).single().toCart() }
