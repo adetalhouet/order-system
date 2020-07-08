@@ -4,7 +4,7 @@ import io.adetalhouet.order.system.cart.grpc.CartId
 import io.adetalhouet.order.system.cart.grpc.CartService
 import io.adetalhouet.order.system.db.lib.DatabaseConnectionProperties
 import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
-import io.adetalhouet.order.system.test.TestUtilsKt
+import io.adetalhouet.order.system.test.TestDBUtilsKt
 import spock.lang.Specification
 
 class CartServiceSpec extends Specification {
@@ -21,12 +21,12 @@ class CartServiceSpec extends Specification {
         DatabaseServiceImpl db = new DatabaseServiceImpl(props)
         db.connect()
 
-        TestUtilsKt.createTables()
-        TestUtilsKt.cleanTables()
+        TestDBUtilsKt.createTables()
+        TestDBUtilsKt.cleanTables()
     }
 
     def cleanup() {
-        TestUtilsKt.cleanTables()
+        TestDBUtilsKt.cleanTables()
     }
 
     def "create one cart"() {
@@ -42,7 +42,7 @@ class CartServiceSpec extends Specification {
         numberOfCartToCreate.times { server.createCart() }
 
         then:
-        TestUtilsKt.getCartSize() == numberOfCartToCreate
+        TestDBUtilsKt.getCarts().size() == numberOfCartToCreate
     }
 
     def "delete one cart when no cart exist should work"() {

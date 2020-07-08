@@ -3,8 +3,9 @@ package io.adetalhouet.order.system
 import groovyx.net.http.RESTClient
 import io.adetalhouet.order.system.cart.CartAppKt
 import io.adetalhouet.order.system.graphql.app.GraphQLAppKt
-import io.adetalhouet.order.system.test.TestUtilsKt
+import io.adetalhouet.order.system.test.TestDBUtilsKt
 import io.adetalhouet.order.system.utils.Utils
+import org.junit.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
@@ -42,7 +43,7 @@ class CartServiceITSpec extends Specification {
 
         then: 'server returns 200 code with cart id and cart is registered in DB'
         response.data["data"]["createCart"]["cartId"] == 1
-        def carts = TestUtilsKt.getCarts()
+        def carts = TestDBUtilsKt.getCarts()
         carts.size() == 1
         carts[0].id == 1
 
@@ -73,7 +74,7 @@ class CartServiceITSpec extends Specification {
 
         then: 'server returns 200 code and cart is updated in DB'
         if (iterationCount == 2) {
-            def cart = TestUtilsKt.getCart(cartId)
+            def cart = TestDBUtilsKt.getCart(cartId)
             assert cart.cartItems.cartItemsList.size() == 2
             assert cart.totalPrice == 10 * 5 + 10 * 5
         }
@@ -107,7 +108,7 @@ class CartServiceITSpec extends Specification {
                 requestContentType: JSON)
 
         then: 'server returns 200 code and cart is deleted from DB'
-        def carts = TestUtilsKt.getCarts()
+        def carts = TestDBUtilsKt.getCarts()
         carts.size() == 0
 
         and:

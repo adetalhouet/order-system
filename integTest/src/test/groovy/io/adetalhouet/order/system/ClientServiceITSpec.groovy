@@ -3,8 +3,9 @@ package io.adetalhouet.order.system
 import groovyx.net.http.RESTClient
 import io.adetalhouet.order.system.client.ClientAppKt
 import io.adetalhouet.order.system.graphql.app.GraphQLAppKt
-import io.adetalhouet.order.system.test.TestUtilsKt
+import io.adetalhouet.order.system.test.TestDBUtilsKt
 import io.adetalhouet.order.system.utils.Utils
+import org.junit.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
@@ -83,7 +84,7 @@ class ClientServiceITSpec extends Specification {
                 requestContentType: JSON)
 
         then: 'server returns 200 code and clients are registered in the database'
-        def clients = TestUtilsKt.getClients()
+        def clients = TestDBUtilsKt.getClients()
         if (clients.size() == 1) {
             assert clients.get(0).getEmail().equals('joe@black.ca')
             assert clients.get(0).getPassword().equals('Passwr1')
@@ -147,7 +148,7 @@ class ClientServiceITSpec extends Specification {
                 requestContentType: JSON)
 
         then: 'server returns 200 code and clients there is only one remaining client'
-        assert TestUtilsKt.getClients().size() == 1
+        assert TestDBUtilsKt.getClients().size() == 1
 
         where:
         id = 2

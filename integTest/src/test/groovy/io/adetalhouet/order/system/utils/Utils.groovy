@@ -2,7 +2,7 @@ package io.adetalhouet.order.system.utils
 
 import io.adetalhouet.order.system.db.lib.DatabaseConnectionProperties
 import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
-import io.adetalhouet.order.system.test.TestUtilsKt
+import io.adetalhouet.order.system.test.TestDBUtilsKt
 
 class Utils {
     public static def setupDB() {
@@ -15,8 +15,8 @@ class Utils {
         DatabaseServiceImpl db = new DatabaseServiceImpl(props)
         db.connect()
 
-        TestUtilsKt.createTables()
-        TestUtilsKt.cleanTables()
-        TestUtilsKt.loadProducts()
+        TestDBUtilsKt.createTables()
+        TestDBUtilsKt.cleanTables()
+        TestDBUtilsKt.loadProducts()
     }
 }
