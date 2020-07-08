@@ -33,6 +33,7 @@ plugins {
     kotlin("jvm") version "1.3.70"
     id("com.google.protobuf") version "0.8.11" apply false
     application
+    jacoco
 }
 
 application {
@@ -42,6 +43,7 @@ application {
 allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "groovy")
+    apply(plugin = "jacoco")
 
     group = "io.adetalhouet.order.system"
     version = "1.0.0"
@@ -102,4 +104,21 @@ configure(extra.get("services") as List<Project>) {
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+task<JacocoReport>("jacocoRootReport") {
+    dependsOn(subprojects.map { it.tasks.withType<Test>() })
+    dependsOn(subprojects.map { it.tasks.withType<JacocoReport>() })
+    classDirectories.setFrom(subprojects
+        .filter { !it.displayName.contains("api") }
+        .map { it.the<SourceSetContainer>()["main"].output })
+    executionData.setFrom(project.fileTree(".") {
+        include("**/build/jacoco/test.exec")
+    })
+    reports {
+        xml.isEnabled = false
+        csv.isEnabled = false
+        html.isEnabled = true
+        html.destination = file("${buildDir}/reports/jacoco/html")
+    }
 }
