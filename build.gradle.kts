@@ -116,9 +116,9 @@ task<JacocoReport>("jacocoRootReport") {
         include("**/build/jacoco/test.exec")
     })
     reports {
-        xml.isEnabled = false
+        xml.isEnabled = true
+        xml.destination = file("${buildDir}/reports/jacoco/report.xml")
         csv.isEnabled = false
-        html.isEnabled = true
-        html.destination = file("${buildDir}/reports/jacoco/html")
+        html.isEnabled = false
     }
 }
