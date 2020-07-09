@@ -1,3 +1,6 @@
+![Build CI](https://github.com/adetalhouet/order-system/workflows/Build%20CI/badge.svg?branch=master)
+[![codecov](https://codecov.io/gh/adetalhouet/order-system/branch/master/graph/badge.svg)](https://codecov.io/gh/adetalhouet/order-system)
+
 Order System
 =
 Kotlin, gRPC, Graphql, Exposed
