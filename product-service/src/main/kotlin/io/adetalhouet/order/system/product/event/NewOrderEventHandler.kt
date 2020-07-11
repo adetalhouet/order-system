@@ -7,6 +7,7 @@ import io.adetalhouet.order.system.cart.grpc.CartItems
 import io.adetalhouet.order.system.cart.grpc.CartServiceGrpcKt
 import io.adetalhouet.order.system.db.domain.Products
 import io.adetalhouet.order.system.db.domain.toProduct
+import io.adetalhouet.order.system.db.lib.DatabaseTransaction.dbQuery
 import io.adetalhouet.order.system.nats.lib.NatsInbox
 import io.adetalhouet.order.system.nats.lib.message.NatsMessage
 import io.adetalhouet.order.system.nats.lib.message.NatsMessageStatus
@@ -21,6 +22,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.minus
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.update
@@ -43,25 +45,25 @@ class NewOrderEventHandler : MessageHandler, CoroutineScope {
         }
     }
 
+    // this is ok, as we're in our own context
+    @Suppress("BlockingMethodInNonBlockingContext")
     private suspend fun handleMessage(msg: Message?) {
-        if (msg == null || msg.replyTo != null || msg.data.isEmpty()) {
+        if (msg == null || msg.replyTo != null && msg.data.isEmpty()) {
             natsService.publish(msg!!.replyTo, receivedEmptyMessage())
             return
         }
 
-        withContext(Dispatchers.IO) {
-            val order = Order.newBuilder().mergeFrom(msg.data).build()
-            val products = cartService.getProductsByCartId(CartId.newBuilder().setCartId(order.cartId).build())
-            checkProductsAvailability(products)
-            decrementInventory(products)
-        }
+        val order = Order.newBuilder().mergeFrom(msg.data).build()
+        val products = cartService.getProductsByCartId(CartId.newBuilder().setCartId(order.cartId).build())
+        checkProductsAvailability(products)
+        decrementInventory(products)
 
         natsService.publish(msg.replyTo, NatsMessage(NatsMessageStatus.SUCCESS).toByteArray())
     }
 
     private suspend fun checkProductsAvailability(products: CartItems) {
         products.cartItemsList?.forEach { item ->
-            val product = Products.select { Products.id eq item.productId }.single().toProduct()
+            val product = dbQuery { Products.select(Products.id eq item.productId).single().toProduct() }
             if (item.quantity > product.quantity) {
                 natsService.publish(NatsInbox.ORDER.name,
                     NatsMessage(NatsMessageStatus.INSUFFISANT_QUANTITY,
@@ -71,10 +73,12 @@ class NewOrderEventHandler : MessageHandler, CoroutineScope {
         }
     }
 
-    private fun decrementInventory(products: CartItems) {
+    private suspend fun decrementInventory(products: CartItems) {
         products.cartItemsList?.forEach { product ->
-            Products.update({ Products.id eq product.productId }) {
-                it[quantity] = (quantity - product.quantity)
+            dbQuery {
+                Products.update({ Products.id eq product.productId }) {
+                    it[quantity] = (quantity - product.quantity)
+                }
             }
         }
     }

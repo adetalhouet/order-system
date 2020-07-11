@@ -1,12 +1,7 @@
 package io.adetalhouet.order.system.utils
 
 import groovyx.net.http.RESTClient
-import net.sf.json.JSON
 import spock.lang.Shared
-
-import static groovyx.net.http.ContentType.JSON
-import static groovyx.net.http.ContentType.JSON
-import static groovyx.net.http.ContentType.JSON
 import static groovyx.net.http.ContentType.JSON
 
 class QueryLibrary {
@@ -29,13 +24,13 @@ class QueryLibrary {
                 requestContentType: JSON)
     }
 
-    def addItemToCart(long cartId, long id, int quantity, double price) {
+    def addItemToCart(long cartId, long productId, int quantity, double price) {
         def query = '{"query":' +
                 '"{\n' +
                 '  updateCart(\n' +
                 '    input: {\n' +
                 '      cart_id: ' + cartId + '\n' +
-                '      item: { product_id: ' + id + ', quantity: ' + quantity + ', price: ' + price + ' }\n' +
+                '      item: { product_id: ' + productId + ', quantity: ' + quantity + ', price: ' + price + ' }\n' +
                 '      isAdd: true\n' +
                 '    }\n' +
                 '  ) {\n' +
@@ -66,7 +61,7 @@ class QueryLibrary {
 
     // ----- CLIENT QUERIES
 
-    def addClient(String address, String password, String email) {
+    def createClient(String address, String password, String email) {
         def query = '{"query":' +
                 '"{\n  addClient(input: {\n' +
                 '    address: \\"' + address + '\\" \n' +
@@ -116,16 +111,62 @@ class QueryLibrary {
                 '  }\n' +
                 '}"}'
 
-        return query.post(
+        return client.post(
                 body: query,
                 requestContentType: JSON)
     }
 
     def deleteClient(int id) {
         def query = '{"query":' +
-                '"{\n deleteClientById(input: {\\n' +
+                '"{\n deleteClientById(input: {\n' +
                 ' id: ' + id + '\n' +
                 '  }) ' +
+                '  {\n' +
+                '    _\n' +
+                '  }\n' +
+                '}"}'
+
+        return client.post(
+                body: query,
+                requestContentType: JSON)
+    }
+
+    // --- ORDER QUERIES
+
+    def placeOrder(int clientId, int cartId) {
+        def query = '{"query":' +
+                '"{\n placeOrder(\n' +
+                '    input: {\n' +
+                '      client_id: ' + clientId + '\n' +
+                '      cart_id: ' + cartId + '\n' +
+                '      state: PENDING\n' +
+                '      id: 1\n' +
+                '      date_created: { seconds: ' + System.currentTimeMillis() + ' }\n' +
+                '    }\n' +
+                '  )' +
+                '  {\n' +
+                '    _\n' +
+                '  }\n' +
+                '}"}'
+
+        return client.post(
+                body: query,
+                requestContentType: JSON)
+    }
+
+    // -- PRODUCT QUERIES
+
+    def addProduct(int productId, String name, double price, int quantity) {
+        def query = '{"query":' +
+                '"{\n addProduct(\n' +
+                '    input: {\n' +
+                '      id: ' + productId + '\n' +
+                '      name: \\"' + name + '\\" \n' +
+                '      price: ' + price + '\n' +
+                '      quantity: ' + quantity + '\n' +
+                '      last_updated: { seconds: ' + System.currentTimeMillis() + ' }\n' +
+                '    }\n' +
+                '  )' +
                 '  {\n' +
                 '    _\n' +
                 '  }\n' +

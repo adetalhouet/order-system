@@ -24,7 +24,7 @@ class ProductServer {
             .addService(productService)
             .build()
             .start()
-        log.info("Order server started")
+        log.info("Product server started")
 
         Runtime.getRuntime().addShutdownHook(object : Thread() {
             override fun run() {

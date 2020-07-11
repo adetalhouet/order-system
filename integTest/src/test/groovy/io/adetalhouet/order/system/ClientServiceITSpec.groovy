@@ -28,7 +28,7 @@ class ClientServiceITSpec extends Specification {
     @Unroll
     def 'add client with missing field should return 200 code (OK) with errors'() {
         when: 'try to save add client with missing fields'
-        def response = query.addClient(address, password, email)
+        def response = query.createClient(address, password, email)
 
         then: 'server returns 200 code with embedded error'
         response.data["errors"].toString().contains("Password must be set").or(response.data["errors"].toString().contains("Email must be set"))
@@ -45,7 +45,7 @@ class ClientServiceITSpec extends Specification {
     @Unroll
     def 'add client should return 200 code (OK)'() {
         when: 'try to add client with all required fields'
-        def response = query.addClient(address, password, email)
+        def response = query.createClient(address, password, email)
 
         then: 'server returns 200 code and clients are registered in the database'
         def clients = TestDBUtilsKt.getClients()

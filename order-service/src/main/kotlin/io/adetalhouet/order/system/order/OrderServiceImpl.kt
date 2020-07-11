@@ -30,6 +30,8 @@ class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
     override suspend fun placeOrder(request: Order): Empty {
 
+        // TODO add client validation
+
         validateInventoryOrThrow(request)
 
         dbQuery {

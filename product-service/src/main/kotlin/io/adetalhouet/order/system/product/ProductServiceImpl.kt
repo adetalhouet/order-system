@@ -1,8 +1,6 @@
 package io.adetalhouet.order.system.product
 
-import com.google.common.io.Resources
 import com.google.protobuf.Empty
-import com.google.protobuf.util.JsonFormat
 import io.adetalhouet.order.system.db.domain.Products
 import io.adetalhouet.order.system.db.domain.toProduct
 import io.adetalhouet.order.system.db.domain.toProducts
@@ -11,6 +9,7 @@ import io.adetalhouet.order.system.product.grpc.DeleteProductByIdRequest
 import io.adetalhouet.order.system.product.grpc.GetProductByIdRequest
 import io.adetalhouet.order.system.product.grpc.Product
 import io.adetalhouet.order.system.product.grpc.ProductServiceGrpcKt
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
@@ -37,7 +36,7 @@ class ProductServiceImpl : ProductServiceGrpcKt.ProductServiceCoroutineImplBase(
 
     @Throws(NoSuchElementException::class)
     override suspend fun getProductById(request: GetProductByIdRequest): Product = dbQuery {
-        Products.select { Products.id eq request.id }.single().toProduct()
+        Products.select(Products.id eq request.id).single().toProduct()
     }
 
     override suspend fun getProducts(request: Empty): ProductList = dbQuery {
