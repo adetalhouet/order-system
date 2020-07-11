@@ -5,7 +5,7 @@ import io.adetalhouet.order.system.db.lib.DatabaseServiceImpl
 import io.adetalhouet.order.system.test.TestDBUtilsKt
 
 class Utils {
-    public static def setupDB() {
+    static def setupDB() {
         DatabaseConnectionProperties props = new DatabaseConnectionProperties(
                 "org.h2.Driver",
                 "jdbc:h2:mem:order-system",

@@ -1,22 +1,20 @@
 package io.adetalhouet.order.system
 
-import groovyx.net.http.RESTClient
 import io.adetalhouet.order.system.client.ClientAppKt
 import io.adetalhouet.order.system.graphql.app.GraphQLAppKt
 import io.adetalhouet.order.system.test.TestDBUtilsKt
+import io.adetalhouet.order.system.utils.QueryLibrary
 import io.adetalhouet.order.system.utils.Utils
-import org.junit.Ignore
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
 import spock.lang.Unroll
-import static groovyx.net.http.ContentType.JSON
 
 @Stepwise
 class ClientServiceITSpec extends Specification {
 
     @Shared
-    private def graphqlClient = new RESTClient("http://localhost:8080/graphql")
+    private def query = new QueryLibrary()
 
     def setupSpec() {
         Utils.setupDB()
@@ -30,24 +28,7 @@ class ClientServiceITSpec extends Specification {
     @Unroll
     def 'add client with missing field should return 200 code (OK) with errors'() {
         when: 'try to save add client with missing fields'
-
-        def query = '{"query":' +
-                '"{\n  addClient(input: {\n' +
-                '    address: \\"' + address + '\\" \n' +
-                '    password: \\"' + password + '\\" \n' +
-                '    email: \\"' + email + '\\" \n' +
-                '    date_created :{\n' +
-                '      seconds: ' + System.currentTimeMillis() + '\n' +
-                '    }\n' +
-                '  }) ' +
-                '  {\n' +
-                '    _\n' +
-                '  }\n' +
-                '}"}'
-
-        def response = graphqlClient.post(
-                body: query,
-                requestContentType: JSON)
+        def response = query.addClient(address, password, email)
 
         then: 'server returns 200 code with embedded error'
         response.data["errors"].toString().contains("Password must be set").or(response.data["errors"].toString().contains("Email must be set"))
@@ -64,32 +45,15 @@ class ClientServiceITSpec extends Specification {
     @Unroll
     def 'add client should return 200 code (OK)'() {
         when: 'try to add client with all required fields'
-
-        def query = '{"query":' +
-                '"{\n  addClient(input: {\n' +
-                '    address: \\"' + address + '\\" \n' +
-                '    password: \\"' + password + '\\" \n' +
-                '    email: \\"' + email + '\\" \n' +
-                '    date_created :{\n' +
-                '      seconds: ' + System.currentTimeMillis() + '\n' +
-                '    }\n' +
-                '  }) ' +
-                '  {\n' +
-                '    _\n' +
-                '  }\n' +
-                '}"}'
-
-        def response = graphqlClient.post(
-                body: query,
-                requestContentType: JSON)
+        def response = query.addClient(address, password, email)
 
         then: 'server returns 200 code and clients are registered in the database'
         def clients = TestDBUtilsKt.getClients()
-        if (clients.size() == 1) {
+        if (iterationCount == 1) {
             assert clients.get(0).getEmail().equals('joe@black.ca')
             assert clients.get(0).getPassword().equals('Passwr1')
             assert clients.get(0).getAddress().equals('9 Okload Street, Kawai, Hawai')
-        } else if (clients.size() == 2) {
+        } else if (iterationCount == 2) {
             assert clients.get(1).getEmail().equals('mike@bol.or')
             assert clients.get(1).getPassword().equals('Passwr2')
             assert clients.get(1).getAddress().equals('9 Okload Street, Kawai, Hawai')
@@ -106,21 +70,7 @@ class ClientServiceITSpec extends Specification {
 
     def 'get all clients email/id/password/address should return 200 code (OK)'() {
         when: 'try to get all clients'
-
-        def query = '{"query":' +
-                '"{\n getClients {' +
-                '    clients {\n' +
-                '      email\n' +
-                '      id\n' +
-                '      password\n' +
-                '      address\n' +
-                '    }' +
-                '  }\n' +
-                '}"}'
-
-        def response = graphqlClient.post(
-                body: query,
-                requestContentType: JSON)
+        def response = query.getClients()
 
         then: 'server returns 200 code and client information as request'
         assert response.data["data"]["getClients"]["clients"][0]["email"].equals('joe@black.ca')
@@ -133,19 +83,7 @@ class ClientServiceITSpec extends Specification {
 
     def 'delete client should return 200 code (OK)'() {
         when: 'try to delete client when two exist'
-
-        def query = '{"query":' +
-                '"{\n deleteClientById(input: {\\n' +
-                ' id: ' + id + '\n' +
-                '  }) ' +
-                '  {\n' +
-                '    _\n' +
-                '  }\n' +
-                '}"}'
-
-        graphqlClient.post(
-                body: query,
-                requestContentType: JSON)
+        query.deleteClient(id)
 
         then: 'server returns 200 code and clients there is only one remaining client'
         assert TestDBUtilsKt.getClients().size() == 1
@@ -156,22 +94,7 @@ class ClientServiceITSpec extends Specification {
 
     def 'get client email/id/password/address by ID should return 200 code (OK)'() {
         when: 'try to get client by ID'
-
-        def query = '{"query":' +
-                '"{\n getClientById(input: {\\n' +
-                ' id: ' + id + '\n' +
-                '  }) ' +
-                '  {\n' +
-                '    email\n' +
-                '    id\n' +
-                '    password\n' +
-                '    address\n' +
-                '  }\n' +
-                '}"}'
-
-        def response = graphqlClient.post(
-                body: query,
-                requestContentType: JSON)
+        def response = query.getClient(id)
 
         then: 'server returns 200 code and client information as request'
         assert response.data["data"]["getClientById"]["email"].equals('joe@black.ca')
@@ -184,22 +107,7 @@ class ClientServiceITSpec extends Specification {
 
     def 'get client by ID with invalid ID should return 200 code (OK) with errors'() {
         when: 'try to get client by ID'
-
-        def query = '{"query":' +
-                '"{\n getClientById(input: {\\n' +
-                ' id: ' + id + '\n' +
-                '  }) ' +
-                '  {\n' +
-                '    email\n' +
-                '    id\n' +
-                '    password\n' +
-                '    address\n' +
-                '  }\n' +
-                '}"}'
-
-        def response = graphqlClient.post(
-                body: query,
-                requestContentType: JSON)
+        def response = query.getClient(id)
 
         then: 'server returns 200 code with an error'
         assert response.data["errors"].toString().contains("Exception while fetching data (/getClientById) : INTERNAL: Collection is empty.")
