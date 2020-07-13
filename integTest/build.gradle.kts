@@ -17,3 +17,8 @@ dependencies {
     testImplementation("np.com.madanpokharel.embed:nats-embedded:1.1.0")
     testImplementation("org.codehaus.groovy.modules.http-builder:http-builder:0.7.1")
 }
+tasks.test {
+    filter {
+        includeTestsMatching("*OrderSystemITSpec")
+    }
+}

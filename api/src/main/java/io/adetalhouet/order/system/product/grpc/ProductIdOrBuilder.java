@@ -3,8 +3,8 @@
 
 package io.adetalhouet.order.system.product.grpc;
 
-public interface DeleteProductByIdRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:io.adetalhouet.order.system.product.grpc.DeleteProductByIdRequest)
+public interface ProductIdOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:io.adetalhouet.order.system.product.grpc.ProductId)
     com.google.protobuf.MessageOrBuilder {
 
   /**

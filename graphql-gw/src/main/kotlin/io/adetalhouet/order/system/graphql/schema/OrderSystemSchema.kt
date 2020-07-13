@@ -13,7 +13,10 @@ import io.adetalhouet.order.system.product.di.ProductClientModule
 object OrderSystemSchema {
     val schema: GraphQLSchema = Guice
         .createInjector(
+            // Guice module that provides the generated GraphQLSchema instance
             SchemaProviderModule(),
+
+            // Install schema modules
             CartClientModule(),
             CartSchemaModule(),
             ClientSchemaModule(),

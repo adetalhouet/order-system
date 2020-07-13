@@ -15,15 +15,10 @@ public final class ClientOuterClass {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_io_adetalhouet_order_system_client_grpc_GetClientByIdRequest_descriptor;
+    internal_static_io_adetalhouet_order_system_client_grpc_ClientId_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_io_adetalhouet_order_system_client_grpc_GetClientByIdRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_io_adetalhouet_order_system_client_grpc_DeleteClientByIdRequest_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_io_adetalhouet_order_system_client_grpc_DeleteClientByIdRequest_fieldAccessorTable;
+      internal_static_io_adetalhouet_order_system_client_grpc_ClientId_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_io_adetalhouet_order_system_client_grpc_Clients_descriptor;
   static final 
@@ -45,26 +40,25 @@ public final class ClientOuterClass {
     java.lang.String[] descriptorData = {
       "\n\014client.proto\022\'io.adetalhouet.order.sys" +
       "tem.client.grpc\032\033google/protobuf/empty.p" +
-      "roto\032\037google/protobuf/timestamp.proto\"\"\n" +
-      "\024GetClientByIdRequest\022\n\n\002id\030\001 \001(\003\"%\n\027Del" +
-      "eteClientByIdRequest\022\n\n\002id\030\001 \001(\003\"K\n\007Clie" +
-      "nts\022@\n\007clients\030\001 \003(\0132/.io.adetalhouet.or" +
-      "der.system.client.grpc.Client\"x\n\006Client\022" +
-      "\n\n\002id\030\001 \001(\003\022\r\n\005email\030\002 \001(\t\022\020\n\010password\030\003" +
-      " \001(\t\022\017\n\007address\030\004 \001(\t\0220\n\014date_created\030\005 " +
-      "\001(\0132\032.google.protobuf.Timestamp2\254\003\n\rClie" +
-      "ntService\022T\n\tAddClient\022/.io.adetalhouet." +
-      "order.system.client.grpc.Client\032\026.google" +
-      ".protobuf.Empty\022V\n\nGetClients\022\026.google.p" +
-      "rotobuf.Empty\0320.io.adetalhouet.order.sys" +
-      "tem.client.grpc.Clients\022\177\n\rGetClientById" +
-      "\022=.io.adetalhouet.order.system.client.gr" +
-      "pc.GetClientByIdRequest\032/.io.adetalhouet" +
-      ".order.system.client.grpc.Client\022l\n\020Dele" +
-      "teClientById\022@.io.adetalhouet.order.syst" +
-      "em.client.grpc.DeleteClientByIdRequest\032\026" +
-      ".google.protobuf.EmptyB+\n\'io.adetalhouet" +
-      ".order.system.client.grpcP\001b\006proto3"
+      "roto\032\037google/protobuf/timestamp.proto\"\026\n" +
+      "\010ClientId\022\n\n\002id\030\001 \001(\003\"K\n\007Clients\022@\n\007clie" +
+      "nts\030\001 \003(\0132/.io.adetalhouet.order.system." +
+      "client.grpc.Client\"x\n\006Client\022\n\n\002id\030\001 \001(\003" +
+      "\022\r\n\005email\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\022\017\n\007add" +
+      "ress\030\004 \001(\t\0220\n\014date_created\030\005 \001(\0132\032.googl" +
+      "e.protobuf.Timestamp2\254\003\n\rClientService\022o" +
+      "\n\tAddClient\022/.io.adetalhouet.order.syste" +
+      "m.client.grpc.Client\0321.io.adetalhouet.or" +
+      "der.system.client.grpc.ClientId\022V\n\nGetCl" +
+      "ients\022\026.google.protobuf.Empty\0320.io.adeta" +
+      "lhouet.order.system.client.grpc.Clients\022" +
+      "s\n\rGetClientById\0221.io.adetalhouet.order." +
+      "system.client.grpc.ClientId\032/.io.adetalh" +
+      "ouet.order.system.client.grpc.Client\022]\n\020" +
+      "DeleteClientById\0221.io.adetalhouet.order." +
+      "system.client.grpc.ClientId\032\026.google.pro" +
+      "tobuf.EmptyB+\n\'io.adetalhouet.order.syst" +
+      "em.client.grpcP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -72,26 +66,20 @@ public final class ClientOuterClass {
           com.google.protobuf.EmptyProto.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
-    internal_static_io_adetalhouet_order_system_client_grpc_GetClientByIdRequest_descriptor =
+    internal_static_io_adetalhouet_order_system_client_grpc_ClientId_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_io_adetalhouet_order_system_client_grpc_GetClientByIdRequest_fieldAccessorTable = new
+    internal_static_io_adetalhouet_order_system_client_grpc_ClientId_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_io_adetalhouet_order_system_client_grpc_GetClientByIdRequest_descriptor,
-        new java.lang.String[] { "Id", });
-    internal_static_io_adetalhouet_order_system_client_grpc_DeleteClientByIdRequest_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_io_adetalhouet_order_system_client_grpc_DeleteClientByIdRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_io_adetalhouet_order_system_client_grpc_DeleteClientByIdRequest_descriptor,
+        internal_static_io_adetalhouet_order_system_client_grpc_ClientId_descriptor,
         new java.lang.String[] { "Id", });
     internal_static_io_adetalhouet_order_system_client_grpc_Clients_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_io_adetalhouet_order_system_client_grpc_Clients_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_client_grpc_Clients_descriptor,
         new java.lang.String[] { "Clients", });
     internal_static_io_adetalhouet_order_system_client_grpc_Client_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_io_adetalhouet_order_system_client_grpc_Client_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_client_grpc_Client_descriptor,

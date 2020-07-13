@@ -1,9 +1,9 @@
 package io.adetalhouet.order.system.product.di
 
 import com.google.inject.AbstractModule
-import io.adetalhouet.order.system.product.event.NewOrderEventHandler
 import io.adetalhouet.order.system.product.ProductServer
 import io.adetalhouet.order.system.product.ProductServiceImpl
+import io.adetalhouet.order.system.product.event.NewOrderEventHandler
 import io.adetalhouet.order.system.product.grpc.ProductServiceGrpcKt
 
 class ProductServerModule : AbstractModule() {

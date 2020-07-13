@@ -1,10 +1,8 @@
 package io.adetalhouet.order.system
 
-import io.adetalhouet.order.system.client.ClientAppKt
-import io.adetalhouet.order.system.graphql.app.GraphQLAppKt
 import io.adetalhouet.order.system.test.TestDBUtilsKt
+import io.adetalhouet.order.system.utils.ITSetup
 import io.adetalhouet.order.system.utils.QueryLibrary
-import io.adetalhouet.order.system.utils.Utils
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
@@ -17,12 +15,7 @@ class ClientServiceITSpec extends Specification {
     private def query = new QueryLibrary()
 
     def setupSpec() {
-        Utils.setupDB()
-        Thread.start { ClientAppKt.main() }
-        Thread.start { GraphQLAppKt.main() }
-
-        // give time for the apps to start
-        Thread.sleep(10000)
+        ITSetup.setupOnce()
     }
 
     @Unroll
@@ -46,18 +39,14 @@ class ClientServiceITSpec extends Specification {
     def 'add client should return 200 code (OK)'() {
         when: 'try to add client with all required fields'
         def response = query.createClient(address, password, email)
+        def clientId = response.data["data"]["addClient"]["id"] as int
 
         then: 'server returns 200 code and clients are registered in the database'
         def clients = TestDBUtilsKt.getClients()
-        if (iterationCount == 1) {
-            assert clients.get(0).getEmail().equals('joe@black.ca')
-            assert clients.get(0).getPassword().equals('Passwr1')
-            assert clients.get(0).getAddress().equals('9 Okload Street, Kawai, Hawai')
-        } else if (iterationCount == 2) {
-            assert clients.get(1).getEmail().equals('mike@bol.or')
-            assert clients.get(1).getPassword().equals('Passwr2')
-            assert clients.get(1).getAddress().equals('9 Okload Street, Kawai, Hawai')
-        } else false
+        assert clientId == iterationCount + 1
+        assert clients.get(iterationCount).getEmail() == email
+        assert clients.get(iterationCount).getPassword() == password
+        assert clients.get(iterationCount).getAddress() == address
 
         and:
         assert response.status == 200

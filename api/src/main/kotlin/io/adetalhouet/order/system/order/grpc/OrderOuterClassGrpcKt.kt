@@ -1,6 +1,5 @@
 package io.adetalhouet.order.system.order.grpc
 
-import com.google.protobuf.Empty
 import io.adetalhouet.order.system.order.grpc.OrderServiceGrpc.getServiceDescriptor
 import io.grpc.CallOptions
 import io.grpc.CallOptions.DEFAULT
@@ -49,7 +48,7 @@ object OrderServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun placeOrder(request: Order): Empty = unaryRpc(
+    suspend fun placeOrder(request: Order): OrderId = unaryRpc(
       channel,
       OrderServiceGrpc.getPlaceOrderMethod(),
       request,
@@ -66,7 +65,7 @@ object OrderServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun trackOrderById(request: TrackOrderByIdRequest): TrackOrderByIdResponse = unaryRpc(
+    suspend fun trackOrderById(request: OrderId): TrackOrderByIdResponse = unaryRpc(
       channel,
       OrderServiceGrpc.getTrackOrderByIdMethod(),
       request,
@@ -110,7 +109,7 @@ object OrderServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun placeOrder(request: Order): Empty = throw
+    open suspend fun placeOrder(request: Order): OrderId = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.order.grpc.OrderService.PlaceOrder is unimplemented"))
 
     /**
@@ -125,7 +124,7 @@ object OrderServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun trackOrderById(request: TrackOrderByIdRequest): TrackOrderByIdResponse = throw
+    open suspend fun trackOrderById(request: OrderId): TrackOrderByIdResponse = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.order.grpc.OrderService.TrackOrderById is unimplemented"))
 
     /**

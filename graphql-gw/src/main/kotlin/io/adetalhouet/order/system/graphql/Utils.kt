@@ -2,7 +2,6 @@ package io.adetalhouet.order.system.graphql
 
 import com.google.common.util.concurrent.Futures
 import com.google.common.util.concurrent.ListenableFuture
-import java.lang.IllegalStateException
 
 fun String.mustBeSet() = "$this must be set"
 

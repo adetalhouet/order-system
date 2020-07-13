@@ -9,17 +9,13 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service ProductService {
-  rpc AddProduct (Product) returns (google.protobuf.Empty);
+  rpc AddProduct (Product) returns (ProductId);
   rpc GetProducts (google.protobuf.Empty) returns (Products);
-  rpc GetProductById (GetProductByIdRequest) returns (Product);
-  rpc DeleteProductById (DeleteProductByIdRequest) returns (google.protobuf.Empty);
+  rpc GetProductById (ProductId) returns (Product);
+  rpc DeleteProductById (ProductId) returns (google.protobuf.Empty);
 }
 
-message GetProductByIdRequest {
-  int64 id = 1;
-}
-
-message DeleteProductByIdRequest {
+message ProductId {
   int64 id = 1;
 }
 

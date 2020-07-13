@@ -1,10 +1,8 @@
 package io.adetalhouet.order.system
 
-import io.adetalhouet.order.system.cart.CartAppKt
-import io.adetalhouet.order.system.graphql.app.GraphQLAppKt
 import io.adetalhouet.order.system.test.TestDBUtilsKt
+import io.adetalhouet.order.system.utils.ITSetup
 import io.adetalhouet.order.system.utils.QueryLibrary
-import io.adetalhouet.order.system.utils.Utils
 import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
@@ -16,26 +14,18 @@ class CartServiceITSpec extends Specification {
     private def query = new QueryLibrary()
 
     def setupSpec() {
-        Utils.setupDB()
-        Thread.start { CartAppKt.main() }
-        Thread.start { GraphQLAppKt.main() }
-
-        // give time for the apps to start
-        Thread.sleep(7000)
+        ITSetup.setupOnce()
     }
 
     def 'create cart should return 200 code (OK) with Cart ID'() {
         when: 'try to create cart'
-        def response = query.createCart()
+        def cartId = query.createCart()
 
         then: 'server returns 200 code with cart id and cart is registered in DB'
-        response.data["data"]["createCart"]["cartId"] == 1
+        cartId == 1
         def carts = TestDBUtilsKt.getCarts()
         carts.size() == 1
         carts[0].id == 1
-
-        and:
-        assert response.status == 200
     }
 
     def 'add items to cart should return 200 code (OK) and save update to DB'() {

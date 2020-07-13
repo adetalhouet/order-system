@@ -41,5 +41,5 @@ message Cart {
   int64 id = 1;
   CartItems cart_items = 2;
   double total_price = 3;
-  google.protobuf.Timestamp last_updated = 5;
+  google.protobuf.Timestamp last_updated = 4;
 }

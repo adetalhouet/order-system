@@ -10,11 +10,6 @@ import io.adetalhouet.order.system.product.grpc.Product
 import org.jetbrains.exposed.sql.ResultRow
 import java.util.concurrent.TimeUnit
 
-fun Timestamp.getCurrent(): Timestamp = Timestamp
-    .newBuilder()
-    .setSeconds(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()))
-    .build()
-
 fun Long.toTimestamp(): Timestamp = Timestamp
     .newBuilder()
     .setSeconds(TimeUnit.MILLISECONDS.toSeconds(this))

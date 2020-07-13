@@ -49,7 +49,7 @@ object ProductServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun addProduct(request: Product): Empty = unaryRpc(
+    suspend fun addProduct(request: Product): ProductId = unaryRpc(
       channel,
       ProductServiceGrpc.getAddProductMethod(),
       request,
@@ -83,7 +83,7 @@ object ProductServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun getProductById(request: GetProductByIdRequest): Product = unaryRpc(
+    suspend fun getProductById(request: ProductId): Product = unaryRpc(
       channel,
       ProductServiceGrpc.getGetProductByIdMethod(),
       request,
@@ -100,7 +100,7 @@ object ProductServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun deleteProductById(request: DeleteProductByIdRequest): Empty = unaryRpc(
+    suspend fun deleteProductById(request: ProductId): Empty = unaryRpc(
       channel,
       ProductServiceGrpc.getDeleteProductByIdMethod(),
       request,
@@ -127,7 +127,7 @@ object ProductServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun addProduct(request: Product): Empty = throw
+    open suspend fun addProduct(request: Product): ProductId = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.product.grpc.ProductService.AddProduct is unimplemented"))
 
     /**
@@ -157,7 +157,7 @@ object ProductServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun getProductById(request: GetProductByIdRequest): Product = throw
+    open suspend fun getProductById(request: ProductId): Product = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.product.grpc.ProductService.GetProductById is unimplemented"))
 
     /**
@@ -172,7 +172,7 @@ object ProductServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun deleteProductById(request: DeleteProductByIdRequest): Empty = throw
+    open suspend fun deleteProductById(request: ProductId): Empty = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.product.grpc.ProductService.DeleteProductById is unimplemented"))
 
     final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())

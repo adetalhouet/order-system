@@ -5,9 +5,8 @@ import io.adetalhouet.order.system.db.domain.Products
 import io.adetalhouet.order.system.db.domain.toProduct
 import io.adetalhouet.order.system.db.domain.toProducts
 import io.adetalhouet.order.system.db.lib.DatabaseTransaction.dbQuery
-import io.adetalhouet.order.system.product.grpc.DeleteProductByIdRequest
-import io.adetalhouet.order.system.product.grpc.GetProductByIdRequest
 import io.adetalhouet.order.system.product.grpc.Product
+import io.adetalhouet.order.system.product.grpc.ProductId
 import io.adetalhouet.order.system.product.grpc.ProductServiceGrpcKt
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
@@ -18,24 +17,23 @@ import io.adetalhouet.order.system.product.grpc.Products as ProductList
 
 class ProductServiceImpl : ProductServiceGrpcKt.ProductServiceCoroutineImplBase() {
 
-    override suspend fun addProduct(request: Product): Empty = dbQuery {
-        Products.insert {
-            it[id] = request.id
+    override suspend fun addProduct(request: Product): ProductId = dbQuery {
+        val id = Products.insert {
             it[name] = request.name
             it[price] = request.price
             it[quantity] = request.quantity
             it[lastUpdatedMillis] = System.currentTimeMillis()
-        }
-        Empty.getDefaultInstance()
+        }[Products.id]
+        ProductId.newBuilder().setId(id).build()
     }
 
-    override suspend fun deleteProductById(request: DeleteProductByIdRequest): Empty = dbQuery {
+    override suspend fun deleteProductById(request: ProductId): Empty = dbQuery {
         Products.deleteWhere { Products.id eq request.id }
         Empty.getDefaultInstance()
     }
 
     @Throws(NoSuchElementException::class)
-    override suspend fun getProductById(request: GetProductByIdRequest): Product = dbQuery {
+    override suspend fun getProductById(request: ProductId): Product = dbQuery {
         Products.select(Products.id eq request.id).single().toProduct()
     }
 

@@ -22,7 +22,6 @@ class CartServiceSpec extends Specification {
         db.connect()
 
         TestDBUtilsKt.createTables()
-        TestDBUtilsKt.cleanTables()
     }
 
     def cleanup() {

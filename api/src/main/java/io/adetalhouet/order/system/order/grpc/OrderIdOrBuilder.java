@@ -3,8 +3,8 @@
 
 package io.adetalhouet.order.system.order.grpc;
 
-public interface TrackOrderByIdRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:io.adetalhouet.order.system.order.grpc.TrackOrderByIdRequest)
+public interface OrderIdOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:io.adetalhouet.order.system.order.grpc.OrderId)
     com.google.protobuf.MessageOrBuilder {
 
   /**

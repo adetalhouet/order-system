@@ -2,7 +2,6 @@ package io.adetalhouet.order.system.nats.lib.service
 
 import io.adetalhouet.order.system.nats.lib.BasicAuthNatsConnectionProperties
 import io.adetalhouet.order.system.nats.lib.NatsConnectionProperties
-import java.lang.IllegalStateException
 
 class NatsPropertiesService {
     fun natsService(natsConnectionProperties: NatsConnectionProperties): NatsService {

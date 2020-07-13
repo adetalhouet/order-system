@@ -71,7 +71,7 @@ private static final long serialVersionUID = 0L;
             totalPrice_ = input.readDouble();
             break;
           }
-          case 42: {
+          case 34: {
             com.google.protobuf.Timestamp.Builder subBuilder = null;
             if (lastUpdated_ != null) {
               subBuilder = lastUpdated_.toBuilder();
@@ -159,24 +159,24 @@ private static final long serialVersionUID = 0L;
     return totalPrice_;
   }
 
-  public static final int LAST_UPDATED_FIELD_NUMBER = 5;
+  public static final int LAST_UPDATED_FIELD_NUMBER = 4;
   private com.google.protobuf.Timestamp lastUpdated_;
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 4;</code>
    * @return Whether the lastUpdated field is set.
    */
   public boolean hasLastUpdated() {
     return lastUpdated_ != null;
   }
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 4;</code>
    * @return The lastUpdated.
    */
   public com.google.protobuf.Timestamp getLastUpdated() {
     return lastUpdated_ == null ? com.google.protobuf.Timestamp.getDefaultInstance() : lastUpdated_;
   }
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 4;</code>
    */
   public com.google.protobuf.TimestampOrBuilder getLastUpdatedOrBuilder() {
     return getLastUpdated();
@@ -206,7 +206,7 @@ private static final long serialVersionUID = 0L;
       output.writeDouble(3, totalPrice_);
     }
     if (lastUpdated_ != null) {
-      output.writeMessage(5, getLastUpdated());
+      output.writeMessage(4, getLastUpdated());
     }
     unknownFields.writeTo(output);
   }
@@ -231,7 +231,7 @@ private static final long serialVersionUID = 0L;
     }
     if (lastUpdated_ != null) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(5, getLastUpdated());
+        .computeMessageSize(4, getLastUpdated());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -747,14 +747,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> lastUpdatedBuilder_;
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      * @return Whether the lastUpdated field is set.
      */
     public boolean hasLastUpdated() {
       return lastUpdatedBuilder_ != null || lastUpdated_ != null;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      * @return The lastUpdated.
      */
     public com.google.protobuf.Timestamp getLastUpdated() {
@@ -765,7 +765,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      */
     public Builder setLastUpdated(com.google.protobuf.Timestamp value) {
       if (lastUpdatedBuilder_ == null) {
@@ -781,7 +781,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      */
     public Builder setLastUpdated(
         com.google.protobuf.Timestamp.Builder builderForValue) {
@@ -795,7 +795,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      */
     public Builder mergeLastUpdated(com.google.protobuf.Timestamp value) {
       if (lastUpdatedBuilder_ == null) {
@@ -813,7 +813,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      */
     public Builder clearLastUpdated() {
       if (lastUpdatedBuilder_ == null) {
@@ -827,7 +827,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      */
     public com.google.protobuf.Timestamp.Builder getLastUpdatedBuilder() {
       
@@ -835,7 +835,7 @@ private static final long serialVersionUID = 0L;
       return getLastUpdatedFieldBuilder().getBuilder();
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      */
     public com.google.protobuf.TimestampOrBuilder getLastUpdatedOrBuilder() {
       if (lastUpdatedBuilder_ != null) {
@@ -846,7 +846,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+     * <code>.google.protobuf.Timestamp last_updated = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 

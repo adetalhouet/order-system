@@ -7,16 +7,16 @@ import com.google.protobuf.Empty
 import io.adetalhouet.order.system.graphql.checkNullOrEmpty
 import io.adetalhouet.order.system.graphql.mustBeSet
 import io.adetalhouet.order.system.graphql.returnFailedFutureOnException
-import io.adetalhouet.order.system.product.grpc.DeleteProductByIdRequest
-import io.adetalhouet.order.system.product.grpc.GetProductByIdRequest
 import io.adetalhouet.order.system.product.grpc.Product
+import io.adetalhouet.order.system.product.grpc.ProductId
 import io.adetalhouet.order.system.product.grpc.ProductServiceGrpc
 import io.adetalhouet.order.system.product.grpc.Products
+
 
 class ProductSchemaModule : SchemaModule() {
 
     @Query("addProduct")
-    fun addProduct(client: ProductServiceGrpc.ProductServiceFutureStub, request: Product): ListenableFuture<Empty> =
+    fun addProduct(client: ProductServiceGrpc.ProductServiceFutureStub, request: Product): ListenableFuture<ProductId> =
         returnFailedFutureOnException {
             checkNullOrEmpty(request.name) { "Name".mustBeSet() }
             checkNotNull(request.price) { "Price".mustBeSet() }
@@ -26,7 +26,7 @@ class ProductSchemaModule : SchemaModule() {
 
     @Query("deleteProductById")
     fun deleteProductById(client: ProductServiceGrpc.ProductServiceFutureStub,
-                          request: DeleteProductByIdRequest): ListenableFuture<Empty> =
+                          request: ProductId): ListenableFuture<Empty> =
         returnFailedFutureOnException {
             checkNotNull(request.id) { "Product ID".mustBeSet() }
             client.deleteProductById(request)
@@ -34,7 +34,7 @@ class ProductSchemaModule : SchemaModule() {
 
     @Query("getProductById")
     fun getProductById(client: ProductServiceGrpc.ProductServiceFutureStub,
-                       request: GetProductByIdRequest): ListenableFuture<Product>? =
+                       request: ProductId): ListenableFuture<Product>? =
         returnFailedFutureOnException {
             checkNotNull(request.id) { "Product ID".mustBeSet() }
             client.getProductById(request)

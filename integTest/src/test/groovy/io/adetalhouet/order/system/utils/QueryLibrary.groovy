@@ -2,6 +2,7 @@ package io.adetalhouet.order.system.utils
 
 import groovyx.net.http.RESTClient
 import spock.lang.Shared
+
 import static groovyx.net.http.ContentType.JSON
 
 class QueryLibrary {
@@ -19,9 +20,11 @@ class QueryLibrary {
                 '  }\n' +
                 '}"}'
 
-        return client.post(
-                body: query,
-                requestContentType: JSON)
+        def response = sendQuery(query)
+
+        assert response.status == 200
+
+        return response.data["data"]["createCart"]["cartId"] as int
     }
 
     def addItemToCart(long cartId, long productId, int quantity, double price) {
@@ -39,9 +42,7 @@ class QueryLibrary {
                 '}\n' +
                 '"}'
 
-        return client.post(
-                body: query,
-                requestContentType: JSON)
+        return sendQuery(query)
     }
 
     def deleteCart(long id) {
@@ -54,9 +55,7 @@ class QueryLibrary {
                 '  }\n' +
                 '}"}'
 
-        return client.post(
-                body: query,
-                requestContentType: JSON)
+        return sendQuery(query)
     }
 
     // ----- CLIENT QUERIES
@@ -72,13 +71,11 @@ class QueryLibrary {
                 '    }\n' +
                 '  }) ' +
                 '  {\n' +
-                '    _\n' +
+                '    id\n' +
                 '  }\n' +
                 '}"}'
 
-        return client.post(
-                body: query,
-                requestContentType: JSON)
+        return sendQuery(query)
     }
 
     def getClients() {
@@ -93,9 +90,7 @@ class QueryLibrary {
                 '  }\n' +
                 '}"}'
 
-        return client.post(
-                body: query,
-                requestContentType: JSON)
+        return sendQuery(query)
     }
 
     def getClient(int id) {
@@ -111,9 +106,7 @@ class QueryLibrary {
                 '  }\n' +
                 '}"}'
 
-        return client.post(
-                body: query,
-                requestContentType: JSON)
+        return sendQuery(query)
     }
 
     def deleteClient(int id) {
@@ -126,9 +119,7 @@ class QueryLibrary {
                 '  }\n' +
                 '}"}'
 
-        return client.post(
-                body: query,
-                requestContentType: JSON)
+        return sendQuery(query)
     }
 
     // --- ORDER QUERIES
@@ -140,27 +131,45 @@ class QueryLibrary {
                 '      client_id: ' + clientId + '\n' +
                 '      cart_id: ' + cartId + '\n' +
                 '      state: PENDING\n' +
-                '      id: 1\n' +
                 '      date_created: { seconds: ' + System.currentTimeMillis() + ' }\n' +
                 '    }\n' +
                 '  )' +
                 '  {\n' +
-                '    _\n' +
+                '    id\n' +
                 '  }\n' +
                 '}"}'
 
-        return client.post(
-                body: query,
-                requestContentType: JSON)
+        def response = sendQuery(query)
+
+        assert response.status == 200
+
+        return response.data["data"]["placeOrder"]["id"] as int
+    }
+
+    def trackOrder(int orderId) {
+
+        def query = '{"query":' +
+                '"{\n trackOrderById(input: {\\n' +
+                ' id: ' + orderId + '\n' +
+                '  }) ' +
+                '  {\n' +
+                '    order {\n' +
+                '      clientId\n' +
+                '      cartId\n' +
+                '      state\n' +
+                '    }' +
+                '  }\n' +
+                '}"}'
+
+        return sendQuery(query)
     }
 
     // -- PRODUCT QUERIES
 
-    def addProduct(int productId, String name, double price, int quantity) {
+    def addProduct(String name, double price, int quantity) {
         def query = '{"query":' +
                 '"{\n addProduct(\n' +
                 '    input: {\n' +
-                '      id: ' + productId + '\n' +
                 '      name: \\"' + name + '\\" \n' +
                 '      price: ' + price + '\n' +
                 '      quantity: ' + quantity + '\n' +
@@ -168,10 +177,60 @@ class QueryLibrary {
                 '    }\n' +
                 '  )' +
                 '  {\n' +
+                '    id\n' +
+                '  }\n' +
+                '}"}'
+
+        def response = sendQuery(query)
+
+        assert response.status == 200
+
+        return response.data["data"]["addProduct"]["id"] as int
+    }
+
+    def getProduct(int productId) {
+        def query = '{"query":' +
+                '"{\n getProductById(input: {\\n' +
+                ' id: ' + productId + '\n' +
+                '  }) ' +
+                '  {\n' +
+                '    name\n' +
+                '    quantity\n' +
+                '    price\n' +
+                '  }\n' +
+                '}"}'
+        return sendQuery(query)
+    }
+
+    def getProducts() {
+        def query = '{"query":' +
+                '"{\n getProducts {' +
+                '    products {\n' +
+                '      name\n' +
+                '      quantity\n' +
+                '      price\n' +
+                '    }' +
+                '  }\n' +
+                '}"}'
+
+        return sendQuery(query)
+    }
+
+    def deleteProduct(int id) {
+        def query = '{"query":' +
+                '"{\n deleteProductById(input: {\n' +
+                ' id: ' + id + '\n' +
+                '  }) ' +
+                '  {\n' +
                 '    _\n' +
                 '  }\n' +
                 '}"}'
 
+        return sendQuery(query)
+    }
+
+
+    private def sendQuery(String query) {
         return client.post(
                 body: query,
                 requestContentType: JSON)

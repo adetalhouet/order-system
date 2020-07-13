@@ -35,17 +35,17 @@ public interface CartOrBuilder extends
   double getTotalPrice();
 
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 4;</code>
    * @return Whether the lastUpdated field is set.
    */
   boolean hasLastUpdated();
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 4;</code>
    * @return The lastUpdated.
    */
   com.google.protobuf.Timestamp getLastUpdated();
   /**
-   * <code>.google.protobuf.Timestamp last_updated = 5;</code>
+   * <code>.google.protobuf.Timestamp last_updated = 4;</code>
    */
   com.google.protobuf.TimestampOrBuilder getLastUpdatedOrBuilder();
 }

@@ -2,7 +2,6 @@ package io.adetalhouet.order.system.cart.grpc
 
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.cart.service.CartServiceImpl
-import io.adetalhouet.order.system.test.TestDBUtilsKt
 import io.adetalhouet.order.system.test.TestUtilsKt
 import io.grpc.ManagedChannel
 import io.grpc.inprocess.InProcessChannelBuilder

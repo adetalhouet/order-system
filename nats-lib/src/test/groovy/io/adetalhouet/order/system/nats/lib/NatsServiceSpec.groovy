@@ -9,13 +9,10 @@ import io.adetalhouet.order.system.test.TestUtilsKt
 import io.nats.client.Dispatcher
 import io.nats.client.Message
 import io.nats.client.Subscription
-import np.com.madanpokharel.embed.nats.EmbeddedNatsConfig
-import np.com.madanpokharel.embed.nats.EmbeddedNatsServer
-import np.com.madanpokharel.embed.nats.NatsServerConfig
-import np.com.madanpokharel.embed.nats.NatsVersion
-import np.com.madanpokharel.embed.nats.ServerType
+import np.com.madanpokharel.embed.nats.*
 import spock.lang.Shared
 import spock.lang.Specification
+
 import java.time.Duration
 
 class NatsServiceSpec extends Specification {

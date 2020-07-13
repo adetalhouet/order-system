@@ -9,12 +9,12 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service OrderService {
-  rpc PlaceOrder (Order) returns (google.protobuf.Empty);
-  rpc TrackOrderById (TrackOrderByIdRequest) returns (TrackOrderByIdResponse);
+  rpc PlaceOrder (Order) returns (OrderId);
+  rpc TrackOrderById (OrderId) returns (TrackOrderByIdResponse);
   rpc GetOrdersByClient (GetOrdersByClientRequest) returns (Orders);
 }
 
-message TrackOrderByIdRequest {
+message OrderId {
   int64 id = 1;
 }
 

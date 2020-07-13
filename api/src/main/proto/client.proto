@@ -9,17 +9,13 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 
 service ClientService {
-  rpc AddClient (Client) returns (google.protobuf.Empty);
+  rpc AddClient (Client) returns (ClientId);
   rpc GetClients (google.protobuf.Empty) returns (Clients);
-  rpc GetClientById (GetClientByIdRequest) returns (Client);
-  rpc DeleteClientById (DeleteClientByIdRequest) returns (google.protobuf.Empty);
+  rpc GetClientById (ClientId) returns (Client);
+  rpc DeleteClientById (ClientId) returns (google.protobuf.Empty);
 }
 
-message GetClientByIdRequest {
-  int64 id = 1;
-}
-
-message DeleteClientByIdRequest {
+message ClientId {
   int64 id = 1;
 }
 

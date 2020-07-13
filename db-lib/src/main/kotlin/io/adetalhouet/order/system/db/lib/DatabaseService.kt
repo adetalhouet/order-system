@@ -12,8 +12,9 @@ internal fun defaultDatabaseConnection(): DatabaseService {
 }
 
 interface DatabaseService {
-    fun connect() {
-        Database.connect(dataSource())
+    fun connect(): Database {
+        return Database.connect(dataSource())
+
     }
 
     fun dataSource(): HikariDataSource

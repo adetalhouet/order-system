@@ -17,7 +17,6 @@ import org.eclipse.jetty.server.handler.HandlerList
 import org.eclipse.jetty.server.handler.ResourceHandler
 import org.eclipse.jetty.util.resource.Resource
 import java.io.IOException
-import java.lang.RuntimeException
 import java.net.InetSocketAddress
 import java.util.*
 import javax.servlet.http.HttpServletRequest

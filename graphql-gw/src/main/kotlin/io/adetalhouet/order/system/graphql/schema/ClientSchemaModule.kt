@@ -5,10 +5,9 @@ import com.google.api.graphql.rejoiner.SchemaModule
 import com.google.common.util.concurrent.ListenableFuture
 import com.google.protobuf.Empty
 import io.adetalhouet.order.system.client.grpc.Client
+import io.adetalhouet.order.system.client.grpc.ClientId
 import io.adetalhouet.order.system.client.grpc.ClientServiceGrpc
 import io.adetalhouet.order.system.client.grpc.Clients
-import io.adetalhouet.order.system.client.grpc.DeleteClientByIdRequest
-import io.adetalhouet.order.system.client.grpc.GetClientByIdRequest
 import io.adetalhouet.order.system.graphql.checkNullOrEmpty
 import io.adetalhouet.order.system.graphql.mustBeSet
 import io.adetalhouet.order.system.graphql.returnFailedFutureOnException
@@ -16,7 +15,7 @@ import io.adetalhouet.order.system.graphql.returnFailedFutureOnException
 class ClientSchemaModule : SchemaModule() {
 
     @Query("addClient")
-    fun addClient(client: ClientServiceGrpc.ClientServiceFutureStub, request: Client): ListenableFuture<Empty> =
+    fun addClient(client: ClientServiceGrpc.ClientServiceFutureStub, request: Client): ListenableFuture<ClientId> =
         returnFailedFutureOnException {
             checkNullOrEmpty(request.email) { "Email".mustBeSet() }
             checkNullOrEmpty(request.password) { "Password".mustBeSet() }
@@ -25,14 +24,14 @@ class ClientSchemaModule : SchemaModule() {
 
     @Query("deleteClientById")
     fun deleteClientById(client: ClientServiceGrpc.ClientServiceFutureStub,
-                         request: DeleteClientByIdRequest): ListenableFuture<Empty> = returnFailedFutureOnException {
+                         request: ClientId): ListenableFuture<Empty> = returnFailedFutureOnException {
         checkNotNull(request.id) { "Id".mustBeSet() }
         client.deleteClientById(request)
     }
 
     @Query("getClientById")
     fun getClientById(client: ClientServiceGrpc.ClientServiceFutureStub,
-                      request: GetClientByIdRequest): ListenableFuture<Client>? = returnFailedFutureOnException {
+                      request: ClientId): ListenableFuture<Client>? = returnFailedFutureOnException {
         checkNotNull(request.id) { "Id".mustBeSet() }
         client.getClientById(request)
     }

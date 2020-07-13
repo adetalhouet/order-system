@@ -15,15 +15,10 @@ public final class ProductOuterClass {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_io_adetalhouet_order_system_product_grpc_GetProductByIdRequest_descriptor;
+    internal_static_io_adetalhouet_order_system_product_grpc_ProductId_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_io_adetalhouet_order_system_product_grpc_GetProductByIdRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_io_adetalhouet_order_system_product_grpc_DeleteProductByIdRequest_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_io_adetalhouet_order_system_product_grpc_DeleteProductByIdRequest_fieldAccessorTable;
+      internal_static_io_adetalhouet_order_system_product_grpc_ProductId_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_io_adetalhouet_order_system_product_grpc_Products_descriptor;
   static final 
@@ -46,26 +41,25 @@ public final class ProductOuterClass {
       "\n\rproduct.proto\022(io.adetalhouet.order.sy" +
       "stem.product.grpc\032\033google/protobuf/empty" +
       ".proto\032\037google/protobuf/timestamp.proto\"" +
-      "#\n\025GetProductByIdRequest\022\n\n\002id\030\001 \001(\003\"&\n\030" +
-      "DeleteProductByIdRequest\022\n\n\002id\030\001 \001(\003\"O\n\010" +
-      "Products\022C\n\010products\030\001 \003(\01321.io.adetalho" +
-      "uet.order.system.product.grpc.Product\"v\n" +
-      "\007Product\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005pr" +
-      "ice\030\003 \001(\001\022\020\n\010quantity\030\004 \001(\005\0220\n\014last_upda" +
-      "ted\030\005 \001(\0132\032.google.protobuf.Timestamp2\274\003" +
-      "\n\016ProductService\022W\n\nAddProduct\0221.io.adet" +
-      "alhouet.order.system.product.grpc.Produc" +
-      "t\032\026.google.protobuf.Empty\022Y\n\013GetProducts" +
-      "\022\026.google.protobuf.Empty\0322.io.adetalhoue" +
-      "t.order.system.product.grpc.Products\022\204\001\n" +
-      "\016GetProductById\022?.io.adetalhouet.order.s" +
-      "ystem.product.grpc.GetProductByIdRequest" +
-      "\0321.io.adetalhouet.order.system.product.g" +
-      "rpc.Product\022o\n\021DeleteProductById\022B.io.ad" +
-      "etalhouet.order.system.product.grpc.Dele" +
-      "teProductByIdRequest\032\026.google.protobuf.E" +
-      "mptyB,\n(io.adetalhouet.order.system.prod" +
-      "uct.grpcP\001b\006proto3"
+      "\027\n\tProductId\022\n\n\002id\030\001 \001(\003\"O\n\010Products\022C\n\010" +
+      "products\030\001 \003(\01321.io.adetalhouet.order.sy" +
+      "stem.product.grpc.Product\"v\n\007Product\022\n\n\002" +
+      "id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\r\n\005price\030\003 \001(\001\022\020\n" +
+      "\010quantity\030\004 \001(\005\0220\n\014last_updated\030\005 \001(\0132\032." +
+      "google.protobuf.Timestamp2\275\003\n\016ProductSer" +
+      "vice\022t\n\nAddProduct\0221.io.adetalhouet.orde" +
+      "r.system.product.grpc.Product\0323.io.adeta" +
+      "lhouet.order.system.product.grpc.Product" +
+      "Id\022Y\n\013GetProducts\022\026.google.protobuf.Empt" +
+      "y\0322.io.adetalhouet.order.system.product." +
+      "grpc.Products\022x\n\016GetProductById\0223.io.ade" +
+      "talhouet.order.system.product.grpc.Produ" +
+      "ctId\0321.io.adetalhouet.order.system.produ" +
+      "ct.grpc.Product\022`\n\021DeleteProductById\0223.i" +
+      "o.adetalhouet.order.system.product.grpc." +
+      "ProductId\032\026.google.protobuf.EmptyB,\n(io." +
+      "adetalhouet.order.system.product.grpcP\001b" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -73,26 +67,20 @@ public final class ProductOuterClass {
           com.google.protobuf.EmptyProto.getDescriptor(),
           com.google.protobuf.TimestampProto.getDescriptor(),
         });
-    internal_static_io_adetalhouet_order_system_product_grpc_GetProductByIdRequest_descriptor =
+    internal_static_io_adetalhouet_order_system_product_grpc_ProductId_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_io_adetalhouet_order_system_product_grpc_GetProductByIdRequest_fieldAccessorTable = new
+    internal_static_io_adetalhouet_order_system_product_grpc_ProductId_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_io_adetalhouet_order_system_product_grpc_GetProductByIdRequest_descriptor,
-        new java.lang.String[] { "Id", });
-    internal_static_io_adetalhouet_order_system_product_grpc_DeleteProductByIdRequest_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_io_adetalhouet_order_system_product_grpc_DeleteProductByIdRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_io_adetalhouet_order_system_product_grpc_DeleteProductByIdRequest_descriptor,
+        internal_static_io_adetalhouet_order_system_product_grpc_ProductId_descriptor,
         new java.lang.String[] { "Id", });
     internal_static_io_adetalhouet_order_system_product_grpc_Products_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_io_adetalhouet_order_system_product_grpc_Products_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_product_grpc_Products_descriptor,
         new java.lang.String[] { "Products", });
     internal_static_io_adetalhouet_order_system_product_grpc_Product_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(2);
     internal_static_io_adetalhouet_order_system_product_grpc_Product_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_io_adetalhouet_order_system_product_grpc_Product_descriptor,

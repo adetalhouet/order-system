@@ -61,7 +61,7 @@ public final class CartOuterClass {
       "tem\"\237\001\n\004Cart\022\n\n\002id\030\001 \001(\003\022D\n\ncart_items\030\002" +
       " \001(\01320.io.adetalhouet.order.system.cart." +
       "grpc.CartItems\022\023\n\013total_price\030\003 \001(\001\0220\n\014l" +
-      "ast_updated\030\005 \001(\0132\032.google.protobuf.Time" +
+      "ast_updated\030\004 \001(\0132\032.google.protobuf.Time" +
       "stamp2\217\003\n\013CartService\022S\n\nCreateCart\022\026.go" +
       "ogle.protobuf.Empty\032-.io.adetalhouet.ord" +
       "er.system.cart.grpc.CartId\022^\n\nUpdateCart" +

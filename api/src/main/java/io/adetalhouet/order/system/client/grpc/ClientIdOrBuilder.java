@@ -3,8 +3,8 @@
 
 package io.adetalhouet.order.system.client.grpc;
 
-public interface GetClientByIdRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:io.adetalhouet.order.system.client.grpc.GetClientByIdRequest)
+public interface ClientIdOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:io.adetalhouet.order.system.client.grpc.ClientId)
     com.google.protobuf.MessageOrBuilder {
 
   /**

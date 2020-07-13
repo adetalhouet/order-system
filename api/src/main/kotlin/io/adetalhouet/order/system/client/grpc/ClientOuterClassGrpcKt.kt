@@ -49,7 +49,7 @@ object ClientServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun addClient(request: Client): Empty = unaryRpc(
+    suspend fun addClient(request: Client): ClientId = unaryRpc(
       channel,
       ClientServiceGrpc.getAddClientMethod(),
       request,
@@ -83,7 +83,7 @@ object ClientServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun getClientById(request: GetClientByIdRequest): Client = unaryRpc(
+    suspend fun getClientById(request: ClientId): Client = unaryRpc(
       channel,
       ClientServiceGrpc.getGetClientByIdMethod(),
       request,
@@ -100,7 +100,7 @@ object ClientServiceGrpcKt {
      *
      * @return The single response from the server.
      */
-    suspend fun deleteClientById(request: DeleteClientByIdRequest): Empty = unaryRpc(
+    suspend fun deleteClientById(request: ClientId): Empty = unaryRpc(
       channel,
       ClientServiceGrpc.getDeleteClientByIdMethod(),
       request,
@@ -127,7 +127,7 @@ object ClientServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun addClient(request: Client): Empty = throw
+    open suspend fun addClient(request: Client): ClientId = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.client.grpc.ClientService.AddClient is unimplemented"))
 
     /**
@@ -157,7 +157,7 @@ object ClientServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun getClientById(request: GetClientByIdRequest): Client = throw
+    open suspend fun getClientById(request: ClientId): Client = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.client.grpc.ClientService.GetClientById is unimplemented"))
 
     /**
@@ -172,7 +172,7 @@ object ClientServiceGrpcKt {
      *
      * @param request The request from the client.
      */
-    open suspend fun deleteClientById(request: DeleteClientByIdRequest): Empty = throw
+    open suspend fun deleteClientById(request: ClientId): Empty = throw
         StatusException(UNIMPLEMENTED.withDescription("Method io.adetalhouet.order.system.client.grpc.ClientService.DeleteClientById is unimplemented"))
 
     final override fun bindService(): ServerServiceDefinition = builder(getServiceDescriptor())
