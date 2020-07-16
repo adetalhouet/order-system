@@ -11,7 +11,7 @@ class NatsPropertiesService {
                     natsConnectionProperties)
             }
             else -> {
-                throw IllegalStateException("Couldn't get NATS service for properties $natsConnectionProperties")
+                error("Couldn't get NATS service for properties $natsConnectionProperties")
             }
         }
     }

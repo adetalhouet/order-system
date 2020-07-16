@@ -32,6 +32,7 @@ plugins {
     groovy
     kotlin("jvm") version "1.3.70"
     id("com.google.protobuf") version "0.8.11" apply false
+    id("io.gitlab.arturbosch.detekt").version("1.10.0")
     application
     jacoco
 }
@@ -44,6 +45,7 @@ allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "groovy")
     apply(plugin = "jacoco")
+    apply(plugin = "io.gitlab.arturbosch.detekt")
 
     group = "io.adetalhouet.order.system"
     version = "1.0.0"
@@ -118,7 +120,28 @@ task<JacocoReport>("jacocoRootReport") {
     reports {
         xml.isEnabled = true
         xml.destination = file("${buildDir}/reports/jacoco/report.xml")
-        csv.isEnabled = false
-        html.isEnabled = true
+    }
+}
+
+val analysisDir = file(projectDir)
+val configFile = file("$rootDir/config/detekt/detekt.yml")
+val statisticsConfigFile = file("$rootDir/config/detekt/statistics.yml")
+
+task<io.gitlab.arturbosch.detekt.Detekt>("detektAll") {
+    description = "Runs the whole project at once."
+    parallel = true
+    setSource(analysisDir)
+    include("**/*.kt")
+    exclude("api/**")
+    exclude("**/resources/**")
+    exclude("**/build/**")
+    failFast = false // fail build on any finding
+    ignoreFailures = true
+    buildUponDefaultConfig = true
+    config.setFrom(listOf(statisticsConfigFile, configFile))
+
+    reports {
+        html.enabled = true
+        html.destination = file("${buildDir}/reports/detekt/report.html")
     }
 }

@@ -62,7 +62,7 @@ class ProductServiceITSpec extends Specification {
         then: 'server returns 200 code and product has been removed from db'
         TestDBUtilsKt.getProducts().forEach { p ->
             if (p.id == productId) {
-                assert false
+                assert false, "Expect product to be deleted"
             }
         }
     }

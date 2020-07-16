@@ -15,7 +15,7 @@ class CartClientModule : AbstractModule() {
             .usePlaintext()
             .build()
         bind(CartServiceGrpc.CartServiceFutureStub::class.java).toInstance(CartServiceGrpc.newFutureStub(channel))
-        bind(CartServiceGrpcKt.CartServiceCoroutineStub::class.java).toInstance(CartServiceGrpcKt.CartServiceCoroutineStub(
-            channel))
+        bind(CartServiceGrpcKt.CartServiceCoroutineStub::class.java)
+            .toInstance(CartServiceGrpcKt.CartServiceCoroutineStub(channel))
     }
 }

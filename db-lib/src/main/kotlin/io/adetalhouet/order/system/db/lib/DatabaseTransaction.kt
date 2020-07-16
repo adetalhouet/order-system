@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory
 object DatabaseTransaction {
     private val log = LoggerFactory.getLogger(DatabaseTransaction::class.java)
 
+    @Suppress("TooGenericExceptionCaught")
     suspend fun <T> dbQuery(block: () -> T): T = newSuspendedTransaction {
         addLogger(SqlLogger(block.javaClass.name))
 

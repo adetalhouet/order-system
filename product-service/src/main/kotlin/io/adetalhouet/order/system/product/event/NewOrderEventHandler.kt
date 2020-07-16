@@ -76,7 +76,7 @@ class NewOrderEventHandler : MessageHandler, CoroutineScope {
         products.cartItemsList?.forEach { product ->
             dbQuery {
                 Products.update({ Products.id eq product.productId }) {
-                    it[quantity] = (quantity - product.quantity)
+                    it[quantity] = quantity - product.quantity
                 }
             }
         }

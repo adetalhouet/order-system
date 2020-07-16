@@ -3,11 +3,18 @@ package io.adetalhouet.order.system.db.domain
 import io.adetalhouet.order.system.order.grpc.Order
 import org.jetbrains.exposed.sql.Table
 
+object DBStringSize {
+    const val MAX_EMAIL_SIZE = 80
+    const val MAX_PASSWORD_SIZE = 20
+    const val MAX_ADDRESS_SIZE = 100
+    const val MAX_NAME_SIZE = 80
+}
+
 object Orders : Table() {
     val id = long("id").autoIncrement()
     val state = enumeration("state", Order.State::class)
-    val clientId = (long("client_id") references Clients.id)
-    val cartId = (long("cart_id") references Carts.id)
+    val clientId = long("client_id") references Clients.id
+    val cartId = long("cart_id") references Carts.id
     val dateCreatedMillis = long("date_created")
 
     override val primaryKey = PrimaryKey(id, name = "PK_Orders_ID")
@@ -15,9 +22,9 @@ object Orders : Table() {
 
 object Clients : Table() {
     val id = long("id").autoIncrement()
-    val email = varchar("email", 80)
-    val password = varchar("password", 20)
-    val address = varchar("address", 100)
+    val email = varchar("email", DBStringSize.MAX_EMAIL_SIZE)
+    val password = varchar("password", DBStringSize.MAX_PASSWORD_SIZE)
+    val address = varchar("address", DBStringSize.MAX_ADDRESS_SIZE)
     val dateCreatedMillis = long("date_created")
 
     override val primaryKey = PrimaryKey(id, name = "PK_Clients_ID")
@@ -43,7 +50,7 @@ object CartItems : Table() {
 
 object Products : Table() {
     val id = long("id").autoIncrement()
-    val name = varchar("name", 80)
+    val name = varchar("name", DBStringSize.MAX_NAME_SIZE)
     val price = double("price")
     val quantity = integer("quantity")
     val lastUpdatedMillis = long("last_updated")

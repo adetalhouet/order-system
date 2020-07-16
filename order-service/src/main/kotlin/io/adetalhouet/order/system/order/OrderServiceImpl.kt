@@ -23,6 +23,10 @@ import io.adetalhouet.order.system.order.grpc.Orders as ClientOrderList
 
 class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
 
+    companion object {
+        private const val TIMEOUT = 10000L
+    }
+
     @Inject
     @Named("Default")
     private lateinit var natsService: NatsService
@@ -52,14 +56,15 @@ class OrderServiceImpl : OrderServiceGrpcKt.OrderServiceCoroutineImplBase() {
         Orders.select { Orders.clientId eq request.clientId }.map { it.toOrder() }.toList().toOrders()
     }
 
+    @Suppress("ThrowsCount")
     private fun validateInventoryOrThrow(request: Order) {
-        // FIXME configure timeout
-        val message = natsService.requestAndGetOneReply(NatsInbox.PRODUCT.name, request.toByteArray(), 10000L)
+        val message = natsService.requestAndGetOneReply(NatsInbox.PRODUCT.name, request.toByteArray(), TIMEOUT)
         val domainMessage = message.toNatsMessage()
         when (domainMessage.status) {
             NatsMessageStatus.SUCCESS -> return
             NatsMessageStatus.FAILURE -> throw StatusException(Status.INTERNAL.withDescription(domainMessage.message))
-            NatsMessageStatus.INVALID -> throw StatusException(Status.INVALID_ARGUMENT.withDescription(domainMessage.message))
+            NatsMessageStatus.INVALID -> throw StatusException(Status.INVALID_ARGUMENT.withDescription(
+                domainMessage.message))
             NatsMessageStatus.INSUFFISANT_QUANTITY -> throw StatusException(Status.FAILED_PRECONDITION.withDescription(
                 domainMessage.message))
         }

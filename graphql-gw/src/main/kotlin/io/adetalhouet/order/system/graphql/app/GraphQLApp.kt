@@ -1,23 +1,27 @@
 package io.adetalhouet.order.system.graphql.app
 
+import com.typesafe.config.Config
+import com.typesafe.config.ConfigFactory
 import io.adetalhouet.order.system.graphql.GraphQLServer
 import kotlinx.coroutines.runBlocking
 import org.slf4j.LoggerFactory
 
-class Server {
-    private val log = LoggerFactory.getLogger(Server::class.java)
+class GraphQLApp {
+    private val log = LoggerFactory.getLogger(GraphQLApp::class.java)
 
     private var graphql = GraphQLServer()
 
     fun start() {
-        val port = 8080
+        val conf: Config = ConfigFactory.load()
+
+        val port = conf.getInt("graphql.port")
         log.info("Start Graphql Server")
         graphql.start(port)
 
         Runtime.getRuntime().addShutdownHook(object : Thread() {
             override fun run() {
                 log.info("*** shutting down GraphQL server since JVM is shutting down")
-                this@Server.stop()
+                this@GraphQLApp.stop()
             }
         })
     }
@@ -28,5 +32,5 @@ class Server {
 }
 
 fun main() = runBlocking {
-    Server().start()
+    GraphQLApp().start()
 }

@@ -9,7 +9,7 @@ import io.grpc.ServerBuilder
 import org.slf4j.LoggerFactory
 import java.io.IOException
 
-class CartServer() {
+class CartServer {
     private val log = LoggerFactory.getLogger(CartServer::class.java)
 
     @Inject

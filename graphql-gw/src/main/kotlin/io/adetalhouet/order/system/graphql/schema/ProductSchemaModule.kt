@@ -12,7 +12,6 @@ import io.adetalhouet.order.system.product.grpc.ProductId
 import io.adetalhouet.order.system.product.grpc.ProductServiceGrpc
 import io.adetalhouet.order.system.product.grpc.Products
 
-
 class ProductSchemaModule : SchemaModule() {
 
     @Query("addProduct")

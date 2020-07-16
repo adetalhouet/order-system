@@ -10,13 +10,13 @@ import graphql.GraphQL
 import graphql.execution.instrumentation.ChainedInstrumentation
 import graphql.execution.instrumentation.tracing.TracingInstrumentation
 import io.adetalhouet.order.system.graphql.schema.OrderSystemSchema
+import org.eclipse.jetty.http.HttpStatus
 import org.eclipse.jetty.server.Request
 import org.eclipse.jetty.server.Server
 import org.eclipse.jetty.server.handler.AbstractHandler
 import org.eclipse.jetty.server.handler.HandlerList
 import org.eclipse.jetty.server.handler.ResourceHandler
 import org.eclipse.jetty.util.resource.Resource
-import java.io.IOException
 import java.net.InetSocketAddress
 import java.util.*
 import javax.servlet.http.HttpServletRequest
@@ -63,7 +63,7 @@ class GraphQLServer : AbstractHandler() {
             val query = json["query"]
 
             if (query == null || query !is String) {
-                response?.status = 400
+                response?.status = HttpStatus.BAD_REQUEST_400
                 return
             }
 
@@ -86,6 +86,7 @@ class GraphQLServer : AbstractHandler() {
         }
     }
 
+    @Suppress("SpreadOperator")
     private fun getVariables(variables: Any?): Map<String, Any> {
         if (variables is Map<*, *>) {
             val pairs = variables.map { it.key as String to it.value as Any }
@@ -96,12 +97,8 @@ class GraphQLServer : AbstractHandler() {
     }
 
     private fun readJson(request: HttpServletRequest?): Map<String, Any> {
-        try {
-            val json = CharStreams.toString(request!!.reader)
-            return jsonToMap(json)
-        } catch (exception: IOException) {
-            throw RuntimeException(exception)
-        }
+        val json = CharStreams.toString(request!!.reader)
+        return jsonToMap(json)
     }
 
     private fun jsonToMap(json: String?): Map<String, Any> {

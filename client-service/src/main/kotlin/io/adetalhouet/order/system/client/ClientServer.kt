@@ -9,11 +9,11 @@ import io.grpc.ServerBuilder
 import org.slf4j.LoggerFactory
 import java.io.IOException
 
-class ClientServer() {
+class ClientServer {
     private val log = LoggerFactory.getLogger(ClientServer::class.java)
 
     @Inject
-    private lateinit var clientServer: ClientServiceGrpcKt.ClientServiceCoroutineImplBase
+    private lateinit var clientGrpcServer: ClientServiceGrpcKt.ClientServiceCoroutineImplBase
     private var server: Server? = null
 
     @Throws(IOException::class)
@@ -21,7 +21,7 @@ class ClientServer() {
 
         val conf: Config = ConfigFactory.load()
         server = ServerBuilder.forPort(conf.getInt("client.port"))
-            .addService(clientServer)
+            .addService(clientGrpcServer)
             .build()
             .start()
 

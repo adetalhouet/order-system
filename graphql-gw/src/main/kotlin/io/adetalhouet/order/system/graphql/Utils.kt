@@ -9,6 +9,7 @@ fun checkNullOrEmpty(string: String, lazyMessage: () -> String) {
     if (string.isEmpty()) throw IllegalStateException(lazyMessage())
 }
 
+@Suppress("TooGenericExceptionCaught")
 fun <T> returnFailedFutureOnException(block: () -> ListenableFuture<T>): ListenableFuture<T> =
     try {
         block()
