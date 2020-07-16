@@ -55,6 +55,7 @@ class ProductServiceITSpec extends Specification {
         assert response.data["data"]["getProducts"]["products"][productId - 1]["price"] == price
     }
 
+    @SuppressWarnings("ConstantAssertExpression")
     def 'delete product should return 200 code (OK) and remove from db'() {
         when: 'try to delete product'
         query.deleteProduct(productId)
