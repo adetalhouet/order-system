@@ -132,11 +132,11 @@ task<io.gitlab.arturbosch.detekt.Detekt>("detektAll") {
     parallel = true
     setSource(analysisDir)
     include("**/*.kt")
-    exclude("api/**")
+    exclude("api/**") // don't look at gRPC generated code
     exclude("**/resources/**")
     exclude("**/build/**")
-    failFast = false // fail build on any finding
-    ignoreFailures = true
+    failFast = true
+    ignoreFailures = false
     buildUponDefaultConfig = true
     config.setFrom(listOf(statisticsConfigFile, configFile))
 
