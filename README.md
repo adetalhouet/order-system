@@ -11,13 +11,11 @@ APIs are defined in [proto](https://github.com/adetalhouet/order-system/raw/mast
 To interact with the application, use the GraphQL API GW, which is directly integrated with the gRPC servers using [Rejoiner](https://github.com/google/rejoiner)
 
 ### TODO
-- Integration tests
 - Cloud native deployment (K8S / Helm)
   - Add Kong API GW integration w/ GraphQL
   - Secure endpoints - HTTPS / TLS
   - Metrics / Monitoring
 - OpenShift operator
-- 
 
 ### High level architecture
 ![architecture](https://github.com/adetalhouet/order-system/raw/master/docs/src/docs/resources/high-level-arch.png)
