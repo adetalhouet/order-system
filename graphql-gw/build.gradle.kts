@@ -1,5 +1,9 @@
 group = "${rootProject.group}.graphql.gw"
 
+plugins {
+    id("com.google.cloud.tools.jib")
+}
+
 application {
     mainClassName = "io.adetalhouet.order.system.graphql.app.ServerKt"
 }
@@ -12,4 +16,17 @@ dependencies {
     implementation(project(":client-service"))
     implementation(project(":cart-service"))
     implementation(project(":product-service"))
+}
+
+jib {
+    from {
+        image = "openjdk:8-jre-alpine"
+    }
+    to {
+        val tag_version = version.toString().substringBefore('-')
+        image = "adetalhouet/order-system-api-gw:$tag_version"
+    }
+    container {
+        mainClass = application.mainClassName
+    }
 }

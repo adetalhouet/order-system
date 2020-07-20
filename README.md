@@ -34,7 +34,7 @@ To interact with the application, use the GraphQL API GW, which is directly inte
 
 ### Postgres Database
 ```
-docker run -d --name order-system-db -e POSTGRES_PASSWORD=Password123 -e POSTGRES_DB=order-system -e POSTGRES_USER=order-system -d postgres
+docker run -d --name order-system-db -p 5432:5432 -e POSTGRES_PASSWORD=Password123 -e POSTGRES_DB=order-system -e POSTGRES_USER=order-system -d postgres
 ```
 
 ### Test graphql server

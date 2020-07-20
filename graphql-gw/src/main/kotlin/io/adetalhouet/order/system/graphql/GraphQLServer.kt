@@ -38,7 +38,7 @@ class GraphQLServer : AbstractHandler() {
 
     @Throws(Exception::class)
     fun start(port: Int) {
-        val server = Server(InetSocketAddress("localhost", port))
+        val server = Server(InetSocketAddress(port))
 
         val resourceHandler = ResourceHandler()
         resourceHandler.welcomeFiles = arrayOf("index.html")

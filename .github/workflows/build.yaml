@@ -20,6 +20,9 @@ jobs:
       - name: Build
         run: gradle build
 
+#      - name: Build Docker images and push them to registry
+#        run: gradle jib
+
       - name: Test report
         run: gradle jacocoRootReport
 
