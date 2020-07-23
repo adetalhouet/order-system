@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClassName = "io.adetalhouet.order.system.graphql.app.ServerKt"
+    mainClassName = "io.adetalhouet.order.system.graphql.app.GraphQLAppKt"
 }
 
 dependencies {

@@ -27,5 +27,6 @@ fun main() = runBlocking {
     withContext(Dispatchers.IO) {
         val server = injector.getInstance(ProductServer::class.java)
         server.start()
+        server.blockUntilShutdown()
     }
 }

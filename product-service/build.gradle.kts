@@ -5,7 +5,7 @@ plugins {
 }
 
 application {
-    mainClassName = "io.adetalhouet.order.system.order.OrderAppKt"
+    mainClassName = "io.adetalhouet.order.system.product.ProductAppKt"
 }
 
 dependencies {
