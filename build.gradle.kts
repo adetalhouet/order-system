@@ -32,8 +32,8 @@ plugins {
     groovy
     kotlin("jvm") version "1.3.70"
     id("com.google.protobuf") version "0.8.11" apply false
-    id("io.gitlab.arturbosch.detekt").version("1.10.0")
-    id("com.google.cloud.tools.jib") version ("2.4.0") apply false
+    id("io.gitlab.arturbosch.detekt").version "1.10.0"
+    id("com.google.cloud.tools.jib") version "2.4.0" apply false
     application
     jacoco
 }
