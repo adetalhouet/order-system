@@ -14,7 +14,7 @@ class GraphQLApp {
     fun start() {
         val conf: Config = ConfigFactory.load()
 
-        val port = conf.getInt("graphql.port")
+        val port = conf.getString("api-gw.port").toInt()
         log.info("Start Graphql Server")
         graphql.start(port)
 

@@ -15,7 +15,7 @@ jib {
     to {
         val tag_version = version.toString().substringBefore('-')
         val app_name = group.toString().replace("${rootProject.group}.", "").plus("-service")
-        image = "adetalhouet/${app_name}:$tag_version"
+        image = "adetalhouet/order-system-${app_name}:$tag_version"
     }
     container {
         mainClass = application.mainClassName

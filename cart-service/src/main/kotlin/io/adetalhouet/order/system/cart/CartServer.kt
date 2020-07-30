@@ -20,7 +20,7 @@ class CartServer {
     fun start() {
 
         val conf: Config = ConfigFactory.load()
-        server = ServerBuilder.forPort(conf.getInt("cart.port"))
+        server = ServerBuilder.forPort(conf.getString("cart.port").toInt())
             .addService(cartService)
             .build()
             .start()

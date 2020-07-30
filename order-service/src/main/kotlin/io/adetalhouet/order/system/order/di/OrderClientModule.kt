@@ -11,7 +11,7 @@ class OrderClientModule : AbstractModule() {
     override fun configure() {
         val conf: Config = ConfigFactory.load()
         val channel = ManagedChannelBuilder
-            .forAddress(conf.getString("order.url"), conf.getInt("order.port"))
+            .forAddress(conf.getString("order.url"), conf.getString("order.port").toInt())
             .usePlaintext()
             .build()
         bind(OrderServiceGrpc.OrderServiceFutureStub::class.java)

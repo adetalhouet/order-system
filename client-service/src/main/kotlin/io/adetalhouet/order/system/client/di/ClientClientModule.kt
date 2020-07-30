@@ -11,7 +11,7 @@ class ClientClientModule : AbstractModule() {
     override fun configure() {
         val conf: Config = ConfigFactory.load()
         val channel = ManagedChannelBuilder
-            .forAddress(conf.getString("client.url"), conf.getInt("client.port"))
+            .forAddress(conf.getString("client.url"), conf.getString("client.port").toInt())
             .usePlaintext()
             .build()
         bind(ClientServiceGrpc.ClientServiceFutureStub::class.java)

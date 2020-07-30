@@ -24,7 +24,7 @@ jib {
     }
     to {
         val tag_version = version.toString().substringBefore('-')
-        image = "adetalhouet/order-system-api-gw:$tag_version"
+        image = "adetalhouet/order-system-api-gw-service:$tag_version"
     }
     container {
         mainClass = application.mainClassName

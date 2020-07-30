@@ -11,7 +11,7 @@ class ProductClientModule : AbstractModule() {
     override fun configure() {
         val conf: Config = ConfigFactory.load()
         val channel = ManagedChannelBuilder
-            .forAddress(conf.getString("product.url"), conf.getInt("product.port"))
+            .forAddress(conf.getString("product.url"), conf.getString("product.port").toInt())
             .usePlaintext()
             .build()
         bind(ProductServiceGrpc.ProductServiceFutureStub::class.java)

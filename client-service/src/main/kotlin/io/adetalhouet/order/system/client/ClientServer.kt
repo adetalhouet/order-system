@@ -20,7 +20,7 @@ class ClientServer {
     fun start() {
 
         val conf: Config = ConfigFactory.load()
-        server = ServerBuilder.forPort(conf.getInt("client.port"))
+        server = ServerBuilder.forPort(conf.getString("client.port").toInt())
             .addService(clientGrpcServer)
             .build()
             .start()

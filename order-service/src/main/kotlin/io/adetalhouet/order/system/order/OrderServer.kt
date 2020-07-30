@@ -21,7 +21,7 @@ class OrderServer {
     fun start() {
 
         val conf: Config = ConfigFactory.load()
-        server = ServerBuilder.forPort(conf.getInt("order.port"))
+        server = ServerBuilder.forPort(conf.getString("order.port").toInt())
             .addService(orderService)
             .build()
             .start()

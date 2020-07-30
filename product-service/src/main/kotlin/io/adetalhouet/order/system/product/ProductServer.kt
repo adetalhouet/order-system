@@ -20,7 +20,7 @@ class ProductServer {
     @Throws(IOException::class)
     fun start() {
         val conf: Config = ConfigFactory.load()
-        server = ServerBuilder.forPort(conf.getInt("product.port"))
+        server = ServerBuilder.forPort(conf.getString("product.port").toInt())
             .addService(productService)
             .build()
             .start()
