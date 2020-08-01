@@ -12,12 +12,15 @@ class BasicAuthNatsService(private val natsConnectionProperties: BasicAuthNatsCo
     lateinit var natsServer: Connection
 
     override fun connection(): Connection {
+
+        val usernameV: String = System.getenv("NATS_USERNAME") ?: natsConnectionProperties.username
+        val passwordV: String = System.getenv("NATS_PASSWORD") ?: natsConnectionProperties.password
+
         if (!::natsServer.isInitialized) {
             val options: Options =
                 Options.Builder()
                     .server(natsConnectionProperties.host)
-                    .userInfo(natsConnectionProperties.username.toCharArray(),
-                        natsConnectionProperties.password.toCharArray())
+                    .userInfo(usernameV.toCharArray(), passwordV.toCharArray())
                     .connectionTimeout(Duration.ofSeconds(natsConnectionProperties.connectionTimeout))
                     .pingInterval(Duration.ofSeconds(natsConnectionProperties.pingInterval))
                     .maxPingsOut(natsConnectionProperties.maxPingsOut)

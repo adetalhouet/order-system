@@ -10,11 +10,15 @@ class DatabaseServiceImpl(private val databaseConnectionProperties: DatabaseConn
 
     override fun dataSource(): HikariDataSource {
         log.info("Starting database connection")
+
+        val usernameV: String = System.getenv("DB_USERNAME") ?: databaseConnectionProperties.username
+        val passwordV: String = System.getenv("DB_PASSWORD") ?: databaseConnectionProperties.password
+
         val config = HikariConfig().apply {
             driverClassName = databaseConnectionProperties.driverName
             jdbcUrl = databaseConnectionProperties.url
-            username = databaseConnectionProperties.username
-            password = databaseConnectionProperties.password
+            username = usernameV
+            password = passwordV
             isAutoCommit = false
             transactionIsolation = "TRANSACTION_REPEATABLE_READ"
         }
