@@ -14,11 +14,13 @@ dependencies {
     implementation("com.google.protobuf:protobuf-java:${rootProject.extra.get("protobufVersion")}")
     implementation("io.grpc:grpc-netty-shaded:${rootProject.extra.get("grpcVersion")}")
     implementation("io.grpc:grpc-protobuf:${rootProject.extra.get("grpcVersion")}")
+
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
 }
 
 protobuf {
     protoc { artifact = "com.google.protobuf:protoc:${rootProject.extra.get("protobufVersion")}" }
-    generatedFilesBaseDir = "src/"
+    generatedFilesBaseDir = "${project.rootDir}/api/src/"
 
     plugins {
         id("grpc") { artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.extra.get("grpcVersion")}" }

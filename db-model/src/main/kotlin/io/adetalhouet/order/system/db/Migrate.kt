@@ -14,7 +14,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 fun main() {
     // Run DB migration when necessary (TBD K8S job)
-    val conf: Config = ConfigFactory.load()
+//    val conf: Config = ConfigFactory.load()
     defaultDatabaseConnection().connect()
 
 // As we are using Exposed, which doesn't support Flyway natively,
